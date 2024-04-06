@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewMovieImages"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/movie_image_view_height"
+            android:layout_margin="@dimen/movie_image_margin"
+            app:layoutManager="com.google.android.material.carousel.CarouselLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/textViewMovieName"/>
+
+        <TextView
+            style="@style/movieFragmentMainText"
+            android:id="@+id/textViewMovieName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:layout_constraintBottom_toTopOf="@+id/textViewMovieDescription"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recyclerViewMovieImages"
+            tools:text="Мастер и Баба Нюра" />
+
+        <TextView
+            style="@style/movieFragmentMainText"
+            android:id="@+id/textViewMovieDescription"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+            app:layout_constraintBottom_toTopOf="@+id/textViewMovieYear"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewMovieName"
+            tools:text="Москва, 1930-е годы. Популярный драматург обвиняется в антисоветчине: спектакль по его пьесе отменяют, а самого его выгоняют из союза литераторов. В не самый лучший момент своей жизни он встречает глубоко несчастную в браке красавицу Маргариту и начинает новый роман, героями которого становятся люди из его окружения, в том числе — мистический персонаж Воланд, списанный со знакомого иностранца." />
+
+        <TextView
+            style="@style/movieFragmentTitles"
+            android:id="@+id/textViewMovieYearTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/movie_year"
+            android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewMovieYear"
+            app:layout_constraintEnd_toStartOf="@+id/textViewMovieYear"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textViewMovieYear" />
+
+        <TextView
+            style="@style/movieFragmentText"
+            android:id="@+id/textViewMovieYear"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+            app:layout_constraintBottom_toTopOf="@+id/textViewMovieSlogan"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textViewMovieYearTitle"
+            app:layout_constraintTop_toBottomOf="@+id/textViewMovieDescription"
+            tools:text="2024" />
+
+        <TextView
+            style="@style/movieFragmentTitles"
+            android:id="@+id/textViewMovieSloganTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/movie_slogan"
+            android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewMovieSlogan"
+            app:layout_constraintEnd_toStartOf="@+id/textViewMovieSlogan"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textViewMovieSlogan" />
+
+        <TextView
+            style="@style/movieFragmentText"
+            android:id="@+id/textViewMovieSlogan"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+            app:layout_constraintTop_toBottomOf="@+id/textViewMovieYear"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textViewMovieSloganTitle"
+            app:layout_constraintBottom_toTopOf="@+id/textViewMovieRating"
+            tools:text="Масло, Аня, ошибка... Кровь и безголовый бедолага!" />
+
+        <TextView
+            style="@style/movieFragmentTitles"
+            android:id="@+id/textViewMovieRatingTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/movies_rating"
+            android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewMovieRating"
+            app:layout_constraintEnd_toStartOf="@+id/textViewMovieRating"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textViewMovieRating" />
+
+        <TextView
+            style="@style/movieFragmentText"
+            android:id="@+id/textViewMovieRating"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+            app:layout_constraintBottom_toTopOf="@+id/textViewMovieLength"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textViewMovieRatingTitle"
+            app:layout_constraintTop_toBottomOf="@+id/textViewMovieSlogan"
+            tools:text="10" />
+
+        <TextView
+            style="@style/movieFragmentTitles"
+            android:id="@+id/textViewMovieLengthTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/movie_length"
+            android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewMovieLength"
+            app:layout_constraintEnd_toStartOf="@+id/textViewMovieLength"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textViewMovieLength" />
+
+        <TextView
+            style="@style/movieFragmentText"
+            android:id="@+id/textViewMovieLength"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+            app:layout_constraintBottom_toTopOf="@+id/textViewMovieMovieName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textViewMovieLengthTitle"
+            app:layout_constraintTop_toBottomOf="@+id/textViewMovieRating"
+            tools:text="120 минут" />
+
+        <TextView
+            style="@style/movieFragmentTitles"
+            android:id="@+id/textViewMovieMovieNameTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/movie_age_rating"
+            android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewMovieMovieName"
+            app:layout_constraintEnd_toStartOf="@+id/textViewMovieMovieName"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textViewMovieMovieName" />
+
+        <TextView
+            style="@style/movieFragmentText"
+            android:id="@+id/textViewMovieMovieName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+            app:layout_constraintBottom_toTopOf="@+id/textViewMovieMovieGenres"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textViewMovieMovieNameTitle"
+            app:layout_constraintTop_toBottomOf="@+id/textViewMovieLength"
+            tools:text="Без мамы не приходи!" />
+
+        <TextView
+            style="@style/movieFragmentTitles"
+            android:id="@+id/textViewMovieGenresTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/movies_genres"
+            android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewMovieMovieGenres"
+            app:layout_constraintEnd_toStartOf="@+id/textViewMovieMovieGenres"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textViewMovieMovieGenres" />
+
+        <TextView
+            style="@style/movieFragmentText"
+            android:id="@+id/textViewMovieMovieGenres"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+            app:layout_constraintBottom_toTopOf="@+id/textViewMovieCountries"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textViewMovieGenresTitle"
+            app:layout_constraintTop_toBottomOf="@+id/textViewMovieMovieName"
+            tools:text="жесть, драма, мама, папа, Интересно было" />
+
+        <TextView
+            style="@style/movieFragmentTitles"
+            android:id="@+id/textViewMovieCountriesTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/movies_countries"
+            android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewMovieCountries"
+            app:layout_constraintEnd_toStartOf="@+id/textViewMovieCountries"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textViewMovieCountries" />
+
+        <TextView
+            style="@style/movieFragmentText"
+            android:id="@+id/textViewMovieCountries"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+            app:layout_constraintBottom_toTopOf="@+id/textViewMovieBudget"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textViewMovieCountriesTitle"
+            app:layout_constraintTop_toBottomOf="@+id/textViewMovieMovieGenres"
+            tools:text="Ра-си-Я, Пен...США и дургие" />
+
+        <TextView
+            style="@style/movieFragmentTitles"
+            android:id="@+id/textViewMovieBudgetTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/movies_budget"
+            android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewMovieBudget"
+            app:layout_constraintEnd_toStartOf="@+id/textViewMovieBudget"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textViewMovieBudget" />
+
+        <TextView
+            style="@style/movieFragmentText"
+            android:id="@+id/textViewMovieBudget"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+            app:layout_constraintBottom_toTopOf="@+id/recyclerViewActors"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textViewMovieBudgetTitle"
+            app:layout_constraintTop_toBottomOf="@+id/textViewMovieCountries"
+            tools:text="100500+ денег" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            style="@style/movieFragmentRecycler"
+            android:id="@+id/recyclerViewActors"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            app:layout_constraintBottom_toTopOf="@+id/recyclerViewComments"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewMovieBudget" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            style="@style/movieFragmentRecycler"
+            android:id="@+id/recyclerViewComments"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recyclerViewActors" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

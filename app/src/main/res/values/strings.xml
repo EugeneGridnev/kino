@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">AvitoFilms</string>
+    <string name="empty_search_message">Ничего не найдено, попробуйте снова</string>
+    <string name="search_text">Поиск:</string>
+    <string name="movie_year">Год выпуска:</string>
+    <string name="movie_slogan">Слоган:</string>
+    <string name="movies_rating">Рейтинг Кинопоиска:</string>
+    <string name="movie_length">Продолжительность:</string>
+    <string name="movie_age_rating">Возрастной рейтинг:</string>
+    <string name="movies_genres">Жанры:</string>
+    <string name="movies_countries">Страны:</string>
+    <string name="movies_budget">Бюджет:</string>
 </resources>

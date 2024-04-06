@@ -1,11 +1,12 @@
-package ru.eugeneprojects.avitofilms
+package ru.eugeneprojects.avitofilms.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import ru.eugeneprojects.avitofilms.R
 
-class MainActivity : AppCompatActivity() {
+class MoviesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_movies)
     }
 }
