@@ -9,7 +9,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import ru.eugeneprojects.avitofilms.data.models.Movie
 import ru.eugeneprojects.avitofilms.data.network.repository.MoviesRepository
-import ru.eugeneprojects.avitofilms.data.paging.MoviePagingSource
+import ru.eugeneprojects.avitofilms.data.paging.MoviesPagingSource
 import ru.eugeneprojects.avitofilms.utils.Constants
 import javax.inject.Inject
 
@@ -21,7 +21,7 @@ class MoviesViewModel @Inject constructor(
     fun getMovies(): Flow<PagingData<Movie>> =
         Pager(
             config = Constants.PAGING_CONFIG,
-            pagingSourceFactory = { MoviePagingSource(moviesRepository, "") }
+            pagingSourceFactory = { MoviesPagingSource(moviesRepository, "") }
         ).flow.cachedIn(viewModelScope)
 
 

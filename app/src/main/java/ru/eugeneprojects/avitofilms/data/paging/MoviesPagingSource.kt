@@ -7,7 +7,7 @@ import ru.eugeneprojects.avitofilms.data.models.Movie
 import ru.eugeneprojects.avitofilms.data.network.repository.MoviesRepository
 import ru.eugeneprojects.avitofilms.utils.Constants
 
-class MoviePagingSource (
+class MoviesPagingSource (
     private val productsRepository: MoviesRepository,
     private val query: String
 ) : PagingSource<Int, Movie>() {
