@@ -5,15 +5,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isVisible
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import ru.eugeneprojects.avitofilms.R
 import ru.eugeneprojects.avitofilms.adapters.MoviesLoadStateAdapter
@@ -44,6 +49,7 @@ class MoviesListFragment : Fragment() {
 
         setUpMoviesList()
         observeMovies()
+        handleSearchChanges()
 
         viewModel.isOnline.observe(viewLifecycleOwner) { isOnline ->
             if (isOnline) {
@@ -68,15 +74,41 @@ class MoviesListFragment : Fragment() {
         binding?.recyclerViewMovies?.adapter = moviesPagingAdapter.withLoadStateFooter(MoviesLoadStateAdapter())
 
         setOnMovieClick()
+
+        initSwipeToRefresh(moviesPagingAdapter)
+
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.CREATED) {
+                moviesPagingAdapter.loadStateFlow.collect { loadStates ->
+                    binding?.swipeRefresh?.isRefreshing = loadStates.mediator?.refresh is LoadState.Loading
+                }
+            }
+        }
+
+        moviesPagingAdapter.addLoadStateListener { combinedLoadStates ->
+            val refreshState = combinedLoadStates.refresh
+            binding?.recyclerViewMovies?.isVisible = refreshState != LoadState.Loading
+            binding?.progressBar?.isVisible = refreshState == LoadState.Loading
+
+            if (refreshState is LoadState.Error) {
+                Toast.makeText(activity,resources.getString(R.string.toast_load_error_message), Toast.LENGTH_SHORT).show()
+            }
+
+            if (combinedLoadStates.source.refresh is LoadState.NotLoading && combinedLoadStates.append.endOfPaginationReached && moviesPagingAdapter.itemCount == 0) {
+                binding?.recyclerViewMovies?.isVisible = false
+                binding?.textViewStub?.isVisible = true
+            } else {
+                binding?.recyclerViewMovies?.isVisible = true
+                binding?.textViewStub?.isVisible = false
+            }
+        }
     }
 
     private fun observeMovies() {
 
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.getMovies().collectLatest { pagingData ->
-                    moviesPagingAdapter.submitData(pagingData)
-                }
+                viewModel.movies.collectLatest(moviesPagingAdapter::submitData)
             }
         }
     }
@@ -87,6 +119,18 @@ class MoviesListFragment : Fragment() {
             findNavController().navigate(
                 R.id.action_moviesListFragment_to_movieFragment
             )
+        }
+    }
+
+    private fun initSwipeToRefresh(adapter: MoviesPagingAdapter) {
+
+        binding?.swipeRefresh?.setOnRefreshListener { adapter.refresh() }
+    }
+
+    private fun handleSearchChanges() {
+
+        binding?.searchEditText?.doOnTextChanged { searchQuery, _, _, _ ->
+            viewModel.setSearchQuery(searchQuery.toString())
         }
     }
 }

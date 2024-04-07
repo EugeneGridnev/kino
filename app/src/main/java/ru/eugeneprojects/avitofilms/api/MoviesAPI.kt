@@ -11,7 +11,7 @@ interface MoviesAPI {
 
     @GET("/1.4/movie/search")
     suspend fun getMovies(
-        @Query("q")
+        @Query("query")
         searchText: String = "",
         @Header("X-API-KEY")
         apiKey: String = BuildConfig.API_KEY

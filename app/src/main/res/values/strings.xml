@@ -12,4 +12,5 @@
     <string name="movies_budget">Бюджет:</string>
     <string name="list_load_error">При загрузке списка возникла ошибка, проверьте сеть и попробуйте обновить список</string>
     <string name="network_error_message">Нет подключения к сети</string>
+    <string name="toast_load_error_message">Ошибка загрузки</string>
 </resources>
