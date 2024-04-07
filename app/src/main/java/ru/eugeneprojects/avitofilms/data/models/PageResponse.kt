@@ -1,7 +1,7 @@
 package ru.eugeneprojects.avitofilms.data.models
 
-data class MoviesResponse(
-    val docs: List<Movie>,
+data class PageResponse<T>(
+    val docs: List<T>,
     val limit: Int,
     val page: Int,
     val pages: Int,

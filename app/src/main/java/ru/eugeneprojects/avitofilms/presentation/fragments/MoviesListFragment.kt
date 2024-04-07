@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -32,7 +33,7 @@ class MoviesListFragment : Fragment() {
 
     private var binding: FragmentMoviesListBinding? = null
 
-    private lateinit var viewModel: MoviesViewModel
+    private val viewModel: MoviesViewModel by activityViewModels()
     private lateinit var moviesPagingAdapter: MoviesPagingAdapter
 
     override fun onCreateView(
@@ -46,12 +47,12 @@ class MoviesListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(this)[MoviesViewModel::class.java]
+//        viewModel = ViewModelProvider(this)[MoviesViewModel::class.java]
 
         setUpMoviesList()
         observeMovies()
         setUpFabButton()
-        handleSearchChanges()
+        //handleSearchChanges()
         handleScrollingToTopWhenSearching(moviesPagingAdapter)
 
         viewModel.isOnline.observe(viewLifecycleOwner) { isOnline ->

@@ -20,7 +20,7 @@
     <dimen name="card_rating_text_view_style_margin_horizontal">3dp</dimen>
 
     <dimen name="card_text_view_style_margin_horizontal">10dp</dimen>
-    <dimen name="card_text_view_style_margin_vertical">3dp</dimen>
+    <dimen name="card_text_view_style_margin_vertical">1dp</dimen>
 
     <dimen name="movie_image_view_height">200dp</dimen>
     <dimen name="movie_image_view_width">150dp</dimen>

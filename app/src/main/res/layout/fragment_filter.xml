@@ -29,16 +29,19 @@
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:tag="@string/all_tag"
             android:text="@string/show_all" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:tag="@string/movie_tag"
             android:text="@string/show_movies" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:tag="@string/tv_series_tag"
             android:text="@string/show_tv_series" />
 
     </com.google.android.material.tabs.TabLayout>
@@ -51,12 +54,12 @@
         android:text="@string/sort_filter_description"
         android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
         app:layout_constraintTop_toBottomOf="@+id/tabMoviesTypeFilter"
-        app:layout_constraintBottom_toTopOf="@+id/tabMoviesFilter"
+        app:layout_constraintBottom_toTopOf="@+id/tabSortMoviesFilter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 
     <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabMoviesFilter"
+        android:id="@+id/tabSortMoviesFilter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -67,17 +70,20 @@
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/by_year" />
+            android:text="@string/by_year"
+            android:tag="@string/year_tag"/>
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/by_country" />
+            android:text="@string/by_country"
+            android:tag="@string/country_tag"/>
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/by_age" />
+            android:text="@string/by_age"
+            android:tag="@string/agerating_tag"/>
     </com.google.android.material.tabs.TabLayout>
 
     <TextView
@@ -87,7 +93,7 @@
         android:layout_marginTop="@dimen/filter_description_margin"
         android:text="@string/slider_description_text"
         android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
-        app:layout_constraintTop_toBottomOf="@+id/tabMoviesFilter"
+        app:layout_constraintTop_toBottomOf="@+id/tabSortMoviesFilter"
         app:layout_constraintBottom_toTopOf="@+id/ratingSlider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
