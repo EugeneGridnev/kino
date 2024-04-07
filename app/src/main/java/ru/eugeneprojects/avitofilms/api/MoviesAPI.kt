@@ -11,6 +11,10 @@ interface MoviesAPI {
 
     @GET("/v1.4/movie/search")
     suspend fun getMovies(
+        @Query("page")
+        pageNumber: Int,
+        @Query("limit")
+        pageSize: Int,
         @Query("query")
         searchText: String = "",
         @Header("X-API-KEY")

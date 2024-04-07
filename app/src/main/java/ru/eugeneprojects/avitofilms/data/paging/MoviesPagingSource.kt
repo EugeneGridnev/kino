@@ -21,13 +21,13 @@ class MoviesPagingSource (
 
         val pageNumber = params.key ?: INITIAL_PAGE_NUMBER
         val pageSize: Int = params.loadSize.coerceAtMost(Constants.PAGE_SIZE)
-        val skip = pageNumber * pageSize
 
         try {
-            val response = moviesRepository.getMovies(query)
+            val response = moviesRepository.getMovies(query, pageNumber, pageSize)
 
             if (response.isSuccessful) {
-                val movies = checkNotNull(response.body()).docs.map { movie ->
+                val responseBody = checkNotNull(response.body())
+                val movies = responseBody.docs.map { movie ->
                     Movie(
                         movie.ageRating,
                         movie.alternativeName,
@@ -46,9 +46,8 @@ class MoviesPagingSource (
                     )
                 }
 
-                val nextPageNumber = if (skip + movies.size >= (response.body()?.total ?: pageSize)) null
-                else pageNumber + 1
-                val prevPageNumber = if (pageNumber == 0) null else pageNumber - 1
+                val nextPageNumber = if (responseBody.pages >= pageNumber) null else pageNumber + 1
+                val prevPageNumber = if (pageNumber > 1) pageNumber - 1 else null
 
                 return LoadResult.Page(movies, prevPageNumber, nextPageNumber)
             } else {
@@ -60,6 +59,6 @@ class MoviesPagingSource (
     }
 
     companion object {
-        const val INITIAL_PAGE_NUMBER = 0
+        const val INITIAL_PAGE_NUMBER = 1
     }
 }

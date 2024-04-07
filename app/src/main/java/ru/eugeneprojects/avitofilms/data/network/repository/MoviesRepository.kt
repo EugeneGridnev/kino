@@ -5,5 +5,5 @@ import ru.eugeneprojects.avitofilms.data.models.MoviesResponse
 
 interface MoviesRepository {
 
-    suspend fun getMovies(searchText: String): Response<MoviesResponse>
+    suspend fun getMovies(searchText: String, pageNumber: Int, pageSize: Int): Response<MoviesResponse>
 }
