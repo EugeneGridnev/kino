@@ -6,17 +6,14 @@ import androidx.lifecycle.asFlow
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
-import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOn
-import ru.eugeneprojects.avitofilms.data.models.Movie
 import ru.eugeneprojects.avitofilms.data.network.connection.ConnectivityRepository
 import ru.eugeneprojects.avitofilms.data.network.repository.MoviesRepository
 import ru.eugeneprojects.avitofilms.data.paging.MoviesPagingSource

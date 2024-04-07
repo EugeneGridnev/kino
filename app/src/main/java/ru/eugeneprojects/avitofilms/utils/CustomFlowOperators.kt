@@ -1,4 +1,4 @@
-package com.eugeneprojects.productbrowser.util
+package com.eugeneprojects.avitofilms.util
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.scan

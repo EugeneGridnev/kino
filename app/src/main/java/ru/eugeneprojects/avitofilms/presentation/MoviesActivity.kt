@@ -1,7 +1,7 @@
 package ru.eugeneprojects.avitofilms.presentation
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import dagger.hilt.android.AndroidEntryPoint
 import ru.eugeneprojects.avitofilms.R
 

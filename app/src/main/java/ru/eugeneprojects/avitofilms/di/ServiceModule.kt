@@ -14,7 +14,7 @@ import ru.eugeneprojects.avitofilms.utils.Constants
 internal object ServiceModule {
 
     @Provides
-    fun provideProductApi(): MoviesAPI = Retrofit.Builder()
+    fun provideMoviesApi(): MoviesAPI = Retrofit.Builder()
         .baseUrl(Constants.BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
         .build()

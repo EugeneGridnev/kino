@@ -8,7 +8,7 @@ import ru.eugeneprojects.avitofilms.data.network.repository.MoviesRepository
 import ru.eugeneprojects.avitofilms.utils.Constants
 
 class MoviesPagingSource (
-    private val productsRepository: MoviesRepository,
+    private val moviesRepository: MoviesRepository,
     private val query: String
 ) : PagingSource<Int, Movie>() {
     override fun getRefreshKey(state: PagingState<Int, Movie>): Int? {
@@ -24,10 +24,10 @@ class MoviesPagingSource (
         val skip = pageNumber * pageSize
 
         try {
-            val response = productsRepository.getMovies(query)
+            val response = moviesRepository.getMovies(query)
 
             if (response.isSuccessful) {
-                val products = checkNotNull(response.body()).movies.map { movie ->
+                val movies = checkNotNull(response.body()).movies.map { movie ->
                     Movie(
                         movie.ageRating,
                         movie.alternativeName,
@@ -46,11 +46,11 @@ class MoviesPagingSource (
                     )
                 }
 
-                val nextPageNumber = if (skip + products.size >= (response.body()?.total ?: pageSize)) null
+                val nextPageNumber = if (skip + movies.size >= (response.body()?.total ?: pageSize)) null
                 else pageNumber + 1
                 val prevPageNumber = if (pageNumber == 0) null else pageNumber - 1
 
-                return LoadResult.Page(products, prevPageNumber, nextPageNumber)
+                return LoadResult.Page(movies, prevPageNumber, nextPageNumber)
             } else {
                 return LoadResult.Error(HttpException(response))
             }
