@@ -13,4 +13,16 @@
     <string name="list_load_error">При загрузке списка возникла ошибка, проверьте сеть и попробуйте обновить список</string>
     <string name="network_error_message">Нет подключения к сети</string>
     <string name="toast_load_error_message">Ошибка загрузки</string>
+    <string name="filter_fab_description">Настройки фильрации</string>
+    <string name="sort_filter_description">Сортировать по</string>
+    <string name="by_year">Году</string>
+    <string name="by_country">Стране</string>
+    <string name="by_age">Возрастному рейтингу</string>
+    <string name="use_filter_button_text">Показать</string>
+    <string name="show_all">Все</string>
+    <string name="show_movies">Фильмы</string>
+    <string name="show_tv_series">Сериалы</string>
+    <string name="show_by_type_description">Показывать</string>
+    <string name="slider_description_text">Рейтинг</string>
+    <string name="slider_description">Слайдер для рейтинга</string>
 </resources>

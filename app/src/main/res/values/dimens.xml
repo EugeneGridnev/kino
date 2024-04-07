@@ -46,4 +46,6 @@
     <dimen name="search_error_message_text_size">30sp</dimen>
 
     <dimen name="carousel_item_movie_image_margin">4dp</dimen>
+
+    <dimen name="filter_description_margin">20dp</dimen>
 </resources>

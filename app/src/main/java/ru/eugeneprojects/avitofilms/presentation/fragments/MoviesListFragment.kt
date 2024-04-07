@@ -50,6 +50,7 @@ class MoviesListFragment : Fragment() {
 
         setUpMoviesList()
         observeMovies()
+        setUpFabButton()
         handleSearchChanges()
         handleScrollingToTopWhenSearching(moviesPagingAdapter)
 
@@ -151,5 +152,11 @@ class MoviesListFragment : Fragment() {
     private fun getRefreshLoadStateFlow(adapter: MoviesPagingAdapter): Flow<LoadState> {
         return adapter.loadStateFlow
             .map { it.refresh }
+    }
+
+    private fun setUpFabButton() {
+        binding?.fabAddHabit?.setOnClickListener {
+            findNavController().navigate(R.id.action_moviesListFragment_to_filtersFragment)
+        }
     }
 }

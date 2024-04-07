@@ -76,11 +76,25 @@
             android:maxLines="1"
             android:ellipsize="end"
             android:textAppearance="?attr/textAppearanceBodyMedium"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/textViewMovieAgeRestriction"
             app:layout_constraintEnd_toStartOf="@+id/textViewMovieRating"
             app:layout_constraintStart_toEndOf="@+id/itemViewMovieThumbnail"
             app:layout_constraintTop_toBottomOf="@+id/textViewMovieCountry"
             tools:text="триллер, драма" />
+
+        <TextView
+            style="@style/cardTextViewStyle"
+            android:id="@+id/textViewMovieAgeRestriction"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:textAppearance="?attr/textAppearanceBodyMedium"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/textViewMovieRating"
+            app:layout_constraintStart_toEndOf="@+id/itemViewMovieThumbnail"
+            app:layout_constraintTop_toBottomOf="@+id/textViewMovieGenre"
+            tools:text="18+" />
 
         <androidx.constraintlayout.widget.Barrier
             android:id="@+id/barrier"

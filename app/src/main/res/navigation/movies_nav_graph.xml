@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_moviesListFragment_to_movieFragment"
             app:destination="@id/movieFragment" />
+        <action
+            android:id="@+id/action_moviesListFragment_to_filtersFragment"
+            app:destination="@id/filtersFragment" />
     </fragment>
     <fragment
         android:id="@+id/movieFragment"
@@ -20,6 +23,14 @@
         android:label="MovieFragment" >
         <action
             android:id="@+id/action_movieFragment_to_moviesListFragment"
+            app:destination="@id/moviesListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/filtersFragment"
+        android:name="ru.eugeneprojects.avitofilms.presentation.fragments.FiltersFragment"
+        android:label="FiltersFragment" >
+        <action
+            android:id="@+id/action_filtersFragment_to_moviesListFragment"
             app:destination="@id/moviesListFragment" />
     </fragment>
 </navigation>
