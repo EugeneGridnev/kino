@@ -9,7 +9,7 @@ import ru.eugeneprojects.avitofilms.data.models.MoviesResponse
 
 interface MoviesAPI {
 
-    @GET("/1.4/movie/search")
+    @GET("/v1.4/movie/search")
     suspend fun getMovies(
         @Query("query")
         searchText: String = "",

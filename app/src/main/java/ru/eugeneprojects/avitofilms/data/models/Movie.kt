@@ -3,7 +3,7 @@ package ru.eugeneprojects.avitofilms.data.models
 data class Movie(
     val ageRating: Int,
     val alternativeName: String?,
-    val budget: Budget,
+    val budget: Budget?,
     val countries: List<Country>,
     val description: String,
     val enName: String?,
@@ -13,6 +13,6 @@ data class Movie(
     val name: String?,
     val poster: Poster,
     val rating: Rating,
-    val slogan: String,
+    val slogan: String?,
     val year: Int
 )

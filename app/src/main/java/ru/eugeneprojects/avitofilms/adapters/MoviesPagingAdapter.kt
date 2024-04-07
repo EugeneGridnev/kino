@@ -46,7 +46,7 @@ class MoviesPagingAdapter :
             binding.textViewMovieYear.text = movie.year.toString()
             binding.textViewMovieCountry.text = movie.countries.joinToString(", ") { it.name }
             binding.textViewMovieGenre.text = movie.genres.joinToString(", ") { it.name }
-            binding.textViewMovieRating.text = movie.rating.kp.toString()
+            binding.textViewMovieRating.text = String.format("%.1f", movie.rating.kp)
             itemView.setOnClickListener {
                 onClickListener?.invoke(movie)
             }

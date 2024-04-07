@@ -27,7 +27,7 @@ class MoviesPagingSource (
             val response = moviesRepository.getMovies(query)
 
             if (response.isSuccessful) {
-                val movies = checkNotNull(response.body()).movies.map { movie ->
+                val movies = checkNotNull(response.body()).docs.map { movie ->
                     Movie(
                         movie.ageRating,
                         movie.alternativeName,
