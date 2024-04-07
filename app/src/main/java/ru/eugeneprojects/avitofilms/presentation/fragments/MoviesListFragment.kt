@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
@@ -43,6 +44,14 @@ class MoviesListFragment : Fragment() {
 
         setUpMoviesList()
         observeMovies()
+
+        viewModel.isOnline.observe(viewLifecycleOwner) { isOnline ->
+            if (isOnline) {
+                moviesPagingAdapter.retry()
+            } else {
+                Toast.makeText(activity, resources.getString(R.string.network_error_message), Toast.LENGTH_SHORT).show()
+            }
+        }
 
     }
 

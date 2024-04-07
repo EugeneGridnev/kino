@@ -11,4 +11,5 @@
     <string name="movies_countries">Страны:</string>
     <string name="movies_budget">Бюджет:</string>
     <string name="list_load_error">При загрузке списка возникла ошибка, проверьте сеть и попробуйте обновить список</string>
+    <string name="network_error_message">Нет подключения к сети</string>
 </resources>
