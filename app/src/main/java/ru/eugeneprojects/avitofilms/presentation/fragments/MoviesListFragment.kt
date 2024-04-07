@@ -15,6 +15,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.eugeneprojects.productbrowser.util.simpleScan
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collectLatest
@@ -50,6 +51,7 @@ class MoviesListFragment : Fragment() {
         setUpMoviesList()
         observeMovies()
         handleSearchChanges()
+        handleScrollingToTopWhenSearching(moviesPagingAdapter)
 
         viewModel.isOnline.observe(viewLifecycleOwner) { isOnline ->
             if (isOnline) {
@@ -132,5 +134,22 @@ class MoviesListFragment : Fragment() {
         binding?.searchEditText?.doOnTextChanged { searchQuery, _, _, _ ->
             viewModel.setSearchQuery(searchQuery.toString())
         }
+    }
+
+    private fun handleScrollingToTopWhenSearching(adapter: MoviesPagingAdapter) = lifecycleScope.launch {
+        // list should be scrolled to the 1st item (index = 0) if data has been reloaded:
+        // (prev state = Loading, current state = NotLoading)
+        getRefreshLoadStateFlow(adapter)
+            .simpleScan(2)
+            .collectLatest { (previousState, currentState) ->
+                if (previousState is LoadState.Loading && currentState is LoadState.NotLoading) {
+                    binding?.recyclerViewMovies?.scrollToPosition(0)
+                }
+            }
+    }
+
+    private fun getRefreshLoadStateFlow(adapter: MoviesPagingAdapter): Flow<LoadState> {
+        return adapter.loadStateFlow
+            .map { it.refresh }
     }
 }
