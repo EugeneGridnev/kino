@@ -9,6 +9,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
+import ru.eugeneprojects.avitofilms.R
 import ru.eugeneprojects.avitofilms.data.models.filters.MovieFilters
 import ru.eugeneprojects.avitofilms.data.models.filters.MovieSortType
 import ru.eugeneprojects.avitofilms.data.models.filters.MovieTypeFilter
@@ -66,7 +67,7 @@ class FiltersFragment : Fragment() {
                 rating = rating ?: 6..10
             )
             viewModel.setFilter(filters)
-            findNavController().popBackStack()
+            findNavController().navigate(R.id.action_filtersFragment_to_filteredMoviesListFragment)
         }
     }
 }

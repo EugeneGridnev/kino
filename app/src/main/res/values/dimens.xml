@@ -48,4 +48,6 @@
     <dimen name="carousel_item_movie_image_margin">4dp</dimen>
 
     <dimen name="filter_description_margin">20dp</dimen>
+
+    <dimen name="back_button_padding">3dp</dimen>
 </resources>

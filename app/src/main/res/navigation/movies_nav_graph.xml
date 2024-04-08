@@ -20,17 +20,21 @@
     <fragment
         android:id="@+id/movieFragment"
         android:name="ru.eugeneprojects.avitofilms.presentation.fragments.MovieFragment"
-        android:label="MovieFragment" >
-        <action
-            android:id="@+id/action_movieFragment_to_moviesListFragment"
-            app:destination="@id/moviesListFragment" />
-    </fragment>
+        android:label="MovieFragment" />
     <fragment
         android:id="@+id/filtersFragment"
         android:name="ru.eugeneprojects.avitofilms.presentation.fragments.FiltersFragment"
         android:label="FiltersFragment" >
         <action
-            android:id="@+id/action_filtersFragment_to_moviesListFragment"
-            app:destination="@id/moviesListFragment" />
+            android:id="@+id/action_filtersFragment_to_filteredMoviesListFragment"
+            app:destination="@id/filteredMoviesListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/filteredMoviesListFragment"
+        android:name="ru.eugeneprojects.avitofilms.presentation.fragments.FilteredMoviesListFragment"
+        android:label="FilteredMoviesListFragment" >
+        <action
+            android:id="@+id/action_filteredMoviesListFragment_to_movieFragment"
+            app:destination="@id/movieFragment" />
     </fragment>
 </navigation>
