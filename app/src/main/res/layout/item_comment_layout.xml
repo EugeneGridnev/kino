@@ -85,7 +85,8 @@
                 android:layout_height="wrap_content"
                 android:maxLines="6"
                 android:ellipsize="end"
-                android:textAppearance="@style/TextAppearance.Material3.BodySmall" />
+                android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+                tools:text="dfgd\nsdfs\nsdfsd\nsfs\nsfsd\ndsfs\nsdf"/>
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
