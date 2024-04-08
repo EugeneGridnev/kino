@@ -1,0 +1,93 @@
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:maxWidth="@dimen/card_max_width"
+    android:maxHeight="150dp"
+    android:layout_width="350dp"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/card_margin"
+    android:elevation="@dimen/card_elevation"
+    app:cardCornerRadius="@dimen/card_corner_radius"
+    app:cardElevation="@dimen/card_elevation">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View
+            android:id="@+id/commentIndicator"
+            android:layout_width="8dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/black"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/commentatorPicture"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/commentGroup"/>
+
+        <ImageView
+            android:id="@+id/commentatorPicture"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="5dp"
+            app:layout_constraintStart_toEndOf="@+id/commentIndicator"
+            app:layout_constraintTop_toTopOf="@+id/commentIndicator"
+            app:layout_constraintBottom_toBottomOf="@+id/commentIndicator"
+            app:layout_constraintEnd_toStartOf="@+id/commentatorName"
+            tools:layout_editor_absoluteY="27dp" />
+
+        <TextView
+            android:id="@+id/commentatorName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
+            app:layout_constraintBottom_toTopOf="@+id/commentDate"
+            app:layout_constraintStart_toEndOf="@+id/commentatorPicture"
+            app:layout_constraintTop_toTopOf="@+id/commentatorPicture"
+            tools:text="Егоркин2" />
+
+        <TextView
+            android:id="@id/commentDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/commentatorPicture"
+
+            app:layout_constraintStart_toStartOf="@+id/commentatorName"
+            app:layout_constraintTop_toBottomOf="@+id/commentatorName"
+            tools:text="14 июня 2018" />
+
+        <LinearLayout
+            android:id="@+id/commentGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/commentIndicator"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <TextView
+                android:id="@+id/commentTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+                tools:text="Что это было?" />
+
+            <TextView
+                android:id="@+id/commentText"
+                android:layout_marginHorizontal="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="6"
+                android:ellipsize="end"
+                android:textAppearance="@style/TextAppearance.Material3.BodySmall" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>
