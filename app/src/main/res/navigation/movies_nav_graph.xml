@@ -20,7 +20,11 @@
     <fragment
         android:id="@+id/movieFragment"
         android:name="ru.eugeneprojects.avitofilms.presentation.fragments.MovieFragment"
-        android:label="MovieFragment" />
+        android:label="MovieFragment" >
+        <action
+            android:id="@+id/action_movieFragment_to_commentBottomSheetFragment"
+            app:destination="@id/commentBottomSheetFragment" />
+    </fragment>
     <fragment
         android:id="@+id/filtersFragment"
         android:name="ru.eugeneprojects.avitofilms.presentation.fragments.FiltersFragment"
@@ -37,4 +41,8 @@
             android:id="@+id/action_filteredMoviesListFragment_to_movieFragment"
             app:destination="@id/movieFragment" />
     </fragment>
+    <dialog
+        android:id="@+id/commentBottomSheetFragment"
+        android:name="ru.eugeneprojects.avitofilms.presentation.fragments.CommentBottomSheetFragment"
+        android:label="CommentBottomSheetFragment" />
 </navigation>

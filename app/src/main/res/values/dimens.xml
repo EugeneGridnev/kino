@@ -50,4 +50,8 @@
     <dimen name="filter_description_margin">20dp</dimen>
 
     <dimen name="back_button_padding">3dp</dimen>
+
+    <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="close_button_margin">5dp</dimen>
 </resources>

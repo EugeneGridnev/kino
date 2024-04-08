@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/commentDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="@string/comment_description"
+        android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/commentIndicator"/>
+
+    <ImageView
+        android:id="@+id/closeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/close_icon"
+        android:layout_margin="@dimen/close_button_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/commentIndicator"
+        android:layout_width="8dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/black"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/commentatorPicture"
+        app:layout_constraintTop_toBottomOf="@+id/commentDescription"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView"/>
+
+    <ImageView
+        android:id="@+id/commentatorPicture"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="5dp"
+        app:layout_constraintStart_toEndOf="@+id/commentIndicator"
+        app:layout_constraintTop_toTopOf="@+id/commentIndicator"
+        app:layout_constraintBottom_toBottomOf="@+id/commentIndicator"
+        app:layout_constraintEnd_toStartOf="@+id/commentatorName"
+        tools:layout_editor_absoluteY="27dp" />
+
+    <TextView
+        android:id="@+id/commentatorName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
+        app:layout_constraintBottom_toTopOf="@+id/commentDate"
+        app:layout_constraintStart_toEndOf="@+id/commentatorPicture"
+        app:layout_constraintTop_toTopOf="@+id/commentatorPicture"
+        tools:text="Егоркин2" />
+
+    <TextView
+        android:id="@id/commentDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/commentatorPicture"
+
+        app:layout_constraintStart_toStartOf="@+id/commentatorName"
+        app:layout_constraintTop_toBottomOf="@+id/commentatorName"
+        tools:text="14 июня 2018" />
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/commentIndicator">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/commentTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+                tools:text="Что это было?" />
+
+            <TextView
+                android:id="@+id/commentText"
+                android:layout_marginHorizontal="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.Material3.BodyMedium" />
+        </LinearLayout>
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

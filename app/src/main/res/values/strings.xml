@@ -32,4 +32,5 @@
     <string name="country_tag">COUNTRY</string>
     <string name="agerating_tag">AGE_RATING</string>
     <string name="filtered_list_description">Результаты</string>
+    <string name="comment_description">Отзыв</string>
 </resources>
