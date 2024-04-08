@@ -26,7 +26,7 @@ abstract class BasePagingSource<T : Any> () : PagingSource<Int, T>() {
             return if (response.isSuccessful) {
                 val responseBody = checkNotNull(response.body())
 
-                val nextPageNumber = if (responseBody.pages >= pageNumber) null else pageNumber + 1
+                val nextPageNumber = if (responseBody.pages <= pageNumber) null else pageNumber + 1
                 val prevPageNumber = if (pageNumber > 1) pageNumber - 1 else null
 
                 LoadResult.Page(responseBody.docs, prevPageNumber, nextPageNumber)
