@@ -10,41 +10,44 @@ import androidx.paging.cachedIn
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.FlowPreview
-import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOn
+import ru.eugeneprojects.avitofilms.data.models.filters.MovieFilters
+import ru.eugeneprojects.avitofilms.data.models.filters.MovieSortType
+import ru.eugeneprojects.avitofilms.data.models.filters.MovieTypeFilter
 import ru.eugeneprojects.avitofilms.data.network.connection.ConnectivityRepository
 import ru.eugeneprojects.avitofilms.data.network.repository.MoviesRepository
-import ru.eugeneprojects.avitofilms.data.paging.MoviesPagingSource
+import ru.eugeneprojects.avitofilms.data.paging.FilterPagingSource
 import ru.eugeneprojects.avitofilms.utils.Constants
+import ru.eugeneprojects.avitofilms.utils.Constants.DEFAULT_FILTERS
 import javax.inject.Inject
 
 @HiltViewModel
-class MoviesViewModel @Inject constructor(
+class FilteredMovieListViewModel @Inject constructor(
     private val moviesRepository: MoviesRepository,
     private val connectivityRepository: ConnectivityRepository
 ) : ViewModel() {
 
-    private val state = MutableLiveData("")
+    private val state: MutableLiveData<MovieFilters?> = MutableLiveData<MovieFilters?>(DEFAULT_FILTERS)
 
     val isOnline = connectivityRepository.isConnected.asLiveData()
 
-    @OptIn(FlowPreview::class, ExperimentalCoroutinesApi::class)
+
+    @OptIn(ExperimentalCoroutinesApi::class)
     val movies = state.asFlow()
         .distinctUntilChanged()
-        .debounce(1000)
-        .flatMapLatest {query ->
+        .flatMapLatest {movieFilters ->
             Pager(
                 config = Constants.PAGING_CONFIG,
-                pagingSourceFactory = { MoviesPagingSource(moviesRepository, query) }
+                pagingSourceFactory = { FilterPagingSource(moviesRepository, movieFilters!!) }
             ).flow
         }.flowOn(Dispatchers.IO)
         .cachedIn(viewModelScope)
 
-    fun setSearchQuery(query: String) {
+    fun setFilter(filters: MovieFilters) {
 
-        state.value = query
+        state.value = filters
     }
+
 }

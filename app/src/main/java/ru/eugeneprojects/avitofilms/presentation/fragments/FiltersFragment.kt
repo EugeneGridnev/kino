@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
@@ -14,12 +15,13 @@ import ru.eugeneprojects.avitofilms.data.models.filters.MovieFilters
 import ru.eugeneprojects.avitofilms.data.models.filters.MovieSortType
 import ru.eugeneprojects.avitofilms.data.models.filters.MovieTypeFilter
 import ru.eugeneprojects.avitofilms.databinding.FragmentFilterBinding
+import ru.eugeneprojects.avitofilms.presentation.viewmodels.FilteredMovieListViewModel
 import ru.eugeneprojects.avitofilms.presentation.viewmodels.MoviesViewModel
 
 @AndroidEntryPoint
 class FiltersFragment : Fragment() {
 
-    private val viewModel: MoviesViewModel by activityViewModels()
+    private val viewModel: FilteredMovieListViewModel by activityViewModels()
     private var binding: FragmentFilterBinding? = null
 
 
@@ -33,8 +35,6 @@ class FiltersFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-//        viewModel = ViewModelProvider(this)[MoviesViewModel::class.java]
 
         setUpUseFiltersButton()
     }
