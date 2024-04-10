@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import ru.eugeneprojects.avitofilms.R
-import ru.eugeneprojects.avitofilms.data.models.Movie
+import ru.eugeneprojects.avitofilms.data.models.movieCardItem.Movie
 import ru.eugeneprojects.avitofilms.databinding.ItemMovieLayoutBinding
 
 class MoviesPagingAdapter :
