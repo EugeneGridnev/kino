@@ -14,10 +14,8 @@ import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOn
 import ru.eugeneprojects.avitofilms.data.models.filters.MovieFilters
-import ru.eugeneprojects.avitofilms.data.models.filters.MovieSortType
-import ru.eugeneprojects.avitofilms.data.models.filters.MovieTypeFilter
 import ru.eugeneprojects.avitofilms.data.network.connection.ConnectivityRepository
-import ru.eugeneprojects.avitofilms.data.network.repository.MoviesRepository
+import ru.eugeneprojects.avitofilms.data.network.repository.KinopoiskRepository
 import ru.eugeneprojects.avitofilms.data.paging.FilterPagingSource
 import ru.eugeneprojects.avitofilms.utils.Constants
 import ru.eugeneprojects.avitofilms.utils.Constants.DEFAULT_FILTERS
@@ -25,7 +23,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class FilteredMovieListViewModel @Inject constructor(
-    private val moviesRepository: MoviesRepository,
+    private val kinopoiskRepository: KinopoiskRepository,
     private val connectivityRepository: ConnectivityRepository
 ) : ViewModel() {
 
@@ -40,7 +38,7 @@ class FilteredMovieListViewModel @Inject constructor(
         .flatMapLatest {movieFilters ->
             Pager(
                 config = Constants.PAGING_CONFIG,
-                pagingSourceFactory = { FilterPagingSource(moviesRepository, movieFilters!!) }
+                pagingSourceFactory = { FilterPagingSource(kinopoiskRepository, movieFilters!!) }
             ).flow
         }.flowOn(Dispatchers.IO)
         .cachedIn(viewModelScope)

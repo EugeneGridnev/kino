@@ -16,14 +16,14 @@ import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOn
 import ru.eugeneprojects.avitofilms.data.network.connection.ConnectivityRepository
-import ru.eugeneprojects.avitofilms.data.network.repository.MoviesRepository
+import ru.eugeneprojects.avitofilms.data.network.repository.KinopoiskRepository
 import ru.eugeneprojects.avitofilms.data.paging.MoviesPagingSource
 import ru.eugeneprojects.avitofilms.utils.Constants
 import javax.inject.Inject
 
 @HiltViewModel
 class MoviesViewModel @Inject constructor(
-    private val moviesRepository: MoviesRepository,
+    private val kinopoiskRepository: KinopoiskRepository,
     private val connectivityRepository: ConnectivityRepository
 ) : ViewModel() {
 
@@ -38,7 +38,7 @@ class MoviesViewModel @Inject constructor(
         .flatMapLatest {query ->
             Pager(
                 config = Constants.PAGING_CONFIG,
-                pagingSourceFactory = { MoviesPagingSource(moviesRepository, query) }
+                pagingSourceFactory = { MoviesPagingSource(kinopoiskRepository, query) }
             ).flow
         }.flowOn(Dispatchers.IO)
         .cachedIn(viewModelScope)

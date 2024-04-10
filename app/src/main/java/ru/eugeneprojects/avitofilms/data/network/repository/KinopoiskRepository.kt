@@ -10,7 +10,7 @@ import ru.eugeneprojects.avitofilms.data.models.movieDescription.MovieInfo
 import ru.eugeneprojects.avitofilms.data.models.poster.Poster
 
 
-interface MoviesRepository {
+interface KinopoiskRepository {
 
     suspend fun getMovies(searchText: String, pageNumber: Int, pageSize: Int): Response<PageResponse<Movie>>
 

@@ -13,7 +13,8 @@ import ru.eugeneprojects.avitofilms.data.models.movieDescription.MovieInfo
 import ru.eugeneprojects.avitofilms.data.models.poster.Poster
 import javax.inject.Inject
 
-class MoviesRepositoryIMPL @Inject constructor(private val api: KinopoiskAPI) : MoviesRepository {
+class KinopoiskRepositoryIMPL @Inject constructor(private val api: KinopoiskAPI) :
+    KinopoiskRepository {
 
     override suspend fun getMovies(
         searchText: String,
