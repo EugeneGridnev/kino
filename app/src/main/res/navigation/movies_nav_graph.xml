@@ -11,19 +11,11 @@
         android:label="fragment_movies_list"
         tools:layout="@layout/fragment_movies_list" >
         <action
-            android:id="@+id/action_moviesListFragment_to_movieFragment"
-            app:destination="@id/movieFragment" />
-        <action
             android:id="@+id/action_moviesListFragment_to_filtersFragment"
             app:destination="@id/filtersFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/movieFragment"
-        android:name="ru.eugeneprojects.avitofilms.presentation.fragments.MovieFragment"
-        android:label="MovieFragment" >
         <action
-            android:id="@+id/action_movieFragment_to_commentBottomSheetFragment"
-            app:destination="@id/commentBottomSheetFragment" />
+            android:id="@+id/action_moviesListFragment_to_movieDescriptionFragment"
+            app:destination="@id/movieDescriptionFragment" />
     </fragment>
     <fragment
         android:id="@+id/filtersFragment"
@@ -38,11 +30,22 @@
         android:name="ru.eugeneprojects.avitofilms.presentation.fragments.FilteredMoviesListFragment"
         android:label="FilteredMoviesListFragment" >
         <action
-            android:id="@+id/action_filteredMoviesListFragment_to_movieFragment"
-            app:destination="@id/movieFragment" />
+            android:id="@+id/action_filteredMoviesListFragment_to_movieDescriptionFragment"
+            app:destination="@id/movieDescriptionFragment" />
     </fragment>
     <dialog
         android:id="@+id/commentBottomSheetFragment"
         android:name="ru.eugeneprojects.avitofilms.presentation.fragments.CommentBottomSheetFragment"
         android:label="CommentBottomSheetFragment" />
+    <fragment
+        android:id="@+id/movieDescriptionFragment"
+        android:name="ru.eugeneprojects.avitofilms.presentation.fragments.MovieDescriptionFragment"
+        android:label="MovieDescriptionFragment" >
+        <action
+            android:id="@+id/action_movieDescriptionFragment_to_commentBottomSheetFragment"
+            app:destination="@id/commentBottomSheetFragment" />
+        <argument
+            android:name="movieId"
+            app:argType="integer" />
+    </fragment>
 </navigation>

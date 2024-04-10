@@ -119,8 +119,12 @@ class MoviesListFragment : Fragment() {
     private fun setOnMovieClick() {
 
         moviesPagingAdapter.setOnItemClickListener {
+            val bundle = Bundle().apply {
+                putInt("movieId", it.id)
+            }
             findNavController().navigate(
-                R.id.action_moviesListFragment_to_movieFragment
+                R.id.action_moviesListFragment_to_movieDescriptionFragment,
+                bundle
             )
         }
     }

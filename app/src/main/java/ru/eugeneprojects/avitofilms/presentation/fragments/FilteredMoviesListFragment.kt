@@ -96,7 +96,7 @@ class FilteredMoviesListFragment : Fragment() {
                 Toast.makeText(activity,resources.getString(R.string.toast_load_error_message), Toast.LENGTH_SHORT).show()
                 lifecycleScope.launch {
                     delay(5000)
-                    Toast.makeText(activity, "Подгружаем вам данные, не отключайтесь!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(activity, "Пробуем сноа, не уходите!", Toast.LENGTH_SHORT).show()
                     moviesPagingAdapter.retry()
                 }
             }
@@ -107,8 +107,12 @@ class FilteredMoviesListFragment : Fragment() {
     private fun setOnMovieClick() {
 
         moviesPagingAdapter.setOnItemClickListener {
+            val bundle = Bundle().apply {
+                putInt("movieId", it.id)
+            }
             findNavController().navigate(
-                R.id.action_filteredMoviesListFragment_to_movieFragment
+                R.id.action_filteredMoviesListFragment_to_movieDescriptionFragment,
+                bundle
             )
         }
     }
