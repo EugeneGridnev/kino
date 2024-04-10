@@ -7,7 +7,7 @@ import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import ru.eugeneprojects.avitofilms.api.MoviesAPI
+import ru.eugeneprojects.avitofilms.api.KinopoiskAPI
 import ru.eugeneprojects.avitofilms.utils.Constants
 import java.util.concurrent.TimeUnit
 
@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit
 internal object ServiceModule {
 
     @Provides
-    fun provideMoviesApi(): MoviesAPI = Retrofit.Builder()
+    fun provideMoviesApi(): KinopoiskAPI = Retrofit.Builder()
         .client(OkHttpClient.Builder()
             .readTimeout(1, TimeUnit.MINUTES)
             .connectTimeout(1, TimeUnit.SECONDS)
@@ -24,5 +24,5 @@ internal object ServiceModule {
         .baseUrl(Constants.BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
-        .create(MoviesAPI::class.java)
+        .create(KinopoiskAPI::class.java)
 }
