@@ -45,7 +45,10 @@ class CommentsPagingAdapter :
                     R.color.red))
             }
             binding.commentatorName.text = comment.author
-            binding.commentDate.text = comment.createdAt
+            binding.commentDate.text = comment.createdAt?.format(
+                    DateTimeFormatter
+                        .ofLocalizedDate(FormatStyle.LONG)
+                    ) ?: ""
             binding.commentTitle.text = comment.title
             binding.commentText.text = comment.review
             itemView.setOnClickListener {

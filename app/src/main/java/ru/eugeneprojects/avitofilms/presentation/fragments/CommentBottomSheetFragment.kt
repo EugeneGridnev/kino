@@ -9,6 +9,8 @@ import androidx.navigation.fragment.navArgs
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import ru.eugeneprojects.avitofilms.R
 import ru.eugeneprojects.avitofilms.databinding.FragmentCommentBottomSheetBinding
+import java.time.format.DateTimeFormatter
+import java.time.format.FormatStyle
 
 class CommentBottomSheetFragment : BottomSheetDialogFragment() {
 
@@ -41,13 +43,15 @@ class CommentBottomSheetFragment : BottomSheetDialogFragment() {
 
         binding?.apply {
             commentatorName.text = comment.author
-            //todo разобраться с датой
-            commentDate.text = comment.date
+            commentDate.text = comment.date?.format(
+                DateTimeFormatter
+                    .ofLocalizedDate(FormatStyle.LONG)
+            ) ?: ""
             commentTitle.text = comment.title
             commentText.text = comment.review
 
         }
-        setIndicatorColor(comment.type)
+        comment.type?.let { setIndicatorColor(it) }
         setOnExitButtonClick()
     }
 
