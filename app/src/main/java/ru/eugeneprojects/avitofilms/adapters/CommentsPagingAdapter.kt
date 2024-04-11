@@ -37,7 +37,20 @@ class CommentsPagingAdapter :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(comment: Comment, onClickListener: ((Comment) -> Unit)? = null) {
-            
+            //todo понять что с цветом
+            if (comment.type == "Позитивный") {
+                binding.commentIndicator.setBackgroundColor(itemView.context.getColor(R.color.green))
+            }
+            if (comment.type == "Негативный") {
+                binding.commentIndicator.setBackgroundColor(itemView.context.getColor(R.color.red))
+            }
+            binding.commentatorName.text = comment.author
+            binding.commentDate.text = comment.createdAt
+            binding.commentTitle.text = comment.title
+            binding.commentText.text = comment.review
+            itemView.setOnClickListener {
+                onClickListener?.invoke(comment)
+            }
         }
     }
 

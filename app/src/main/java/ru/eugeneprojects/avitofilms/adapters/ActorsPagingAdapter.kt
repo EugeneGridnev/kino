@@ -5,6 +5,8 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import ru.eugeneprojects.avitofilms.R
 import ru.eugeneprojects.avitofilms.data.models.actor.Actor
 import ru.eugeneprojects.avitofilms.databinding.ItemActorLayoutBinding
 
@@ -34,7 +36,11 @@ class ActorsPagingAdapter :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(actor: Actor) {
-
+            Glide.with(itemView)
+                .load(actor.photo)
+                .placeholder(R.drawable.no_person_image_placeholder)
+                .into(binding.itemViewActorThumbnail)
+            binding.textViewActorName.text = actor.name ?: actor.enName ?: ""
         }
     }
 

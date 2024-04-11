@@ -7,8 +7,6 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/card_margin"
-    android:elevation="@dimen/card_elevation"
-    app:cardCornerRadius="@dimen/card_corner_radius"
     app:cardElevation="@dimen/card_elevation">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,38 +16,27 @@
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/itemViewActorThumbnail"
-            android:layout_width="@dimen/card_image_width"
-            android:layout_height="@dimen/card_image_height"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
             android:scaleType="fitXY"
             app:shapeAppearanceOverlay="@style/roundedImageView"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/textViewActorName"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            style="@style/cardTextViewStyle"
             android:id="@+id/textViewActorName"
+            style="@style/cardTextViewStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?attr/textAppearanceTitleSmall"
-            app:layout_constraintVertical_chainStyle="packed"
-            app:layout_constraintBottom_toTopOf="@+id/textViewActorDescription"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/itemViewActorThumbnail"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Добрыня Никитич" />
-
-        <TextView
-            style="@style/cardTextViewStyle"
-            android:id="@+id/textViewActorDescription"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?attr/textAppearanceBodySmall"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/itemViewActorThumbnail"
-            app:layout_constraintTop_toBottomOf="@+id/textViewActorName"
-            tools:text="Какой-то чел из 3его ряда" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="Добрыня Никитич" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
