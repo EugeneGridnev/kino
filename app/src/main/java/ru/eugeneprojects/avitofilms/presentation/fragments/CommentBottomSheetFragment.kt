@@ -8,6 +8,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import ru.eugeneprojects.avitofilms.R
+import ru.eugeneprojects.avitofilms.data.models.comment.Comment
 import ru.eugeneprojects.avitofilms.databinding.FragmentCommentBottomSheetBinding
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
@@ -57,9 +58,9 @@ class CommentBottomSheetFragment : BottomSheetDialogFragment() {
 
     private fun setIndicatorColor(commentType: String) {
         when (commentType) {
-            "Позитивный" -> binding?.commentIndicator?.setBackgroundColor(requireContext().getColor(
+            Comment.TYPE_POSITIVE -> binding?.commentIndicator?.setBackgroundColor(requireContext().getColor(
                 R.color.green))
-            "Негативный" -> binding?.commentIndicator?.setBackgroundColor(requireContext().getColor(
+            Comment.TYPE_NEGATIVE -> binding?.commentIndicator?.setBackgroundColor(requireContext().getColor(
                 R.color.red))
         }
     }

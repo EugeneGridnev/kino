@@ -9,6 +9,8 @@ import com.bumptech.glide.Glide
 import ru.eugeneprojects.avitofilms.R
 import ru.eugeneprojects.avitofilms.data.models.comment.Comment
 import ru.eugeneprojects.avitofilms.databinding.ItemCommentLayoutBinding
+import java.time.format.DateTimeFormatter
+import java.time.format.FormatStyle
 
 class CommentsPagingAdapter :
     PagingDataAdapter<Comment, CommentsPagingAdapter.CommentViewHolder>(CommentDiffCallBack()) {
@@ -37,11 +39,10 @@ class CommentsPagingAdapter :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(comment: Comment, onClickListener: ((Comment) -> Unit)? = null) {
-            //todo понять что с цветом
             when (comment.type) {
-                "Позитивный" -> binding.commentIndicator.setBackgroundColor(itemView.context.getColor(
+                Comment.TYPE_POSITIVE -> binding.commentIndicator.setBackgroundColor(itemView.context.getColor(
                     R.color.green))
-                "Негативный" -> binding.commentIndicator.setBackgroundColor(itemView.context.getColor(
+                Comment.TYPE_NEGATIVE -> binding.commentIndicator.setBackgroundColor(itemView.context.getColor(
                     R.color.red))
             }
             binding.commentatorName.text = comment.author
