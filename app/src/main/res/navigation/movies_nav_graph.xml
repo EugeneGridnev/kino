@@ -51,5 +51,12 @@
         <argument
             android:name="movieId"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_movieDescriptionFragment_to_errorFragment"
+            app:destination="@id/errorFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/errorFragment"
+        android:name="ru.eugeneprojects.avitofilms.presentation.fragments.ErrorFragment"
+        android:label="ErrorFragment" />
 </navigation>
