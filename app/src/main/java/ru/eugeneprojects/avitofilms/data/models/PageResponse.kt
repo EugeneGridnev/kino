@@ -1,4 +1,4 @@
-package ru.eugeneprojects.avitofilms.data.models.movieCardItem
+package ru.eugeneprojects.avitofilms.data.models
 
 data class PageResponse<T>(
     val docs: List<T>,

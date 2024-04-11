@@ -4,7 +4,7 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import retrofit2.HttpException
 import retrofit2.Response
-import ru.eugeneprojects.avitofilms.data.models.movieCardItem.PageResponse
+import ru.eugeneprojects.avitofilms.data.models.PageResponse
 import ru.eugeneprojects.avitofilms.utils.Constants
 
 abstract class BasePagingSource<T : Any> () : PagingSource<Int, T>() {

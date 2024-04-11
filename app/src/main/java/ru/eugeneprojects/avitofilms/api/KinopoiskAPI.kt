@@ -8,7 +8,7 @@ import retrofit2.http.Query
 import retrofit2.http.QueryMap
 import ru.eugeneprojects.avitofilms.BuildConfig
 import ru.eugeneprojects.avitofilms.data.models.movieCardItem.Movie
-import ru.eugeneprojects.avitofilms.data.models.movieCardItem.PageResponse
+import ru.eugeneprojects.avitofilms.data.models.PageResponse
 import ru.eugeneprojects.avitofilms.data.models.actor.Actor
 import ru.eugeneprojects.avitofilms.data.models.comment.Comment
 import ru.eugeneprojects.avitofilms.data.models.movieDescription.MovieInfo

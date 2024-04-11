@@ -1,7 +1,7 @@
 package ru.eugeneprojects.avitofilms.data.paging
 
 import retrofit2.Response
-import ru.eugeneprojects.avitofilms.data.models.movieCardItem.PageResponse
+import ru.eugeneprojects.avitofilms.data.models.PageResponse
 import ru.eugeneprojects.avitofilms.data.models.actor.Actor
 import ru.eugeneprojects.avitofilms.data.network.repository.KinopoiskRepository
 
