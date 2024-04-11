@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -64,12 +65,17 @@ class MovieDescriptionFragment : Fragment() {
                 viewModel.description.collect { loadStates ->
                     when (loadStates) {
                         MovieDescriptionViewModel.State.Loading -> {
-
+                            binding?.progressBar?.isVisible = true
+                            binding?.wholeMovieDescription?.isVisible = false
                         }
                         is MovieDescriptionViewModel.State.Movie -> {
+                            binding?.progressBar?.isVisible = false
+                            binding?.wholeMovieDescription?.isVisible = true
                             setUpData(loadStates.data)
                         }
-                        is MovieDescriptionViewModel.State.Error -> TODO("открываем фрагмент с ошибкой заглушкой")
+                        is MovieDescriptionViewModel.State.Error -> {
+                            findNavController().navigate(R.id.action_movieDescriptionFragment_to_errorFragment)
+                        }
                     }
                 }
             }
@@ -92,13 +98,13 @@ class MovieDescriptionFragment : Fragment() {
             textViewMovieDescription.text = movieInfo.description
             textViewMovieYear.text = movieInfo.year.toString()
             textViewMovieSlogan.text = movieInfo.slogan
-            textViewMovieRating.text = String.format("%.1f", movieInfo.rating.kp)
+            textViewMovieRating.text = String.format("%.1f", movieInfo.rating?.kp)
             textViewMovieLength.text = "${movieInfo.movieLength} минут"
             textViewMovieAgeRating.text = "${movieInfo.ageRating}+"
             textViewMovieGenres.text = movieInfo.genres.joinToString(", ") { it.name }
             textViewMovieCountries.text = movieInfo.countries.joinToString(", ") { it.name }
             textViewMovieBudget.text =
-                "${movieInfo.budget.value} ${movieInfo.budget.currency}"
+                "${movieInfo.budget?.value ?: ""} ${movieInfo.budget?.currency ?: ""}"
         }
     }
 

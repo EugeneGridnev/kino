@@ -91,6 +91,8 @@ class FilteredMoviesListFragment : Fragment() {
 
         moviesPagingAdapter.addLoadStateListener { combinedLoadStates ->
             val refreshState = combinedLoadStates.refresh
+            binding?.recyclerViewFilteredMovies?.isVisible = refreshState != LoadState.Loading
+            binding?.progressBar?.isVisible = refreshState == LoadState.Loading
 
             if (refreshState is LoadState.Error) {
                 Toast.makeText(activity,resources.getString(R.string.toast_load_error_message), Toast.LENGTH_SHORT).show()
