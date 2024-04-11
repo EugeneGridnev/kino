@@ -1,5 +1,9 @@
 package ru.eugeneprojects.avitofilms.data.models.comment
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class Comment(
     val author: String,
     val createdAt: String,
@@ -9,4 +13,4 @@ data class Comment(
     val review: String,
     val title: String,
     val type: String,
-)
+): Parcelable

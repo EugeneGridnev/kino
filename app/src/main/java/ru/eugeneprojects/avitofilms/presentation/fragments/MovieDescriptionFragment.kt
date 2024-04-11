@@ -88,7 +88,8 @@ class MovieDescriptionFragment : Fragment() {
         binding?.textViewMovieAgeRating?.text = "${movieInfo.ageRating}+"
         binding?.textViewMovieGenres?.text = movieInfo.genres.joinToString(", ") { it.name }
         binding?.textViewMovieCountries?.text = movieInfo.countries.joinToString(", ") { it.name }
-        binding?.textViewMovieBudget?.text = "${movieInfo.budget.value} ${movieInfo.budget.currency}"
+        binding?.textViewMovieBudget?.text =
+            "${movieInfo.budget.value} ${movieInfo.budget.currency}"
     }
 
     private fun setUpCommentsRecycler() {
@@ -98,6 +99,7 @@ class MovieDescriptionFragment : Fragment() {
             LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
         binding?.recyclerViewComments?.adapter = commentsPagingAdapter
 
+        setOnCommentClick()
         observeComments()
     }
 
@@ -114,7 +116,7 @@ class MovieDescriptionFragment : Fragment() {
 
         commentsPagingAdapter.setOnItemClickListener {
             val bundle = Bundle().apply {
-                putInt("movieId", it.id)
+                putParcelable("comment", it)
             }
             findNavController().navigate(
                 R.id.action_movieDescriptionFragment_to_commentBottomSheetFragment,

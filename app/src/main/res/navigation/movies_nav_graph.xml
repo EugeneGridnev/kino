@@ -36,7 +36,11 @@
     <dialog
         android:id="@+id/commentBottomSheetFragment"
         android:name="ru.eugeneprojects.avitofilms.presentation.fragments.CommentBottomSheetFragment"
-        android:label="CommentBottomSheetFragment" />
+        android:label="CommentBottomSheetFragment" >
+        <argument
+            android:name="comment"
+            app:argType="ru.eugeneprojects.avitofilms.data.models.comment.Comment" />
+    </dialog>
     <fragment
         android:id="@+id/movieDescriptionFragment"
         android:name="ru.eugeneprojects.avitofilms.presentation.fragments.MovieDescriptionFragment"

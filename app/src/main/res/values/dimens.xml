@@ -53,5 +53,5 @@
 
     <dimen name="fab_margin">16dp</dimen>
 
-    <dimen name="close_button_margin">5dp</dimen>
+    <dimen name="close_button_margin">10dp</dimen>
 </resources>

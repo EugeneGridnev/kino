@@ -38,11 +38,11 @@ class CommentsPagingAdapter :
 
         fun bind(comment: Comment, onClickListener: ((Comment) -> Unit)? = null) {
             //todo понять что с цветом
-            if (comment.type == "Позитивный") {
-                binding.commentIndicator.setBackgroundColor(itemView.context.getColor(R.color.green))
-            }
-            if (comment.type == "Негативный") {
-                binding.commentIndicator.setBackgroundColor(itemView.context.getColor(R.color.red))
+            when (comment.type) {
+                "Позитивный" -> binding.commentIndicator.setBackgroundColor(itemView.context.getColor(
+                    R.color.green))
+                "Негативный" -> binding.commentIndicator.setBackgroundColor(itemView.context.getColor(
+                    R.color.red))
             }
             binding.commentatorName.text = comment.author
             binding.commentDate.text = comment.createdAt
