@@ -34,4 +34,6 @@
     <string name="filtered_list_description">Результаты</string>
     <string name="comment_description">Отзыв</string>
     <string name="movie_poster_description">Постер фильма</string>
+    <string name="retry_button_text">Обновить</string>
+    <string name="back_button_description">Кнопка назад</string>
 </resources>
