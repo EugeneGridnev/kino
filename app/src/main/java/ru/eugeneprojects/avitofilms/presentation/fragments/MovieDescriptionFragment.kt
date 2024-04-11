@@ -79,17 +79,20 @@ class MovieDescriptionFragment : Fragment() {
 
     @SuppressLint("SetTextI18n")
     private fun setUpData(movieInfo: MovieInfo) {
-        binding?.textViewMovieName?.text = movieInfo.name
-        binding?.textViewMovieDescription?.text = movieInfo.description
-        binding?.textViewMovieYear?.text = movieInfo.year.toString()
-        binding?.textViewMovieSlogan?.text = movieInfo.slogan
-        binding?.textViewMovieRating?.text = String.format("%.1f", movieInfo.rating.kp)
-        binding?.textViewMovieLength?.text = "${movieInfo.movieLength} минут"
-        binding?.textViewMovieAgeRating?.text = "${movieInfo.ageRating}+"
-        binding?.textViewMovieGenres?.text = movieInfo.genres.joinToString(", ") { it.name }
-        binding?.textViewMovieCountries?.text = movieInfo.countries.joinToString(", ") { it.name }
-        binding?.textViewMovieBudget?.text =
-            "${movieInfo.budget.value} ${movieInfo.budget.currency}"
+
+        binding?.apply {
+            textViewMovieName.text = movieInfo.name
+            textViewMovieDescription.text = movieInfo.description
+            textViewMovieYear.text = movieInfo.year.toString()
+            textViewMovieSlogan.text = movieInfo.slogan
+            textViewMovieRating.text = String.format("%.1f", movieInfo.rating.kp)
+            textViewMovieLength.text = "${movieInfo.movieLength} минут"
+            textViewMovieAgeRating.text = "${movieInfo.ageRating}+"
+            textViewMovieGenres.text = movieInfo.genres.joinToString(", ") { it.name }
+            textViewMovieCountries.text = movieInfo.countries.joinToString(", ") { it.name }
+            textViewMovieBudget.text =
+                "${movieInfo.budget.value} ${movieInfo.budget.currency}"
+        }
     }
 
     private fun setUpCommentsRecycler() {
