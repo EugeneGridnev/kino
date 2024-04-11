@@ -12,7 +12,6 @@ import ru.eugeneprojects.avitofilms.data.models.PageResponse
 import ru.eugeneprojects.avitofilms.data.models.actor.Actor
 import ru.eugeneprojects.avitofilms.data.models.comment.Comment
 import ru.eugeneprojects.avitofilms.data.models.movieDescription.MovieInfo
-import ru.eugeneprojects.avitofilms.data.models.poster.Poster
 
 interface KinopoiskAPI {
 
@@ -73,17 +72,5 @@ interface KinopoiskAPI {
         @Header("X-API-KEY")
         apiKey: String = BuildConfig.API_KEY
     ): Response<PageResponse<Comment>>
-
-    @GET("/v1.4/image")
-    suspend fun getPosters(
-        @Query("movieId")
-        movieId: Int,
-        @Query("page")
-        pageNumber: Int,
-        @Query("limit")
-        pageSize: Int,
-        @Header("X-API-KEY")
-        apiKey: String = BuildConfig.API_KEY
-    ): Response<PageResponse<Poster>>
 
 }

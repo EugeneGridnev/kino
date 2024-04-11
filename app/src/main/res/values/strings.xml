@@ -33,4 +33,5 @@
     <string name="agerating_tag">AGE_RATING</string>
     <string name="filtered_list_description">Результаты</string>
     <string name="comment_description">Отзыв</string>
+    <string name="movie_poster_description">Постер фильма</string>
 </resources>

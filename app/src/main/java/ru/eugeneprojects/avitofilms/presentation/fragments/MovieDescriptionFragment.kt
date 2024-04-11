@@ -14,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -80,6 +81,12 @@ class MovieDescriptionFragment : Fragment() {
     @SuppressLint("SetTextI18n")
     private fun setUpData(movieInfo: MovieInfo) {
 
+        binding?.imageViewMovieImage?.let {
+            Glide.with(this)
+                .load(movieInfo.poster.url)
+                .placeholder(R.drawable.no_movie_image_placeholder)
+                .into(it)
+        }
         binding?.apply {
             textViewMovieName.text = movieInfo.name
             textViewMovieDescription.text = movieInfo.description

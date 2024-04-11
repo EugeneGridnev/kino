@@ -48,8 +48,6 @@ class MovieDescriptionViewModel @Inject constructor(
 
     val actors: Flow<PagingData<Actor>> = createPagingSource { ActorsPagingSource(kinopoiskRepository, it.id) }
 
-//    val posters: Flow<PagingData<Poster>?> = createPagingSource { ActorsPagingSource(kinopoiskRepository, it.id) }
-
     fun getMovie(id: Int) {
         viewModelScope.launch {
             fetchMovie(id)

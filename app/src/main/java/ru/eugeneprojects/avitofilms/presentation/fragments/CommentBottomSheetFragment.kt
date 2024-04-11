@@ -41,6 +41,7 @@ class CommentBottomSheetFragment : BottomSheetDialogFragment() {
 
         binding?.apply {
             commentatorName.text = comment.author
+            //todo разобраться с датой
             commentDate.text = comment.date
             commentTitle.text = comment.title
             commentText.text = comment.review

@@ -10,7 +10,6 @@ import ru.eugeneprojects.avitofilms.data.models.filters.MovieFilters
 import ru.eugeneprojects.avitofilms.data.models.filters.MovieSortType
 import ru.eugeneprojects.avitofilms.data.models.filters.MovieTypeFilter
 import ru.eugeneprojects.avitofilms.data.models.movieDescription.MovieInfo
-import ru.eugeneprojects.avitofilms.data.models.poster.Poster
 import javax.inject.Inject
 
 class KinopoiskRepositoryIMPL @Inject constructor(private val api: KinopoiskAPI) :
@@ -28,12 +27,6 @@ class KinopoiskRepositoryIMPL @Inject constructor(private val api: KinopoiskAPI)
         pageNumber: Int,
         pageSize: Int
     ): Response<PageResponse<Comment>> = api.getReviews(movieId, pageNumber, pageSize)
-
-    override suspend fun getPosters(
-        movieId: Int,
-        pageNumber: Int,
-        pageSize: Int
-    ): Response<PageResponse<Poster>> = api.getPosters(movieId, pageNumber, pageSize)
 
     override suspend fun getActors(
         movieId: Int,
