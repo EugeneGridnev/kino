@@ -111,7 +111,7 @@ class MoviesListFragment : Fragment() {
 
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.movies.collectLatest(moviesPagingAdapter::submitData)
+                viewModel.searchedMovies.collectLatest(moviesPagingAdapter::submitData)
             }
         }
     }

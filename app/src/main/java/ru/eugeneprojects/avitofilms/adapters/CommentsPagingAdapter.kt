@@ -44,9 +44,13 @@ class CommentsPagingAdapter :
                     R.color.green))
                 Comment.TYPE_NEGATIVE -> binding.commentIndicator.setBackgroundColor(itemView.context.getColor(
                     R.color.red))
+                Comment.TYPE_NEUTRAL -> binding.commentIndicator.setBackgroundColor(itemView.context.getColor(
+                    R.color.black))
+                null -> binding.commentIndicator.setBackgroundColor(itemView.context.getColor(
+                    R.color.black))
             }
             binding.commentatorName.text = comment.author
-            binding.commentDate.text = comment.createdAt?.format(
+            binding.commentDate.text = comment.date?.format(
                     DateTimeFormatter
                         .ofLocalizedDate(FormatStyle.LONG)
                     ) ?: ""

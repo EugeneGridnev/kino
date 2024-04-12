@@ -94,13 +94,13 @@ class MovieDescriptionFragment : Fragment() {
                 .into(it)
         }
         binding?.apply {
-            textViewMovieName.text = movieInfo.name
+            textViewMovieName.text = movieInfo.name ?: movieInfo.enName ?: movieInfo.alternativeName ?: ""
             textViewMovieDescription.text = movieInfo.description
             textViewMovieYear.text = movieInfo.year.toString()
-            textViewMovieSlogan.text = movieInfo.slogan
+            textViewMovieSlogan.text = movieInfo.slogan ?: ""
             textViewMovieRating.text = String.format("%.1f", movieInfo.rating?.kp)
-            textViewMovieLength.text = "${movieInfo.movieLength} минут"
-            textViewMovieAgeRating.text = "${movieInfo.ageRating}+"
+            textViewMovieLength.text = "${movieInfo.movieLength ?: ""}"
+            textViewMovieAgeRating.text = "${movieInfo.ageRating ?: ""}"
             textViewMovieGenres.text = movieInfo.genres.joinToString(", ") { it.name }
             textViewMovieCountries.text = movieInfo.countries.joinToString(", ") { it.name }
             textViewMovieBudget.text =

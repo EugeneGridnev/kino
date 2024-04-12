@@ -62,6 +62,8 @@ class CommentBottomSheetFragment : BottomSheetDialogFragment() {
                 R.color.green))
             Comment.TYPE_NEGATIVE -> binding?.commentIndicator?.setBackgroundColor(requireContext().getColor(
                 R.color.red))
+            Comment.TYPE_NEUTRAL -> binding?.commentIndicator?.setBackgroundColor(requireContext().getColor(
+                R.color.black))
         }
     }
 

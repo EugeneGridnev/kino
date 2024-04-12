@@ -7,7 +7,6 @@ import java.time.OffsetDateTime
 @Parcelize
 data class Comment(
     val author: String?,
-    val createdAt: OffsetDateTime?,
     val date: OffsetDateTime?,
     val id: Int?,
     val movieId: Int?,
@@ -19,5 +18,6 @@ data class Comment(
     companion object {
         const val TYPE_POSITIVE = "Позитивный"
         const val TYPE_NEGATIVE = "Негативный"
+        const val TYPE_NEUTRAL = "Нейтральный"
     }
 }
