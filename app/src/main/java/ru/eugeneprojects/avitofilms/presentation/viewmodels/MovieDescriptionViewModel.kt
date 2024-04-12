@@ -1,7 +1,6 @@
 package ru.eugeneprojects.avitofilms.presentation.viewmodels
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asFlow
 import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.PagingData
@@ -10,28 +9,20 @@ import androidx.paging.cachedIn
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.debounce
-import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.mapLatest
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
-import retrofit2.http.HTTP
 import ru.eugeneprojects.avitofilms.data.models.actor.Actor
 import ru.eugeneprojects.avitofilms.data.models.comment.Comment
 import ru.eugeneprojects.avitofilms.data.models.movieDescription.MovieInfo
-import ru.eugeneprojects.avitofilms.data.models.movieDescription.Poster
 import ru.eugeneprojects.avitofilms.data.network.repository.KinopoiskRepository
 import ru.eugeneprojects.avitofilms.data.paging.ActorsPagingSource
 import ru.eugeneprojects.avitofilms.data.paging.CommentsPagingSource
-import ru.eugeneprojects.avitofilms.data.paging.MoviesPagingSource
 import ru.eugeneprojects.avitofilms.utils.Constants
 import javax.inject.Inject
 

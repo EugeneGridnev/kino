@@ -5,7 +5,7 @@ import ru.eugeneprojects.avitofilms.data.models.movieCardItem.Movie
 import ru.eugeneprojects.avitofilms.data.models.PageResponse
 import ru.eugeneprojects.avitofilms.data.network.repository.KinopoiskRepository
 
-class MoviesPagingSource (
+class SearchMoviesPagingSource (
     private val kinopoiskRepository: KinopoiskRepository,
     private val query: String
 ) : BasePagingSource<Movie>() {
