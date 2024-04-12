@@ -105,8 +105,15 @@ class FilteredMoviesListFragment : Fragment() {
                     moviesPagingAdapter.retry()
                 }
             }
-        }
 
+            if (combinedLoadStates.source.refresh is LoadState.NotLoading && combinedLoadStates.append.endOfPaginationReached && moviesPagingAdapter.itemCount == 0) {
+                binding.recyclerViewFilteredMovies.isVisible = false
+                binding.textViewStub.isVisible = true
+            } else {
+                binding.recyclerViewFilteredMovies.isVisible = true
+                binding.textViewStub.isVisible = false
+            }
+        }
     }
 
     private fun setOnMovieClick() {

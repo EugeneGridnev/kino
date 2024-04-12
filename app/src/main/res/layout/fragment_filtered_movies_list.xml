@@ -2,7 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <TextView
         android:id="@+id/listDescription"
@@ -46,6 +47,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/listDescription" />
+
+    <TextView
+        style="@style/movieFragmentMainText"
+        android:id="@+id/textViewStub"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/empty_search_message"
+        android:textSize="@dimen/search_error_message_text_size"
+        android:visibility="invisible"
+        android:gravity="center"
+        android:textColor="@color/material_dynamic_tertiary40"
+        app:layout_constraintTop_toBottomOf="@+id/listDescription"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="@string/empty_search_message"/>
 
     <ProgressBar
         android:id="@+id/progressBar"
