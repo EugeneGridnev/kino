@@ -15,8 +15,18 @@ import ru.eugeneprojects.avitofilms.data.models.movieDescription.MovieInfo
 
 interface KinopoiskAPI {
 
-    @GET("/v1.4/movie/search")
+    @GET("/v1.4/movie")
     suspend fun getMovies(
+        @Query("page")
+        pageNumber: Int,
+        @Query("limit")
+        pageSize: Int,
+        @Header("X-API-KEY")
+        apiKey: String = BuildConfig.API_KEY
+    ): Response<PageResponse<Movie>>
+
+    @GET("/v1.4/movie/search")
+    suspend fun getSearchedMovies(
         @Query("page")
         pageNumber: Int,
         @Query("limit")

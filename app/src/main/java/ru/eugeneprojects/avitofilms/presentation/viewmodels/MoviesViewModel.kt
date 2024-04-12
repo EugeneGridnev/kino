@@ -17,6 +17,8 @@ import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOn
 import ru.eugeneprojects.avitofilms.data.network.connection.ConnectivityRepository
 import ru.eugeneprojects.avitofilms.data.network.repository.KinopoiskRepository
+import ru.eugeneprojects.avitofilms.data.paging.FilterPagingSource
+import ru.eugeneprojects.avitofilms.data.paging.MoviePagingSource
 import ru.eugeneprojects.avitofilms.data.paging.SearchMoviesPagingSource
 import ru.eugeneprojects.avitofilms.utils.Constants
 import javax.inject.Inject
@@ -32,7 +34,7 @@ class MoviesViewModel @Inject constructor(
     val isOnline = connectivityRepository.isConnected.asLiveData()
 
     @OptIn(FlowPreview::class, ExperimentalCoroutinesApi::class)
-    val movies = state.asFlow()
+    val searchedMovies = state.asFlow()
         .distinctUntilChanged()
         .debounce(1000)
         .flatMapLatest {query ->
@@ -42,6 +44,12 @@ class MoviesViewModel @Inject constructor(
             ).flow
         }.flowOn(Dispatchers.IO)
         .cachedIn(viewModelScope)
+
+    val movies = Pager(
+            config = Constants.PAGING_CONFIG,
+            pagingSourceFactory = { MoviePagingSource(kinopoiskRepository) }
+        ).flow.flowOn(Dispatchers.IO)
+            .cachedIn(viewModelScope)
 
     fun setSearchQuery(query: String) {
 

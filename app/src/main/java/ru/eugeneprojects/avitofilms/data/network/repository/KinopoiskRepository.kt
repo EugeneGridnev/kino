@@ -11,7 +11,9 @@ import ru.eugeneprojects.avitofilms.data.models.movieDescription.MovieInfo
 
 interface KinopoiskRepository {
 
-    suspend fun getMovies(searchText: String, pageNumber: Int, pageSize: Int): Response<PageResponse<Movie>>
+    suspend fun getMovies(pageNumber: Int, pageSize: Int): Response<PageResponse<Movie>>
+
+    suspend fun getSearchedMovies(searchText: String, pageNumber: Int, pageSize: Int): Response<PageResponse<Movie>>
 
     suspend fun getFilteredMovies(filters: MovieFilters, pageNumber: Int, pageSize: Int): Response<PageResponse<Movie>>
 

@@ -14,12 +14,14 @@ import javax.inject.Inject
 
 class KinopoiskRepositoryIMPL @Inject constructor(private val api: KinopoiskAPI) :
     KinopoiskRepository {
+    override suspend fun getMovies(pageNumber: Int, pageSize: Int): Response<PageResponse<Movie>> =
+        api.getMovies(pageNumber, pageSize)
 
-    override suspend fun getMovies(
+    override suspend fun getSearchedMovies(
         searchText: String,
         pageNumber: Int,
         pageSize: Int
-    ): Response<PageResponse<Movie>> = api.getMovies(pageNumber, pageSize, searchText)
+    ): Response<PageResponse<Movie>> = api.getSearchedMovies(pageNumber, pageSize, searchText)
 
     override suspend fun getMovie(id: Int): Response<MovieInfo> = api.getMovie(id)
     override suspend fun getComments(
