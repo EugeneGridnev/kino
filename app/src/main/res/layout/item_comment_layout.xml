@@ -2,7 +2,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="300dp"
+    android:layout_width="@dimen/comment_card_height"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/card_margin"
     app:cardElevation="@dimen/card_elevation">
@@ -13,9 +13,9 @@
 
         <View
             android:id="@+id/commentIndicator"
-            android:layout_width="8dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="8dp"
+            android:layout_width="@dimen/comment_indicator_width"
+            android:layout_height="@dimen/comment_indicator_height"
+            android:layout_marginTop="@dimen/comment_indicator_margin_top"
             android:background="@color/black"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintVertical_chainStyle="packed"
@@ -30,7 +30,7 @@
             android:id="@+id/commentatorName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
+            android:layout_marginStart="@dimen/commentator_name_margin_start"
             android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
             app:layout_constraintBottom_toTopOf="@+id/commentDate"
             app:layout_constraintEnd_toEndOf="parent"
@@ -53,7 +53,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginBottom="3dp"
+            android:layout_marginBottom="@dimen/comment_group_margin_bottom"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/commentIndicator"
@@ -65,13 +65,13 @@
                 android:layout_height="wrap_content"
                 android:maxLines="1"
                 android:ellipsize="end"
-                android:layout_marginStart="5dp"
+                android:layout_marginStart="@dimen/comment_title_margin_start"
                 android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
                 tools:text="Что это было?" />
 
             <TextView
                 android:id="@+id/commentText"
-                android:layout_marginHorizontal="5dp"
+                android:layout_marginHorizontal="@dimen/comment_text_margin_horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:maxLines="3"

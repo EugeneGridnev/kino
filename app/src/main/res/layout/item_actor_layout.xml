@@ -16,8 +16,8 @@
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/itemViewActorThumbnail"
-            android:layout_width="40dp"
-            android:layout_height="50dp"
+            android:layout_width="@dimen/actor_card_image_width"
+            android:layout_height="@dimen/actor_card_image_height"
             android:scaleType="fitXY"
             app:shapeAppearanceOverlay="@style/roundedImageView"
             app:layout_constraintBottom_toBottomOf="parent"

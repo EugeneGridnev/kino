@@ -36,4 +36,9 @@
     <string name="movie_poster_description">Постер фильма</string>
     <string name="retry_button_text">Обновить</string>
     <string name="back_button_description">Кнопка назад</string>
+    <string name="error_default_message">Что-то пошло не так! Попробуйте обновиться.</string>
+    <string name="movie_description_comments_title">Отзывы пользователей:</string>
+    <string name="movie_description_actors_title">Актерский состав:</string>
+    <string name="close_comment_button_description">Закрыть отзыв</string>
+    <string name="error_image_description">Картинка ошибки</string>
 </resources>

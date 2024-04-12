@@ -54,4 +54,36 @@
     <dimen name="fab_margin">16dp</dimen>
 
     <dimen name="close_button_margin">10dp</dimen>
+
+    <dimen name="retry_button_margin_top">20dp</dimen>
+
+    <dimen name="error_retry_message_horizontal_margin">40dp</dimen>
+    <dimen name="error_retry_message_top_margin">8dp</dimen>
+
+    <dimen name="retry_error_image_height">100dp</dimen>
+    <dimen name="retry_error_image_width">100dp</dimen>
+
+    <dimen name="scroll_view_comment_text_height">400dp</dimen>
+    <dimen name="scroll_view_margin">8dp</dimen>
+
+    <dimen name="comment_card_height">300dp</dimen>
+
+    <dimen name="comment_indicator_height">40dp</dimen>
+    <dimen name="comment_indicator_width">8dp</dimen>
+    <dimen name="comment_indicator_margin_top">8dp</dimen>
+
+    <dimen name="comment_title_margin_start">5dp</dimen>
+
+    <dimen name="comment_text_margin_horizontal">5dp</dimen>
+
+    <dimen name="comment_group_margin_bottom">3dp</dimen>
+
+    <dimen name="commentator_name_margin_start">5dp</dimen>
+
+    <dimen name="actor_card_image_height">40dp</dimen>
+    <dimen name="actor_card_image_width">50dp</dimen>
+
+    <dimen name="comment_description_margin_top">10dp</dimen>
+
+    <dimen name="movie_description_recyclers_margin_vertical">6dp</dimen>
 </resources>

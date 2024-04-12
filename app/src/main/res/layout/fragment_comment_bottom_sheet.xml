@@ -9,7 +9,7 @@
         android:id="@+id/commentDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/comment_description_margin_top"
         android:text="@string/comment_description"
         android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
         app:layout_constraintVertical_chainStyle="packed"
@@ -22,6 +22,7 @@
         android:id="@+id/closeButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:contentDescription="@string/close_comment_button_description"
         android:src="@drawable/close_icon"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:clickable="true"
@@ -31,9 +32,9 @@
 
     <View
         android:id="@+id/commentIndicator"
-        android:layout_width="8dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="@dimen/comment_indicator_width"
+        android:layout_height="@dimen/comment_indicator_height"
+        android:layout_marginTop="@dimen/comment_indicator_margin_top"
         android:background="@color/black"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintVertical_chainStyle="packed"
@@ -46,7 +47,7 @@
         android:id="@+id/commentatorName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
+        android:layout_marginStart="@dimen/commentator_name_margin_start"
         android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
         app:layout_constraintBottom_toTopOf="@+id/commentDate"
         app:layout_constraintEnd_toEndOf="parent"
@@ -67,8 +68,8 @@
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:layout_margin="8dp"
+        android:layout_height="@dimen/scroll_view_comment_text_height"
+        android:layout_margin="@dimen/scroll_view_margin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/commentIndicator">
 

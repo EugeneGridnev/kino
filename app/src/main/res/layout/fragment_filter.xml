@@ -29,19 +29,16 @@
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:tag="@string/all_tag"
             android:text="@string/show_all" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:tag="@string/movie_tag"
             android:text="@string/show_movies" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:tag="@string/tv_series_tag"
             android:text="@string/show_tv_series" />
 
     </com.google.android.material.tabs.TabLayout>
