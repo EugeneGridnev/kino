@@ -25,9 +25,6 @@
     <string name="show_by_type_description">Показывать</string>
     <string name="slider_description_text">Рейтинг</string>
     <string name="slider_description">Слайдер для рейтинга</string>
-    <string name="tv_series_tag">SERIES</string>
-    <string name="movie_tag">MOVIES</string>
-    <string name="all_tag">ALL</string>
     <string name="year_tag">YEAR</string>
     <string name="country_tag">COUNTRY</string>
     <string name="agerating_tag">AGE_RATING</string>

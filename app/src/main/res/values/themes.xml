@@ -29,13 +29,6 @@
         <item name="android:layout_marginEnd">@dimen/movie_fragment_titles_margin_end</item>
     </style>
 
-    <style name="movieFragmentRecycler">
-        <item name="android:layout_marginTop">@dimen/movie_fragment_recycler_margin_top</item>
-        <item name="android:layout_marginBottom">@dimen/movie_fragment_recycler_margin_bottom</item>
-        <item name="android:layout_marginStart">@dimen/movie_fragment_recycler_margin_start</item>
-        <item name="android:layout_marginEnd">@dimen/movie_fragment_recycler_margin_end</item>
-    </style>
-
     <style name="cardTextViewStyle">
         <item name="android:layout_marginStart">@dimen/card_text_view_style_margin_horizontal</item>
         <item name="android:layout_marginEnd">@dimen/card_text_view_style_margin_horizontal</item>
