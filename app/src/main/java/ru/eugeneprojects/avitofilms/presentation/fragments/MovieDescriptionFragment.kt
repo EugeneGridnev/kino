@@ -80,7 +80,11 @@ class MovieDescriptionFragment : Fragment() {
                             setUpData(loadStates.data)
                         }
                         is MovieDescriptionViewModel.State.Error -> {
-                            findNavController().navigate(R.id.action_movieDescriptionFragment_to_errorFragment)
+                            val action =
+                                MovieDescriptionFragmentDirections.actionMovieDescriptionFragmentToErrorFragment(
+                                    args.movieId
+                                )
+                            findNavController().navigate(action)
                         }
                     }
                 }
@@ -138,13 +142,11 @@ class MovieDescriptionFragment : Fragment() {
     private fun setOnCommentClick() {
 
         commentsPagingAdapter.setOnItemClickListener {
-            val bundle = Bundle().apply {
-                putParcelable("comment", it)
-            }
-            findNavController().navigate(
-                R.id.action_movieDescriptionFragment_to_commentBottomSheetFragment,
-                bundle
+            val action =
+            MovieDescriptionFragmentDirections.actionMovieDescriptionFragmentToCommentBottomSheetFragment(
+                it
             )
+            findNavController().navigate(action)
         }
     }
 

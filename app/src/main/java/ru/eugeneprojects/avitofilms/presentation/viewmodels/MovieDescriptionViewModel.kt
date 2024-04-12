@@ -40,6 +40,7 @@ class MovieDescriptionViewModel @Inject constructor(
     val actors: Flow<PagingData<Actor>> = createPagingSource { ActorsPagingSource(kinopoiskRepository, it.id) }
 
     fun getMovie(id: Int) {
+        _descriptionState.value = State.Loading
         viewModelScope.launch {
             fetchMovie(id)
         }
@@ -60,13 +61,13 @@ class MovieDescriptionViewModel @Inject constructor(
 
     private suspend fun fetchMovie(id: Int) {
 
-        _descriptionState.value =
-        try {
+        _descriptionState.value = try {
+
             val response = kinopoiskRepository.getMovie(id)
 
-             if (response.isSuccessful) {
-                 val movie = checkNotNull(response.body())
-                 State.Movie(movie)
+            if (response.isSuccessful) {
+                val movie = checkNotNull(response.body())
+                State.Movie(movie)
             } else {
                 State.Error(HttpException(response))
             }

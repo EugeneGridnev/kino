@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import ru.eugeneprojects.avitofilms.databinding.ErrorFragmentBinding
 
 class ErrorFragment: Fragment() {
@@ -13,6 +15,7 @@ class ErrorFragment: Fragment() {
     private val binding: ErrorFragmentBinding
         get() = _binding!!
 
+    private val args: ErrorFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,6 +28,7 @@ class ErrorFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setOnRetryClick()
     }
 
     override fun onDestroyView() {
@@ -33,7 +37,7 @@ class ErrorFragment: Fragment() {
     }
 
     private fun setOnRetryClick() {
-
-        binding.repeatButton.setOnClickListener {  }
+        val action = ErrorFragmentDirections.actionErrorFragmentToMovieDescriptionFragment(args.movieId)
+        binding.repeatButton.setOnClickListener { findNavController().navigate(action) }
     }
 }
