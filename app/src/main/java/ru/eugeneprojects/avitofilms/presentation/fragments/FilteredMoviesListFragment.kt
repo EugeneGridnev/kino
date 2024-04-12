@@ -99,6 +99,7 @@ class FilteredMoviesListFragment : Fragment() {
 
             if (refreshState is LoadState.Error) {
                 Toast.makeText(activity,resources.getString(R.string.toast_load_error_message), Toast.LENGTH_SHORT).show()
+                //ставилось тк апи шалило и ломалось с 500, на этот случай идёт перезапрос, тк на этом фрагменте нет сайп ту рефрешь
                 lifecycleScope.launch {
                     delay(5000)
                     Toast.makeText(activity, "Пробуем сноа, не уходите!", Toast.LENGTH_SHORT).show()
