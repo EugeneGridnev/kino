@@ -39,7 +39,7 @@ class FiltersFragment : Fragment() {
 
         setUpSliderListener()
         setUpFilters()
-        setUpDefaultFilter()
+        binding.defaultFilterButton.setOnClickListener { setUpDefaultFilterListener() }
         setUpUseFiltersButton()
     }
 
@@ -62,7 +62,6 @@ class FiltersFragment : Fragment() {
                 MovieSortType.COUNTRY -> tabSortMoviesFilter.getTabAt(1)?.select()
                 MovieSortType.AGE_RATING -> tabSortMoviesFilter.getTabAt(2)?.select()
                 null -> tabMoviesTypeFilter.getTabAt(0)?.select()
-
             }
 
             ratingSlider.setValues(
@@ -77,9 +76,7 @@ class FiltersFragment : Fragment() {
         }
     }
 
-    private fun setUpDefaultFilter() {
-
-        binding.defaultFilterButton.setOnClickListener {
+    private fun setUpDefaultFilterListener() {
             val defaultFilters = Constants.DEFAULT_FILTERS
 
             binding.apply {
@@ -102,7 +99,6 @@ class FiltersFragment : Fragment() {
             }
             setUpSliderTextValue(defaultFilters.rating.first, defaultFilters.rating.last)
             viewModel.setFilter(defaultFilters)
-        }
     }
 
     private fun setUpSliderListener() {
