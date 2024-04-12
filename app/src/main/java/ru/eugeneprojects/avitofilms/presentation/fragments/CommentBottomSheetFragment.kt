@@ -9,13 +9,17 @@ import androidx.navigation.fragment.navArgs
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import ru.eugeneprojects.avitofilms.R
 import ru.eugeneprojects.avitofilms.data.models.comment.Comment
+import ru.eugeneprojects.avitofilms.databinding.ErrorFragmentBinding
 import ru.eugeneprojects.avitofilms.databinding.FragmentCommentBottomSheetBinding
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
 
 class CommentBottomSheetFragment : BottomSheetDialogFragment() {
 
-    private var binding: FragmentCommentBottomSheetBinding? = null
+    private var _binding: FragmentCommentBottomSheetBinding? = null
+    private val binding: FragmentCommentBottomSheetBinding
+        get() = _binding!!
+
     private val args: CommentBottomSheetFragmentArgs by navArgs()
 
     override fun onCreateView(
@@ -23,8 +27,8 @@ class CommentBottomSheetFragment : BottomSheetDialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentCommentBottomSheetBinding.inflate(inflater)
-        return binding!!.root
+        _binding = FragmentCommentBottomSheetBinding.inflate(inflater)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -34,7 +38,7 @@ class CommentBottomSheetFragment : BottomSheetDialogFragment() {
     }
 
     override fun onDestroy() {
-        binding = null
+        _binding = null
         super.onDestroy()
     }
 
@@ -42,7 +46,7 @@ class CommentBottomSheetFragment : BottomSheetDialogFragment() {
 
         val comment = args.comment
 
-        binding?.apply {
+        binding.apply {
             commentatorName.text = comment.author
             commentDate.text = comment.date?.format(
                 DateTimeFormatter
@@ -58,16 +62,16 @@ class CommentBottomSheetFragment : BottomSheetDialogFragment() {
 
     private fun setIndicatorColor(commentType: String) {
         when (commentType) {
-            Comment.TYPE_POSITIVE -> binding?.commentIndicator?.setBackgroundColor(requireContext().getColor(
+            Comment.TYPE_POSITIVE -> binding.commentIndicator.setBackgroundColor(requireContext().getColor(
                 R.color.green))
-            Comment.TYPE_NEGATIVE -> binding?.commentIndicator?.setBackgroundColor(requireContext().getColor(
+            Comment.TYPE_NEGATIVE -> binding.commentIndicator.setBackgroundColor(requireContext().getColor(
                 R.color.red))
-            Comment.TYPE_NEUTRAL -> binding?.commentIndicator?.setBackgroundColor(requireContext().getColor(
+            Comment.TYPE_NEUTRAL -> binding.commentIndicator.setBackgroundColor(requireContext().getColor(
                 R.color.black))
         }
     }
 
     private fun setOnExitButtonClick() {
-        binding?.closeButton?.setOnClickListener { findNavController().popBackStack() }
+        binding.closeButton.setOnClickListener { findNavController().popBackStack() }
     }
 }

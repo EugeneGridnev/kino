@@ -14,6 +14,7 @@ import ru.eugeneprojects.avitofilms.R
 import ru.eugeneprojects.avitofilms.data.models.filters.MovieFilters
 import ru.eugeneprojects.avitofilms.data.models.filters.MovieSortType
 import ru.eugeneprojects.avitofilms.data.models.filters.MovieTypeFilter
+import ru.eugeneprojects.avitofilms.databinding.ErrorFragmentBinding
 import ru.eugeneprojects.avitofilms.databinding.FragmentFilterBinding
 import ru.eugeneprojects.avitofilms.presentation.viewmodels.FilteredMovieListViewModel
 import ru.eugeneprojects.avitofilms.presentation.viewmodels.MoviesViewModel
@@ -21,16 +22,18 @@ import ru.eugeneprojects.avitofilms.presentation.viewmodels.MoviesViewModel
 @AndroidEntryPoint
 class FiltersFragment : Fragment() {
 
-    private val viewModel: FilteredMovieListViewModel by activityViewModels()
-    private var binding: FragmentFilterBinding? = null
+    private var _binding: FragmentFilterBinding? = null
+    private val binding: FragmentFilterBinding
+        get() = _binding!!
 
+    private val viewModel: FilteredMovieListViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentFilterBinding.inflate(inflater)
-        return binding!!.root
+        _binding = FragmentFilterBinding.inflate(inflater)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -41,12 +44,12 @@ class FiltersFragment : Fragment() {
     }
 
     override fun onDestroyView() {
-        binding = null
+        _binding = null
         super.onDestroyView()
     }
 
     private fun setUpFilters() {
-        binding?.apply {
+        binding.apply {
             when (viewModel.filters.value?.type) {
                 MovieTypeFilter.ALL -> tabMoviesTypeFilter.getTabAt(0)?.select()
                 MovieTypeFilter.MOVIES -> tabMoviesTypeFilter.getTabAt(1)?.select()
@@ -67,26 +70,26 @@ class FiltersFragment : Fragment() {
         }
 
     private fun setUpUseFiltersButton() {
-        binding?.filterButton?.setOnClickListener {
+        binding.filterButton.setOnClickListener {
 
-            val type = when (binding?.tabMoviesTypeFilter?.selectedTabPosition) {
+            val type = when (binding.tabMoviesTypeFilter.selectedTabPosition) {
                 1 -> MovieTypeFilter.MOVIES
                 2 -> MovieTypeFilter.SERIES
                 else -> MovieTypeFilter.ALL
             }
-            val sort = when (binding?.tabSortMoviesFilter?.selectedTabPosition) {
+            val sort = when (binding.tabSortMoviesFilter.selectedTabPosition) {
                 1 -> MovieSortType.COUNTRY
                 2 -> MovieSortType.AGE_RATING
                 else -> MovieSortType.YEAR
             }
-            val rating = binding?.ratingSlider?.values?.let {
+            val rating = binding.ratingSlider.values.let {
                 it.first().toInt()..it.last().toInt()
             }
 
             val filters = MovieFilters(
                 type = type,
                 sort = sort,
-                rating = rating ?: 6..10
+                rating = rating
             )
             viewModel.setFilter(filters)
             findNavController().navigate(R.id.action_filtersFragment_to_filteredMoviesListFragment)

@@ -25,13 +25,17 @@ import ru.eugeneprojects.avitofilms.adapters.CommentsPagingAdapter
 import ru.eugeneprojects.avitofilms.adapters.MoviesLoadStateAdapter
 import ru.eugeneprojects.avitofilms.adapters.MoviesPagingAdapter
 import ru.eugeneprojects.avitofilms.data.models.movieDescription.MovieInfo
+import ru.eugeneprojects.avitofilms.databinding.ErrorFragmentBinding
 import ru.eugeneprojects.avitofilms.databinding.FragmentMovieDescriptionBinding
 import ru.eugeneprojects.avitofilms.presentation.viewmodels.MovieDescriptionViewModel
 
 @AndroidEntryPoint
 class MovieDescriptionFragment : Fragment() {
 
-    private var binding: FragmentMovieDescriptionBinding? = null
+    private var _binding: FragmentMovieDescriptionBinding? = null
+    private val binding: FragmentMovieDescriptionBinding
+        get() = _binding!!
+
     private val args: MovieDescriptionFragmentArgs by navArgs()
     private val viewModel: MovieDescriptionViewModel by viewModels()
 
@@ -43,8 +47,8 @@ class MovieDescriptionFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentMovieDescriptionBinding.inflate(inflater)
-        return binding!!.root
+        _binding = FragmentMovieDescriptionBinding.inflate(inflater)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -55,7 +59,7 @@ class MovieDescriptionFragment : Fragment() {
     }
 
     override fun onDestroy() {
-        binding = null
+        _binding = null
         super.onDestroy()
     }
 
@@ -65,12 +69,12 @@ class MovieDescriptionFragment : Fragment() {
                 viewModel.description.collect { loadStates ->
                     when (loadStates) {
                         MovieDescriptionViewModel.State.Loading -> {
-                            binding?.progressBar?.isVisible = true
-                            binding?.wholeMovieDescription?.isVisible = false
+                            binding.progressBar.isVisible = true
+                            binding.wholeMovieDescription.isVisible = false
                         }
                         is MovieDescriptionViewModel.State.Movie -> {
-                            binding?.progressBar?.isVisible = false
-                            binding?.wholeMovieDescription?.isVisible = true
+                            binding.progressBar.isVisible = false
+                            binding.wholeMovieDescription.isVisible = true
                             setUpData(loadStates.data)
                         }
                         is MovieDescriptionViewModel.State.Error -> {
@@ -87,13 +91,13 @@ class MovieDescriptionFragment : Fragment() {
     @SuppressLint("SetTextI18n")
     private fun setUpData(movieInfo: MovieInfo) {
 
-        binding?.imageViewMovieImage?.let {
+        binding.imageViewMovieImage.let {
             Glide.with(this)
                 .load(movieInfo.poster.url)
                 .placeholder(R.drawable.no_movie_image_placeholder)
                 .into(it)
         }
-        binding?.apply {
+        binding.apply {
             textViewMovieName.text = movieInfo.name ?: movieInfo.enName ?: movieInfo.alternativeName ?: ""
             textViewMovieDescription.text = movieInfo.description
             textViewMovieYear.text = movieInfo.year.toString()
@@ -111,9 +115,9 @@ class MovieDescriptionFragment : Fragment() {
     private fun setUpCommentsRecycler() {
         commentsPagingAdapter = CommentsPagingAdapter()
 
-        binding?.recyclerViewComments?.layoutManager =
+        binding.recyclerViewComments.layoutManager =
             LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
-        binding?.recyclerViewComments?.adapter = commentsPagingAdapter
+        binding.recyclerViewComments.adapter = commentsPagingAdapter
 
         setOnCommentClick()
         observeComments()
@@ -144,9 +148,9 @@ class MovieDescriptionFragment : Fragment() {
     private fun setUpActorsRecycler() {
         actorsPagingAdapter = ActorsPagingAdapter()
 
-        binding?.recyclerViewActors?.layoutManager =
+        binding.recyclerViewActors.layoutManager =
             GridLayoutManager(activity, 2, GridLayoutManager.HORIZONTAL, false)
-        binding?.recyclerViewActors?.adapter = actorsPagingAdapter
+        binding.recyclerViewActors.adapter = actorsPagingAdapter
 
         observeActors()
     }

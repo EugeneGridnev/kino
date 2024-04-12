@@ -26,13 +26,16 @@ import kotlinx.coroutines.launch
 import ru.eugeneprojects.avitofilms.R
 import ru.eugeneprojects.avitofilms.adapters.MoviesLoadStateAdapter
 import ru.eugeneprojects.avitofilms.adapters.MoviesPagingAdapter
+import ru.eugeneprojects.avitofilms.databinding.ErrorFragmentBinding
 import ru.eugeneprojects.avitofilms.databinding.FragmentMoviesListBinding
 import ru.eugeneprojects.avitofilms.presentation.viewmodels.MoviesViewModel
 
 @AndroidEntryPoint
 class MoviesListFragment : Fragment() {
 
-    private var binding: FragmentMoviesListBinding? = null
+    private var _binding: FragmentMoviesListBinding? = null
+    private val binding: FragmentMoviesListBinding
+        get() = _binding!!
 
     private val viewModel: MoviesViewModel by viewModels()
     private lateinit var moviesPagingAdapter: MoviesPagingAdapter
@@ -41,8 +44,8 @@ class MoviesListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentMoviesListBinding.inflate(inflater)
-        return binding!!.root
+        _binding = FragmentMoviesListBinding.inflate(inflater)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -65,7 +68,7 @@ class MoviesListFragment : Fragment() {
     }
 
     override fun onDestroyView() {
-        binding = null
+        _binding = null
         super.onDestroyView()
     }
 
@@ -73,8 +76,8 @@ class MoviesListFragment : Fragment() {
 
         moviesPagingAdapter = MoviesPagingAdapter()
 
-        binding?.recyclerViewMovies?.layoutManager = LinearLayoutManager(activity)
-        binding?.recyclerViewMovies?.adapter = moviesPagingAdapter.withLoadStateFooter(MoviesLoadStateAdapter())
+        binding.recyclerViewMovies.layoutManager = LinearLayoutManager(activity)
+        binding.recyclerViewMovies.adapter = moviesPagingAdapter.withLoadStateFooter(MoviesLoadStateAdapter())
 
         setOnMovieClick()
 
@@ -83,26 +86,26 @@ class MoviesListFragment : Fragment() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.CREATED) {
                 moviesPagingAdapter.loadStateFlow.collect { loadStates ->
-                    binding?.swipeRefresh?.isRefreshing = loadStates.mediator?.refresh is LoadState.Loading
+                    binding.swipeRefresh.isRefreshing = loadStates.mediator?.refresh is LoadState.Loading
                 }
             }
         }
 
         moviesPagingAdapter.addLoadStateListener { combinedLoadStates ->
             val refreshState = combinedLoadStates.refresh
-            binding?.recyclerViewMovies?.isVisible = refreshState != LoadState.Loading
-            binding?.progressBar?.isVisible = refreshState == LoadState.Loading
+            binding.recyclerViewMovies.isVisible = refreshState != LoadState.Loading
+            binding.progressBar.isVisible = refreshState == LoadState.Loading
 
             if (refreshState is LoadState.Error) {
                 Toast.makeText(activity,resources.getString(R.string.toast_load_error_message), Toast.LENGTH_SHORT).show()
             }
 
             if (combinedLoadStates.source.refresh is LoadState.NotLoading && combinedLoadStates.append.endOfPaginationReached && moviesPagingAdapter.itemCount == 0) {
-                binding?.recyclerViewMovies?.isVisible = false
-                binding?.textViewStub?.isVisible = true
+                binding.recyclerViewMovies.isVisible = false
+                binding.textViewStub.isVisible = true
             } else {
-                binding?.recyclerViewMovies?.isVisible = true
-                binding?.textViewStub?.isVisible = false
+                binding.recyclerViewMovies.isVisible = true
+                binding.textViewStub.isVisible = false
             }
         }
     }
@@ -131,12 +134,12 @@ class MoviesListFragment : Fragment() {
 
     private fun initSwipeToRefresh(adapter: MoviesPagingAdapter) {
 
-        binding?.swipeRefresh?.setOnRefreshListener { adapter.refresh() }
+        binding.swipeRefresh.setOnRefreshListener { adapter.refresh() }
     }
 
     private fun handleSearchChanges() {
 
-        binding?.searchEditText?.doOnTextChanged { searchQuery, _, _, _ ->
+        binding.searchEditText.doOnTextChanged { searchQuery, _, _, _ ->
             viewModel.setSearchQuery(searchQuery.toString())
         }
     }
@@ -148,7 +151,7 @@ class MoviesListFragment : Fragment() {
             .simpleScan(2)
             .collectLatest { (previousState, currentState) ->
                 if (previousState is LoadState.Loading && currentState is LoadState.NotLoading) {
-                    binding?.recyclerViewMovies?.scrollToPosition(0)
+                    binding.recyclerViewMovies.scrollToPosition(0)
                 }
             }
     }
@@ -159,7 +162,7 @@ class MoviesListFragment : Fragment() {
     }
 
     private fun setUpFabButton() {
-        binding?.fabAddHabit?.setOnClickListener {
+        binding.fabAddHabit.setOnClickListener {
             findNavController().navigate(R.id.action_moviesListFragment_to_filtersFragment)
         }
     }

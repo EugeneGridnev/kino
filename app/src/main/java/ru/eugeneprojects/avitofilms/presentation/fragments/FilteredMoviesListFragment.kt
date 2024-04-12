@@ -22,6 +22,7 @@ import kotlinx.coroutines.launch
 import ru.eugeneprojects.avitofilms.R
 import ru.eugeneprojects.avitofilms.adapters.MoviesLoadStateAdapter
 import ru.eugeneprojects.avitofilms.adapters.MoviesPagingAdapter
+import ru.eugeneprojects.avitofilms.databinding.ErrorFragmentBinding
 import ru.eugeneprojects.avitofilms.databinding.FragmentFilteredMoviesListBinding
 import ru.eugeneprojects.avitofilms.presentation.viewmodels.FilteredMovieListViewModel
 import ru.eugeneprojects.avitofilms.presentation.viewmodels.MoviesViewModel
@@ -29,7 +30,9 @@ import ru.eugeneprojects.avitofilms.presentation.viewmodels.MoviesViewModel
 @AndroidEntryPoint
 class FilteredMoviesListFragment : Fragment() {
 
-    private var binding: FragmentFilteredMoviesListBinding? = null
+    private var _binding: FragmentFilteredMoviesListBinding? = null
+    private val binding: FragmentFilteredMoviesListBinding
+        get() = _binding!!
 
     private val viewModel: FilteredMovieListViewModel by activityViewModels()
     private lateinit var moviesPagingAdapter: MoviesPagingAdapter
@@ -38,8 +41,8 @@ class FilteredMoviesListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentFilteredMoviesListBinding.inflate(inflater)
-        return binding!!.root
+        _binding = FragmentFilteredMoviesListBinding.inflate(inflater)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -59,12 +62,12 @@ class FilteredMoviesListFragment : Fragment() {
     }
 
     override fun onDestroyView() {
-        binding = null
+        _binding = null
         super.onDestroyView()
     }
 
     private fun setUpBackButton() {
-        binding?.backButton?.setOnClickListener {
+        binding.backButton.setOnClickListener {
             findNavController().popBackStack()
         }
     }
@@ -82,8 +85,8 @@ class FilteredMoviesListFragment : Fragment() {
 
         moviesPagingAdapter = MoviesPagingAdapter()
 
-        binding?.recyclerViewFilteredMovies?.layoutManager = LinearLayoutManager(activity)
-        binding?.recyclerViewFilteredMovies?.adapter = moviesPagingAdapter.withLoadStateFooter(
+        binding.recyclerViewFilteredMovies.layoutManager = LinearLayoutManager(activity)
+        binding.recyclerViewFilteredMovies.adapter = moviesPagingAdapter.withLoadStateFooter(
             MoviesLoadStateAdapter()
         )
 
@@ -91,8 +94,8 @@ class FilteredMoviesListFragment : Fragment() {
 
         moviesPagingAdapter.addLoadStateListener { combinedLoadStates ->
             val refreshState = combinedLoadStates.refresh
-            binding?.recyclerViewFilteredMovies?.isVisible = refreshState != LoadState.Loading
-            binding?.progressBar?.isVisible = refreshState == LoadState.Loading
+            binding.recyclerViewFilteredMovies.isVisible = refreshState != LoadState.Loading
+            binding.progressBar.isVisible = refreshState == LoadState.Loading
 
             if (refreshState is LoadState.Error) {
                 Toast.makeText(activity,resources.getString(R.string.toast_load_error_message), Toast.LENGTH_SHORT).show()
