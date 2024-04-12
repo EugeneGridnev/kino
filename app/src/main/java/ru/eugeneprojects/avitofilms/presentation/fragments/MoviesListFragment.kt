@@ -8,10 +8,8 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
@@ -26,7 +24,6 @@ import kotlinx.coroutines.launch
 import ru.eugeneprojects.avitofilms.R
 import ru.eugeneprojects.avitofilms.adapters.MoviesLoadStateAdapter
 import ru.eugeneprojects.avitofilms.adapters.MoviesPagingAdapter
-import ru.eugeneprojects.avitofilms.databinding.ErrorFragmentBinding
 import ru.eugeneprojects.avitofilms.databinding.FragmentMoviesListBinding
 import ru.eugeneprojects.avitofilms.presentation.viewmodels.MoviesViewModel
 

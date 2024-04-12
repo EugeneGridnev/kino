@@ -8,7 +8,6 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -22,10 +21,8 @@ import kotlinx.coroutines.launch
 import ru.eugeneprojects.avitofilms.R
 import ru.eugeneprojects.avitofilms.adapters.MoviesLoadStateAdapter
 import ru.eugeneprojects.avitofilms.adapters.MoviesPagingAdapter
-import ru.eugeneprojects.avitofilms.databinding.ErrorFragmentBinding
 import ru.eugeneprojects.avitofilms.databinding.FragmentFilteredMoviesListBinding
 import ru.eugeneprojects.avitofilms.presentation.viewmodels.FilteredMovieListViewModel
-import ru.eugeneprojects.avitofilms.presentation.viewmodels.MoviesViewModel
 
 @AndroidEntryPoint
 class FilteredMoviesListFragment : Fragment() {

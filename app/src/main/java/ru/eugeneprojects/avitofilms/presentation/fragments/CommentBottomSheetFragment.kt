@@ -9,7 +9,6 @@ import androidx.navigation.fragment.navArgs
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import ru.eugeneprojects.avitofilms.R
 import ru.eugeneprojects.avitofilms.data.models.comment.Comment
-import ru.eugeneprojects.avitofilms.databinding.ErrorFragmentBinding
 import ru.eugeneprojects.avitofilms.databinding.FragmentCommentBottomSheetBinding
 import ru.eugeneprojects.avitofilms.utils.filterBlank
 import java.time.format.DateTimeFormatter

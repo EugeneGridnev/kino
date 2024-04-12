@@ -22,10 +22,7 @@ import kotlinx.coroutines.launch
 import ru.eugeneprojects.avitofilms.R
 import ru.eugeneprojects.avitofilms.adapters.ActorsPagingAdapter
 import ru.eugeneprojects.avitofilms.adapters.CommentsPagingAdapter
-import ru.eugeneprojects.avitofilms.adapters.MoviesLoadStateAdapter
-import ru.eugeneprojects.avitofilms.adapters.MoviesPagingAdapter
 import ru.eugeneprojects.avitofilms.data.models.movieDescription.MovieInfo
-import ru.eugeneprojects.avitofilms.databinding.ErrorFragmentBinding
 import ru.eugeneprojects.avitofilms.databinding.FragmentMovieDescriptionBinding
 import ru.eugeneprojects.avitofilms.presentation.viewmodels.MovieDescriptionViewModel
 import ru.eugeneprojects.avitofilms.utils.filterBlank

@@ -2,13 +2,13 @@ package ru.eugeneprojects.avitofilms.data.network.repository
 
 import retrofit2.Response
 import ru.eugeneprojects.avitofilms.api.KinopoiskAPI
-import ru.eugeneprojects.avitofilms.data.models.movieCardItem.Movie
 import ru.eugeneprojects.avitofilms.data.models.PageResponse
 import ru.eugeneprojects.avitofilms.data.models.actor.Actor
 import ru.eugeneprojects.avitofilms.data.models.comment.Comment
 import ru.eugeneprojects.avitofilms.data.models.filters.MovieFilters
 import ru.eugeneprojects.avitofilms.data.models.filters.MovieSortType
 import ru.eugeneprojects.avitofilms.data.models.filters.MovieTypeFilter
+import ru.eugeneprojects.avitofilms.data.models.movieCardItem.Movie
 import ru.eugeneprojects.avitofilms.data.models.movieDescription.MovieInfo
 import javax.inject.Inject
 

@@ -17,7 +17,6 @@ import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOn
 import ru.eugeneprojects.avitofilms.data.network.connection.ConnectivityRepository
 import ru.eugeneprojects.avitofilms.data.network.repository.KinopoiskRepository
-import ru.eugeneprojects.avitofilms.data.paging.FilterPagingSource
 import ru.eugeneprojects.avitofilms.data.paging.MoviePagingSource
 import ru.eugeneprojects.avitofilms.data.paging.SearchMoviesPagingSource
 import ru.eugeneprojects.avitofilms.utils.Constants
