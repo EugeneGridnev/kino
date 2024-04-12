@@ -1,5 +1,6 @@
 package ru.eugeneprojects.avitofilms.presentation.viewmodels
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asFlow
@@ -27,13 +28,14 @@ class FilteredMovieListViewModel @Inject constructor(
     private val connectivityRepository: ConnectivityRepository
 ) : ViewModel() {
 
-    private val state: MutableLiveData<MovieFilters?> = MutableLiveData<MovieFilters?>(DEFAULT_FILTERS)
+    private val _filters = MutableLiveData(DEFAULT_FILTERS)
+    var filters: LiveData<MovieFilters?> = _filters
 
     val isOnline = connectivityRepository.isConnected.asLiveData()
 
 
     @OptIn(ExperimentalCoroutinesApi::class)
-    val movies = state.asFlow()
+    val movies = _filters.asFlow()
         .distinctUntilChanged()
         .flatMapLatest {movieFilters ->
             Pager(
@@ -45,7 +47,7 @@ class FilteredMovieListViewModel @Inject constructor(
 
     fun setFilter(filters: MovieFilters) {
 
-        state.value = filters
+        _filters.value = filters
     }
 
 }

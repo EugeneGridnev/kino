@@ -36,6 +36,7 @@ class FiltersFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setUpFilters()
         setUpUseFiltersButton()
     }
 
@@ -43,6 +44,27 @@ class FiltersFragment : Fragment() {
         binding = null
         super.onDestroyView()
     }
+
+    private fun setUpFilters() {
+        binding?.apply {
+            when (viewModel.filters.value?.type) {
+                MovieTypeFilter.ALL -> tabMoviesTypeFilter.getTabAt(0)?.select()
+                MovieTypeFilter.MOVIES -> tabMoviesTypeFilter.getTabAt(1)?.select()
+                MovieTypeFilter.SERIES -> tabMoviesTypeFilter.getTabAt(2)?.select()
+                null -> tabMoviesTypeFilter.getTabAt(0)?.select()
+            }
+
+            when (viewModel.filters.value?.sort) {
+                MovieSortType.YEAR -> tabSortMoviesFilter.getTabAt(0)?.select()
+                MovieSortType.COUNTRY -> tabSortMoviesFilter.getTabAt(1)?.select()
+                MovieSortType.AGE_RATING -> tabSortMoviesFilter.getTabAt(2)?.select()
+                null -> tabMoviesTypeFilter.getTabAt(0)?.select()
+
+            }
+
+            ratingSlider.setValues(viewModel.filters.value?.rating?.first?.toFloat(), viewModel.filters.value?.rating?.last?.toFloat())
+            }
+        }
 
     private fun setUpUseFiltersButton() {
         binding?.filterButton?.setOnClickListener {
