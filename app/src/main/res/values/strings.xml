@@ -41,4 +41,5 @@
     <string name="movie_description_actors_title">Актерский состав:</string>
     <string name="close_comment_button_description">Закрыть отзыв</string>
     <string name="error_image_description">Картинка ошибки</string>
+    <string name="default_filters_button_text">Сбросить</string>
 </resources>

@@ -18,6 +18,7 @@ import ru.eugeneprojects.avitofilms.databinding.ErrorFragmentBinding
 import ru.eugeneprojects.avitofilms.databinding.FragmentFilterBinding
 import ru.eugeneprojects.avitofilms.presentation.viewmodels.FilteredMovieListViewModel
 import ru.eugeneprojects.avitofilms.presentation.viewmodels.MoviesViewModel
+import ru.eugeneprojects.avitofilms.utils.Constants
 
 @AndroidEntryPoint
 class FiltersFragment : Fragment() {
@@ -40,6 +41,7 @@ class FiltersFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setUpFilters()
+        setUpDefaultFilter()
         setUpUseFiltersButton()
     }
 
@@ -65,11 +67,42 @@ class FiltersFragment : Fragment() {
 
             }
 
-            ratingSlider.setValues(viewModel.filters.value?.rating?.first?.toFloat(), viewModel.filters.value?.rating?.last?.toFloat())
-            }
+            ratingSlider.setValues(
+                viewModel.filters.value?.rating?.first?.toFloat(),
+                viewModel.filters.value?.rating?.last?.toFloat()
+            )
         }
+    }
+
+    private fun setUpDefaultFilter() {
+
+        binding.defaultFilterButton.setOnClickListener {
+            val defaultFilters = Constants.DEFAULT_FILTERS
+
+            binding.apply {
+                when (defaultFilters.type) {
+                    MovieTypeFilter.ALL -> tabMoviesTypeFilter.getTabAt(0)?.select()
+                    MovieTypeFilter.MOVIES -> tabMoviesTypeFilter.getTabAt(1)?.select()
+                    MovieTypeFilter.SERIES -> tabMoviesTypeFilter.getTabAt(2)?.select()
+                }
+
+                when (defaultFilters.sort) {
+                    MovieSortType.YEAR -> tabSortMoviesFilter.getTabAt(0)?.select()
+                    MovieSortType.COUNTRY -> tabSortMoviesFilter.getTabAt(1)?.select()
+                    MovieSortType.AGE_RATING -> tabSortMoviesFilter.getTabAt(2)?.select()
+                }
+
+                ratingSlider.setValues(
+                    defaultFilters.rating.first.toFloat(),
+                    defaultFilters.rating.last.toFloat()
+                )
+            }
+            viewModel.setFilter(defaultFilters)
+        }
+    }
 
     private fun setUpUseFiltersButton() {
+
         binding.filterButton.setOnClickListener {
 
             val type = when (binding.tabMoviesTypeFilter.selectedTabPosition) {
