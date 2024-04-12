@@ -37,19 +37,20 @@ class MoviesViewModel @Inject constructor(
     val searchedMovies = state.asFlow()
         .distinctUntilChanged()
         .debounce(1000)
-        .flatMapLatest {query ->
-            Pager(
-                config = Constants.PAGING_CONFIG,
-                pagingSourceFactory = { SearchMoviesPagingSource(kinopoiskRepository, query) }
-            ).flow
+        .flatMapLatest { query ->
+            if (query.isBlank()) {
+                Pager(
+                    config = Constants.PAGING_CONFIG,
+                    pagingSourceFactory = { MoviePagingSource(kinopoiskRepository) }
+                ).flow
+            } else {
+                Pager(
+                    config = Constants.PAGING_CONFIG,
+                    pagingSourceFactory = { SearchMoviesPagingSource(kinopoiskRepository, query) }
+                ).flow
+            }
         }.flowOn(Dispatchers.IO)
         .cachedIn(viewModelScope)
-
-    val movies = Pager(
-            config = Constants.PAGING_CONFIG,
-            pagingSourceFactory = { MoviePagingSource(kinopoiskRepository) }
-        ).flow.flowOn(Dispatchers.IO)
-            .cachedIn(viewModelScope)
 
     fun setSearchQuery(query: String) {
 
