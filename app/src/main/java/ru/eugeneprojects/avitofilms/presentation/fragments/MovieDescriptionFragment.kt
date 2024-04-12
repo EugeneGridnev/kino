@@ -28,6 +28,8 @@ import ru.eugeneprojects.avitofilms.data.models.movieDescription.MovieInfo
 import ru.eugeneprojects.avitofilms.databinding.ErrorFragmentBinding
 import ru.eugeneprojects.avitofilms.databinding.FragmentMovieDescriptionBinding
 import ru.eugeneprojects.avitofilms.presentation.viewmodels.MovieDescriptionViewModel
+import ru.eugeneprojects.avitofilms.utils.filterBlank
+import java.util.Locale
 
 @AndroidEntryPoint
 class MovieDescriptionFragment : Fragment() {
@@ -98,15 +100,16 @@ class MovieDescriptionFragment : Fragment() {
                 .into(it)
         }
         binding.apply {
-            textViewMovieName.text = movieInfo.name ?: movieInfo.enName ?: movieInfo.alternativeName ?: ""
+            textViewMovieName.text = movieInfo.name.filterBlank() ?: movieInfo.enName.filterBlank()
+                    ?: movieInfo.alternativeName.filterBlank() ?: ""
             textViewMovieDescription.text = movieInfo.description
             textViewMovieYear.text = movieInfo.year.toString()
             textViewMovieSlogan.text = movieInfo.slogan ?: ""
-            textViewMovieRating.text = String.format("%.1f", movieInfo.rating?.kp)
+            textViewMovieRating.text = String.format(Locale.US, "%.1f", movieInfo.rating?.kp)
             textViewMovieLength.text = "${movieInfo.movieLength ?: ""}"
             textViewMovieAgeRating.text = "${movieInfo.ageRating ?: ""}"
-            textViewMovieGenres.text = movieInfo.genres.joinToString(", ") { it.name }
-            textViewMovieCountries.text = movieInfo.countries.joinToString(", ") { it.name }
+            textViewMovieGenres.text = movieInfo.genres.joinToString(", ") { it.name.filterBlank() ?: "" }
+            textViewMovieCountries.text = movieInfo.countries.joinToString(", ") { it.name.filterBlank() ?: "" }
             textViewMovieBudget.text =
                 "${movieInfo.budget?.value ?: ""} ${movieInfo.budget?.currency ?: ""}"
         }

@@ -9,6 +9,7 @@ import com.bumptech.glide.Glide
 import ru.eugeneprojects.avitofilms.R
 import ru.eugeneprojects.avitofilms.data.models.actor.Actor
 import ru.eugeneprojects.avitofilms.databinding.ItemActorLayoutBinding
+import ru.eugeneprojects.avitofilms.utils.filterBlank
 
 class ActorsPagingAdapter :
     PagingDataAdapter<Actor, ActorsPagingAdapter.ActorViewHolder>(ActorDiffCallBack()) {
@@ -40,7 +41,7 @@ class ActorsPagingAdapter :
                 .load(actor.photo)
                 .placeholder(R.drawable.no_person_image_placeholder)
                 .into(binding.itemViewActorThumbnail)
-            binding.textViewActorName.text = actor.name ?: actor.enName ?: ""
+            binding.textViewActorName.text = actor.name.filterBlank() ?: actor.enName.filterBlank() ?: ""
         }
     }
 

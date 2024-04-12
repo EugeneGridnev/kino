@@ -11,6 +11,7 @@ import ru.eugeneprojects.avitofilms.R
 import ru.eugeneprojects.avitofilms.data.models.comment.Comment
 import ru.eugeneprojects.avitofilms.databinding.ErrorFragmentBinding
 import ru.eugeneprojects.avitofilms.databinding.FragmentCommentBottomSheetBinding
+import ru.eugeneprojects.avitofilms.utils.filterBlank
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
 
@@ -47,13 +48,13 @@ class CommentBottomSheetFragment : BottomSheetDialogFragment() {
         val comment = args.comment
 
         binding.apply {
-            commentatorName.text = comment.author
+            commentatorName.text = comment.author.filterBlank() ?: ""
             commentDate.text = comment.date?.format(
                 DateTimeFormatter
                     .ofLocalizedDate(FormatStyle.LONG)
             ) ?: ""
-            commentTitle.text = comment.title
-            commentText.text = comment.review
+            commentTitle.text = comment.title.filterBlank() ?: ""
+            commentText.text = comment.review.filterBlank() ?: ""
 
         }
         comment.type?.let { setIndicatorColor(it) }

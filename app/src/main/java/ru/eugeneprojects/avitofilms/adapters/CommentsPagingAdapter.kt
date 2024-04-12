@@ -9,6 +9,7 @@ import com.bumptech.glide.Glide
 import ru.eugeneprojects.avitofilms.R
 import ru.eugeneprojects.avitofilms.data.models.comment.Comment
 import ru.eugeneprojects.avitofilms.databinding.ItemCommentLayoutBinding
+import ru.eugeneprojects.avitofilms.utils.filterBlank
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
 
@@ -49,13 +50,13 @@ class CommentsPagingAdapter :
                 null -> binding.commentIndicator.setBackgroundColor(itemView.context.getColor(
                     R.color.black))
             }
-            binding.commentatorName.text = comment.author
+            binding.commentatorName.text = comment.author.filterBlank() ?: ""
             binding.commentDate.text = comment.date?.format(
                     DateTimeFormatter
                         .ofLocalizedDate(FormatStyle.LONG)
                     ) ?: ""
-            binding.commentTitle.text = comment.title
-            binding.commentText.text = comment.review
+            binding.commentTitle.text = comment.title.filterBlank() ?: ""
+            binding.commentText.text = comment.review.filterBlank() ?: ""
             itemView.setOnClickListener {
                 onClickListener?.invoke(comment)
             }

@@ -9,6 +9,8 @@ import com.bumptech.glide.Glide
 import ru.eugeneprojects.avitofilms.R
 import ru.eugeneprojects.avitofilms.data.models.movieCardItem.Movie
 import ru.eugeneprojects.avitofilms.databinding.ItemMovieLayoutBinding
+import ru.eugeneprojects.avitofilms.utils.filterBlank
+import java.util.Locale
 
 class MoviesPagingAdapter :
     PagingDataAdapter<Movie, MoviesPagingAdapter.MovieViewHolder>(MovieDiffCallBack()) {
@@ -42,11 +44,12 @@ class MoviesPagingAdapter :
                 .load(movie.poster.previewUrl)
                 .placeholder(R.drawable.no_movie_image_placeholder)
                 .into(binding.itemViewMovieThumbnail)
-            binding.textViewMovieTitle.text = movie.name ?: movie.enName ?: movie.alternativeName ?: ""
+            binding.textViewMovieTitle.text = movie.name.filterBlank() ?: movie.enName.filterBlank()
+                    ?: movie.alternativeName.filterBlank() ?: ""
             binding.textViewMovieYear.text = movie.year.toString()
-            binding.textViewMovieCountry.text = movie.countries?.joinToString(", ") { it.name }
-            binding.textViewMovieGenre.text = movie.genres?.joinToString(", ") { it.name }
-            binding.textViewMovieRating.text = String.format("%.1f", movie.rating?.kp)
+            binding.textViewMovieCountry.text = movie.countries.joinToString(", ") { it.name.filterBlank() ?: "" }
+            binding.textViewMovieGenre.text = movie.genres.joinToString(", ") { it.name.filterBlank() ?: "" }
+            binding.textViewMovieRating.text = String.format(Locale.US,"%.1f", movie.rating?.kp)
             binding.textViewMovieAgeRestriction.text = movie.ageRating.toString()
             itemView.setOnClickListener {
                 onClickListener?.invoke(movie)
