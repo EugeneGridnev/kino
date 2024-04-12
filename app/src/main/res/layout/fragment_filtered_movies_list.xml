@@ -4,6 +4,18 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <TextView
+        android:id="@+id/listDescription"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text="@string/filtered_list_description"
+        android:paddingBottom="@dimen/searched_movie_list_description_padding"
+        android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageView
         android:id="@+id/backButton"
         android:layout_width="wrap_content"
@@ -14,26 +26,22 @@
         android:background="?android:attr/selectableItemBackgroundBorderless"
         android:padding="@dimen/back_button_padding"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/listDescription"
         app:layout_constraintTop_toTopOf="@+id/listDescription"
         app:layout_constraintBottom_toBottomOf="@+id/listDescription"/>
 
-    <TextView
-        android:id="@+id/listDescription"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:text="@string/filtered_list_description"
-        android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
-        app:layout_constraintStart_toEndOf="@id/backButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <View
+        app:layout_constraintBottom_toBottomOf="@+id/listDescription"
+        android:layout_height="1dp"
+        android:background="@drawable/shadow"
+        android:layout_width="match_parent">
+
+    </View>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewFilteredMovies"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_margin="@dimen/base_margin_for_movies_list_views"
+        android:layout_marginHorizontal="@dimen/base_margin_for_movies_list_views"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
