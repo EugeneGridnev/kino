@@ -1,23 +1,20 @@
 package ru.eugeneprojects.avitofilms.presentation.fragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import ru.eugeneprojects.avitofilms.R
 import ru.eugeneprojects.avitofilms.data.models.filters.MovieFilters
 import ru.eugeneprojects.avitofilms.data.models.filters.MovieSortType
 import ru.eugeneprojects.avitofilms.data.models.filters.MovieTypeFilter
-import ru.eugeneprojects.avitofilms.databinding.ErrorFragmentBinding
 import ru.eugeneprojects.avitofilms.databinding.FragmentFilterBinding
 import ru.eugeneprojects.avitofilms.presentation.viewmodels.FilteredMovieListViewModel
-import ru.eugeneprojects.avitofilms.presentation.viewmodels.MoviesViewModel
 import ru.eugeneprojects.avitofilms.utils.Constants
 
 @AndroidEntryPoint
@@ -40,6 +37,7 @@ class FiltersFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setUpSliderListener()
         setUpFilters()
         setUpDefaultFilter()
         setUpUseFiltersButton()
@@ -71,6 +69,11 @@ class FiltersFragment : Fragment() {
                 viewModel.filters.value?.rating?.first?.toFloat(),
                 viewModel.filters.value?.rating?.last?.toFloat()
             )
+
+            setUpSliderTextValue(
+                viewModel.filters.value?.rating?.first,
+                viewModel.filters.value?.rating?.last
+            )
         }
     }
 
@@ -97,8 +100,21 @@ class FiltersFragment : Fragment() {
                     defaultFilters.rating.last.toFloat()
                 )
             }
+            setUpSliderTextValue(defaultFilters.rating.first, defaultFilters.rating.last)
             viewModel.setFilter(defaultFilters)
         }
+    }
+
+    private fun setUpSliderListener() {
+
+        binding.ratingSlider.addOnChangeListener{ slider, _, _ ->
+            setUpSliderTextValue(slider.values.first().toInt(), slider.values.last().toInt())
+        }
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun setUpSliderTextValue(first: Int?, last: Int?) {
+        binding.sliderValue.text = "от $first до $last"
     }
 
     private fun setUpUseFiltersButton() {
