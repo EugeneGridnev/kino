@@ -3,14 +3,13 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:maxWidth="@dimen/card_max_width"
-    android:layout_width="wrap_content"
+    android:layout_width="@dimen/card_max_width"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/card_margin"
     app:cardElevation="@dimen/card_elevation">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/card_padding">
 
@@ -28,7 +27,7 @@
         <TextView
             android:id="@+id/textViewActorName"
             style="@style/cardTextViewStyle"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textAppearance="?attr/textAppearanceTitleSmall"
             app:layout_constraintBottom_toBottomOf="parent"
