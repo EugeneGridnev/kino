@@ -104,7 +104,7 @@ class MovieDescriptionFragment : Fragment() {
                 .placeholder(R.drawable.no_movie_image_placeholder)
                 .into(it)
         }
-        binding.apply {
+        with(binding) {
             textViewMovieName.text = movieInfo.name.filterBlank() ?: movieInfo.enName.filterBlank()
                     ?: movieInfo.alternativeName.filterBlank() ?: ""
             textViewMovieDescription.text = movieInfo.description
@@ -126,7 +126,7 @@ class MovieDescriptionFragment : Fragment() {
         commentsPagingAdapter = CommentsPagingAdapter()
 
         binding.recyclerViewComments.layoutManager =
-            LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         binding.recyclerViewComments.adapter = commentsPagingAdapter
 
         setOnCommentClick()
@@ -167,7 +167,7 @@ class MovieDescriptionFragment : Fragment() {
         actorsPagingAdapter = ActorsPagingAdapter()
 
         binding.recyclerViewActors.layoutManager =
-            GridLayoutManager(activity, 2, GridLayoutManager.HORIZONTAL, false)
+            GridLayoutManager(context, 2, GridLayoutManager.HORIZONTAL, false)
         binding.recyclerViewActors.adapter = actorsPagingAdapter
 
         observeActors()

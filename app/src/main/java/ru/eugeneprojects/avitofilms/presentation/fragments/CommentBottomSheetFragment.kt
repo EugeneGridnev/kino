@@ -46,7 +46,7 @@ class CommentBottomSheetFragment : BottomSheetDialogFragment() {
 
         val comment = args.comment
 
-        binding.apply {
+        with(binding) {
             commentatorName.text = comment.author.filterBlank() ?: ""
             commentDate.text = comment.date?.format(
                 DateTimeFormatter

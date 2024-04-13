@@ -39,23 +39,41 @@ class CommentsPagingAdapter :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(comment: Comment, onClickListener: ((Comment) -> Unit)? = null) {
-            when (comment.type) {
-                Comment.TYPE_POSITIVE -> binding.commentIndicator.setBackgroundColor(itemView.context.getColor(
-                    R.color.green))
-                Comment.TYPE_NEGATIVE -> binding.commentIndicator.setBackgroundColor(itemView.context.getColor(
-                    R.color.red))
-                Comment.TYPE_NEUTRAL -> binding.commentIndicator.setBackgroundColor(itemView.context.getColor(
-                    R.color.black))
-                null -> binding.commentIndicator.setBackgroundColor(itemView.context.getColor(
-                    R.color.black))
-            }
-            binding.commentatorName.text = comment.author.filterBlank() ?: ""
-            binding.commentDate.text = comment.date?.format(
+            with(binding) {
+                when (comment.type) {
+                    Comment.TYPE_POSITIVE -> commentIndicator.setBackgroundColor(
+                        itemView.context.getColor(
+                            R.color.green
+                        )
+                    )
+
+                    Comment.TYPE_NEGATIVE -> commentIndicator.setBackgroundColor(
+                        itemView.context.getColor(
+                            R.color.red
+                        )
+                    )
+
+                    Comment.TYPE_NEUTRAL -> commentIndicator.setBackgroundColor(
+                        itemView.context.getColor(
+                            R.color.black
+                        )
+                    )
+
+                    null -> commentIndicator.setBackgroundColor(
+                        itemView.context.getColor(
+                            R.color.black
+                        )
+                    )
+                }
+
+                commentatorName.text = comment.author.filterBlank() ?: ""
+                commentDate.text = comment.date?.format(
                     DateTimeFormatter
                         .ofLocalizedDate(FormatStyle.LONG)
-                    ) ?: ""
-            binding.commentTitle.text = comment.title.filterBlank() ?: ""
-            binding.commentText.text = comment.review.filterBlank() ?: ""
+                ) ?: ""
+                commentTitle.text = comment.title.filterBlank() ?: ""
+                commentText.text = comment.review.filterBlank() ?: ""
+            }
             itemView.setOnClickListener {
                 onClickListener?.invoke(comment)
             }

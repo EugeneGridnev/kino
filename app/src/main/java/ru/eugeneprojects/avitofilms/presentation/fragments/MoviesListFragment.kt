@@ -58,7 +58,7 @@ class MoviesListFragment : Fragment() {
             if (isOnline) {
                 moviesPagingAdapter.retry()
             } else {
-                Toast.makeText(activity, resources.getString(R.string.network_error_message), Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, resources.getString(R.string.network_error_message), Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -73,7 +73,7 @@ class MoviesListFragment : Fragment() {
 
         moviesPagingAdapter = MoviesPagingAdapter()
 
-        binding.recyclerViewMovies.layoutManager = LinearLayoutManager(activity)
+        binding.recyclerViewMovies.layoutManager = LinearLayoutManager(context)
         binding.recyclerViewMovies.adapter = moviesPagingAdapter.withLoadStateFooter(MoviesLoadStateAdapter())
 
         setOnMovieClick()
@@ -94,7 +94,7 @@ class MoviesListFragment : Fragment() {
             binding.progressBar.isVisible = refreshState == LoadState.Loading
 
             if (refreshState is LoadState.Error) {
-                Toast.makeText(activity,resources.getString(R.string.toast_load_error_message), Toast.LENGTH_SHORT).show()
+                Toast.makeText(context,resources.getString(R.string.toast_load_error_message), Toast.LENGTH_SHORT).show()
             }
 
             if (combinedLoadStates.source.refresh is LoadState.NotLoading && combinedLoadStates.append.endOfPaginationReached && moviesPagingAdapter.itemCount == 0) {

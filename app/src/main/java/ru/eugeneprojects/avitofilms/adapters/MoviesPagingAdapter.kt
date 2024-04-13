@@ -1,5 +1,6 @@
 package ru.eugeneprojects.avitofilms.adapters
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
@@ -38,19 +39,24 @@ class MoviesPagingAdapter :
     class MovieViewHolder(val binding: ItemMovieLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
+        @SuppressLint("SetTextI18n")
         fun bind(movie: Movie, onClickListener: ((Movie) -> Unit)? = null) {
 
             Glide.with(itemView)
                 .load(movie.poster.previewUrl)
                 .placeholder(R.drawable.no_movie_image_placeholder)
                 .into(binding.itemViewMovieThumbnail)
-            binding.textViewMovieTitle.text = movie.name.filterBlank() ?: movie.enName.filterBlank()
-                    ?: movie.alternativeName.filterBlank() ?: ""
-            binding.textViewMovieYear.text = movie.year.toString()
-            binding.textViewMovieCountry.text = movie.countries.joinToString(", ") { it.name.filterBlank() ?: "" }
-            binding.textViewMovieGenre.text = movie.genres.joinToString(", ") { it.name.filterBlank() ?: "" }
-            binding.textViewMovieRating.text = String.format(Locale.US,"%.1f", movie.rating?.kp)
-            binding.textViewMovieAgeRestriction.text = movie.ageRating.toString()
+            with(binding) {
+                textViewMovieTitle.text = movie.name.filterBlank() ?: movie.enName.filterBlank()
+                        ?: movie.alternativeName.filterBlank() ?: ""
+                textViewMovieYear.text = movie.year.toString()
+                textViewMovieCountry.text =
+                    movie.countries.joinToString(", ") { it.name.filterBlank() ?: "" }
+                textViewMovieGenre.text =
+                    movie.genres.joinToString(", ") { it.name.filterBlank() ?: "" }
+                textViewMovieRating.text = String.format(Locale.US, "%.1f", movie.rating?.kp)
+                textViewMovieAgeRestriction.text = "${movie.ageRating}+"
+            }
             itemView.setOnClickListener {
                 onClickListener?.invoke(movie)
             }

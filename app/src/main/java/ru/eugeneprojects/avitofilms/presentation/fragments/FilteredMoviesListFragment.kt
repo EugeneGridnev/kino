@@ -53,7 +53,7 @@ class FilteredMoviesListFragment : Fragment() {
             if (isOnline) {
                 moviesPagingAdapter.retry()
             } else {
-                Toast.makeText(activity, resources.getString(R.string.network_error_message), Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, resources.getString(R.string.network_error_message), Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -82,7 +82,7 @@ class FilteredMoviesListFragment : Fragment() {
 
         moviesPagingAdapter = MoviesPagingAdapter()
 
-        binding.recyclerViewFilteredMovies.layoutManager = LinearLayoutManager(activity)
+        binding.recyclerViewFilteredMovies.layoutManager = LinearLayoutManager(context)
         binding.recyclerViewFilteredMovies.adapter = moviesPagingAdapter.withLoadStateFooter(
             MoviesLoadStateAdapter()
         )
@@ -95,11 +95,10 @@ class FilteredMoviesListFragment : Fragment() {
             binding.progressBar.isVisible = refreshState == LoadState.Loading
 
             if (refreshState is LoadState.Error) {
-                Toast.makeText(activity,resources.getString(R.string.toast_load_error_message), Toast.LENGTH_SHORT).show()
-                //ставилось тк апи шалило и ломалось с 500, на этот случай идёт перезапрос, тк на этом фрагменте нет сайп ту рефрешь
+                Toast.makeText(context, resources.getString(R.string.toast_load_error_message), Toast.LENGTH_SHORT).show()
                 lifecycleScope.launch {
                     delay(5000)
-                    Toast.makeText(activity, "Пробуем сноа, не уходите!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, R.string.retry_toast_text, Toast.LENGTH_SHORT).show()
                     moviesPagingAdapter.retry()
                 }
             }

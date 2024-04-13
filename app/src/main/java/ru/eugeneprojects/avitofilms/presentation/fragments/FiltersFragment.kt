@@ -50,19 +50,19 @@ class FiltersFragment : Fragment() {
     }
 
     private fun setUpFilters() {
-        binding.apply {
+        with(binding) {
             when (viewModel.filters.value?.type) {
                 MovieTypeFilter.ALL -> tabMoviesTypeFilter.getTabAt(0)?.select()
                 MovieTypeFilter.MOVIES -> tabMoviesTypeFilter.getTabAt(1)?.select()
                 MovieTypeFilter.SERIES -> tabMoviesTypeFilter.getTabAt(2)?.select()
-                null -> tabMoviesTypeFilter.getTabAt(0)?.select()
+                else -> tabMoviesTypeFilter.getTabAt(0)?.select()
             }
 
             when (viewModel.filters.value?.sort) {
                 MovieSortType.YEAR -> tabSortMoviesFilter.getTabAt(0)?.select()
                 MovieSortType.COUNTRY -> tabSortMoviesFilter.getTabAt(1)?.select()
                 MovieSortType.AGE_RATING -> tabSortMoviesFilter.getTabAt(2)?.select()
-                null -> tabMoviesTypeFilter.getTabAt(0)?.select()
+                else -> tabMoviesTypeFilter.getTabAt(0)?.select()
             }
 
             ratingSlider.setValues(
@@ -80,7 +80,7 @@ class FiltersFragment : Fragment() {
     private fun setUpDefaultFilterListener() {
             val defaultFilters = Constants.DEFAULT_FILTERS
 
-            binding.apply {
+            with(binding) {
                 when (defaultFilters.type) {
                     MovieTypeFilter.ALL -> tabMoviesTypeFilter.getTabAt(0)?.select()
                     MovieTypeFilter.MOVIES -> tabMoviesTypeFilter.getTabAt(1)?.select()
