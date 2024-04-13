@@ -23,18 +23,18 @@ import java.util.concurrent.TimeUnit
 internal object ServiceModule {
 
     @Provides
-    fun provideMoviesApi(gson: Gson): KinopoiskAPI = Retrofit.Builder()
+    fun provideMoviesApi(gson: Gson, url: ApiUrl): KinopoiskAPI = Retrofit.Builder()
         .client(OkHttpClient.Builder()
             .readTimeout(1, TimeUnit.MINUTES)
             .connectTimeout(1, TimeUnit.SECONDS)
             .build())
-        .baseUrl(Constants.BASE_URL)
+        .baseUrl(url.value)
         .addConverterFactory(GsonConverterFactory.create(gson))
         .build()
         .create(KinopoiskAPI::class.java)
 
     @Provides
-    fun provideGson() = GsonBuilder().apply {
+    fun provideGson(): Gson = GsonBuilder().apply {
         registerTypeAdapter(OffsetDateTime::class.java, object: JsonDeserializer<OffsetDateTime> {
             override fun deserialize(
                 json: JsonElement?,
@@ -44,7 +44,11 @@ internal object ServiceModule {
                 json?.let{
                     OffsetDateTime.parse(it.asJsonPrimitive.asString)
                 }
-
         })
     }.create()
+
+    @Provides
+    fun provideApiUrl() = ApiUrl(Constants.BASE_URL)
+
+    data class ApiUrl(val value: String)
 }
