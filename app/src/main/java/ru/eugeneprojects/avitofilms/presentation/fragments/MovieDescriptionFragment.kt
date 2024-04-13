@@ -92,6 +92,7 @@ class MovieDescriptionFragment : Fragment() {
         }
         setUpActorsRecycler()
         setUpCommentsRecycler()
+        setUpBackButton()
     }
 
     @SuppressLint("SetTextI18n")
@@ -188,6 +189,13 @@ class MovieDescriptionFragment : Fragment() {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.actors.collectLatest(actorsPagingAdapter::submitData)
             }
+        }
+    }
+
+    private fun setUpBackButton() {
+
+        binding.backButton.setOnClickListener {
+            findNavController().popBackStack()
         }
     }
 }

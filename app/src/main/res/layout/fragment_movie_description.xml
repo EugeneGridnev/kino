@@ -15,6 +15,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
+                    <ImageView
+                        android:id="@+id/backButton"
+                        android:layout_width="@dimen/back_button_width"
+                        android:layout_height="@dimen/back_button_height"
+                        android:src="@drawable/description_back_button_icon"
+                        android:contentDescription="@string/back_button_description"
+                        android:layout_margin="@dimen/back_button_margin"
+                        android:clickable="true"
+                        android:background="?android:attr/selectableItemBackgroundBorderless"
+                        android:padding="@dimen/back_button_padding"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
+
                     <com.google.android.material.imageview.ShapeableImageView
                         android:id="@+id/imageViewMovieImage"
                         android:layout_width="@dimen/movie_image_view_width"

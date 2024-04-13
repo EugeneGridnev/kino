@@ -43,6 +43,9 @@
     <dimen name="filter_description_margin">20dp</dimen>
 
     <dimen name="back_button_padding">4dp</dimen>
+    <dimen name="back_button_margin">10dp</dimen>
+    <dimen name="back_button_width">40dp</dimen>
+    <dimen name="back_button_height">40dp</dimen>
 
     <dimen name="searched_movie_list_description_padding">4dp</dimen>
 
