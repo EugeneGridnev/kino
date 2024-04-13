@@ -13,6 +13,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
@@ -71,11 +72,13 @@ class MovieDescriptionFragment : Fragment() {
                             binding.progressBar.isVisible = true
                             binding.wholeMovieDescription.isVisible = false
                         }
+
                         is MovieDescriptionViewModel.State.Movie -> {
                             binding.progressBar.isVisible = false
                             binding.wholeMovieDescription.isVisible = true
                             setUpData(loadStates.data)
                         }
+
                         is MovieDescriptionViewModel.State.Error -> {
                             val action =
                                 MovieDescriptionFragmentDirections.actionMovieDescriptionFragmentToErrorFragment(
@@ -109,8 +112,10 @@ class MovieDescriptionFragment : Fragment() {
             textViewMovieRating.text = String.format(Locale.US, "%.1f", movieInfo.rating?.kp)
             textViewMovieLength.text = "${movieInfo.movieLength ?: ""}"
             textViewMovieAgeRating.text = "${movieInfo.ageRating ?: ""}"
-            textViewMovieGenres.text = movieInfo.genres.joinToString(", ") { it.name.filterBlank() ?: "" }
-            textViewMovieCountries.text = movieInfo.countries.joinToString(", ") { it.name.filterBlank() ?: "" }
+            textViewMovieGenres.text =
+                movieInfo.genres.joinToString(", ") { it.name.filterBlank() ?: "" }
+            textViewMovieCountries.text =
+                movieInfo.countries.joinToString(", ") { it.name.filterBlank() ?: "" }
             textViewMovieBudget.text =
                 "${movieInfo.budget?.value ?: ""} ${movieInfo.budget?.currency ?: ""}"
         }
@@ -125,6 +130,16 @@ class MovieDescriptionFragment : Fragment() {
 
         setOnCommentClick()
         observeComments()
+
+        commentsPagingAdapter.addLoadStateListener { loadState ->
+            if (loadState.source.refresh is LoadState.NotLoading && loadState.append.endOfPaginationReached && commentsPagingAdapter.itemCount < 1) {
+                binding.recyclerViewComments.isVisible = false
+                binding.textViewCommentsStub.isVisible = true
+            } else {
+                binding.recyclerViewComments.isVisible = true
+                binding.textViewCommentsStub.isVisible = false
+            }
+        }
     }
 
     private fun observeComments() {
@@ -140,9 +155,9 @@ class MovieDescriptionFragment : Fragment() {
 
         commentsPagingAdapter.setOnItemClickListener {
             val action =
-            MovieDescriptionFragmentDirections.actionMovieDescriptionFragmentToCommentBottomSheetFragment(
-                it
-            )
+                MovieDescriptionFragmentDirections.actionMovieDescriptionFragmentToCommentBottomSheetFragment(
+                    it
+                )
             findNavController().navigate(action)
         }
     }
@@ -155,6 +170,16 @@ class MovieDescriptionFragment : Fragment() {
         binding.recyclerViewActors.adapter = actorsPagingAdapter
 
         observeActors()
+
+        actorsPagingAdapter.addLoadStateListener { loadState ->
+            if (loadState.source.refresh is LoadState.NotLoading && loadState.append.endOfPaginationReached && actorsPagingAdapter.itemCount < 1) {
+                binding.recyclerViewActors.isVisible = false
+                binding.textViewActorsStub.isVisible = true
+            } else {
+                binding.recyclerViewActors.isVisible = true
+                binding.textViewActorsStub.isVisible = false
+            }
+        }
     }
 
     private fun observeActors() {

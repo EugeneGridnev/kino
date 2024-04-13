@@ -272,10 +272,30 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginVertical="@dimen/movie_description_recyclers_margin_vertical"
-                        app:layout_constraintBottom_toTopOf="@+id/textViewMovieCommentsTitle"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textViewMovieActorsTitle" />
+
+                    <TextView
+                        style="@style/movieFragmentMainText"
+                        android:id="@+id/textViewActorsStub"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+                        android:text="@string/empty_actors_stub_text"
+                        android:visibility="invisible"
+                        android:gravity="center"
+                        app:layout_constraintTop_toBottomOf="@+id/textViewMovieActorsTitle"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        tools:text="@string/empty_actors_stub_text"/>
+
+                    <androidx.constraintlayout.widget.Barrier
+                        android:id="@+id/barrierActors"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:barrierDirection="bottom"
+                        app:constraint_referenced_ids="recyclerViewActors, textViewActorsStub" />
 
                     <TextView
                         style="@style/movieFragmentTitles"
@@ -284,8 +304,9 @@
                         android:layout_height="wrap_content"
                         android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
                         android:text="@string/movie_description_comments_title"
+                        app:layout_constraintVertical_chainStyle="packed"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/recyclerViewActors"
+                        app:layout_constraintTop_toBottomOf="@+id/barrierActors"
                         app:layout_constraintBottom_toTopOf="@+id/recyclerViewComments" />
 
                     <androidx.recyclerview.widget.RecyclerView
@@ -297,6 +318,21 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textViewMovieCommentsTitle" />
+
+                    <TextView
+                        style="@style/movieFragmentMainText"
+                        android:id="@+id/textViewCommentsStub"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+                        android:text="@string/empty_comments_stub_text"
+                        android:visibility="invisible"
+                        android:gravity="center"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textViewMovieCommentsTitle"
+                        tools:text="@string/empty_comments_stub_text"/>
                 </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
 

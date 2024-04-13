@@ -39,4 +39,6 @@
     <string name="close_comment_button_description">Закрыть отзыв</string>
     <string name="error_image_description">Картинка ошибки</string>
     <string name="default_filters_button_text">Сбросить</string>
+    <string name="empty_comments_stub_text">Нет информации об отзывах</string>
+    <string name="empty_actors_stub_text">Нет информации об актерах</string>
 </resources>
