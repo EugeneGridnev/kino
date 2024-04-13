@@ -26,9 +26,10 @@
         android:clickable="true"
         android:background="?android:attr/selectableItemBackgroundBorderless"
         android:padding="@dimen/back_button_padding"
+        app:tint="?android:textColorPrimary"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/filtersTitle"
-        app:layout_constraintBottom_toBottomOf="@+id/filtersTitle"/>
+        app:layout_constraintBottom_toBottomOf="@+id/filtersTitle" />
 
     <View
         app:layout_constraintBottom_toBottomOf="@+id/filtersTitle"
