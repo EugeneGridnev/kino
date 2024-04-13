@@ -41,6 +41,7 @@ class FiltersFragment : Fragment() {
         setUpFilters()
         binding.defaultFilterButton.setOnClickListener { setUpDefaultFilterListener() }
         setUpUseFiltersButton()
+        setUpBackButton()
     }
 
     override fun onDestroyView() {
@@ -139,5 +140,9 @@ class FiltersFragment : Fragment() {
             viewModel.setFilter(filters)
             findNavController().navigate(R.id.action_filtersFragment_to_filteredMoviesListFragment)
         }
+    }
+
+    private fun setUpBackButton() {
+        binding.backButton.setOnClickListener { findNavController().popBackStack() }
     }
 }
