@@ -74,35 +74,56 @@ class MoviesListFragment : Fragment() {
         moviesPagingAdapter = MoviesPagingAdapter()
 
         binding.recyclerViewMovies.layoutManager = LinearLayoutManager(context)
-        binding.recyclerViewMovies.adapter = moviesPagingAdapter.withLoadStateFooter(MoviesLoadStateAdapter())
+        binding.recyclerViewMovies.adapter =
+            moviesPagingAdapter.withLoadStateFooter(MoviesLoadStateAdapter())
 
         setOnMovieClick()
 
         initSwipeToRefresh(moviesPagingAdapter)
 
         lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.CREATED) {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
                 moviesPagingAdapter.loadStateFlow.collect { loadStates ->
-                    binding.swipeRefresh.isRefreshing = loadStates.mediator?.refresh is LoadState.Loading
+                    binding.swipeRefresh.isRefreshing =
+                        loadStates.mediator?.refresh is LoadState.Loading
                 }
             }
         }
 
         moviesPagingAdapter.addLoadStateListener { combinedLoadStates ->
-            val refreshState = combinedLoadStates.refresh
-            binding.recyclerViewMovies.isVisible = refreshState != LoadState.Loading
-            binding.progressBar.isVisible = refreshState == LoadState.Loading
 
-            if (refreshState is LoadState.Error) {
-                Toast.makeText(context,resources.getString(R.string.toast_load_error_message), Toast.LENGTH_SHORT).show()
-            }
+            with(binding) {
+                when (combinedLoadStates.refresh) {
+                    is LoadState.Error -> {
+                        recyclerViewMovies.isVisible = true
+                        textViewStub.isVisible = false
+                        progressBar.isVisible = false
 
-            if (combinedLoadStates.source.refresh is LoadState.NotLoading && combinedLoadStates.append.endOfPaginationReached && moviesPagingAdapter.itemCount == 0) {
-                binding.recyclerViewMovies.isVisible = false
-                binding.textViewStub.isVisible = true
-            } else {
-                binding.recyclerViewMovies.isVisible = true
-                binding.textViewStub.isVisible = false
+                        Toast.makeText(
+                            context,
+                            resources.getString(R.string.toast_load_error_message),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+
+                    LoadState.Loading -> {
+                        recyclerViewMovies.isVisible = false
+                        textViewStub.isVisible = false
+                        progressBar.isVisible = true
+                    }
+
+                    is LoadState.NotLoading -> {
+                        if (combinedLoadStates.append.endOfPaginationReached && moviesPagingAdapter.itemCount == 0) {
+                            recyclerViewMovies.isVisible = false
+                            textViewStub.isVisible = true
+                            progressBar.isVisible = false
+                        } else {
+                            recyclerViewMovies.isVisible = true
+                            textViewStub.isVisible = false
+                            progressBar.isVisible = false
+                        }
+                    }
+                }
             }
         }
     }
@@ -139,17 +160,16 @@ class MoviesListFragment : Fragment() {
         }
     }
 
-    private fun handleScrollingToTopWhenSearching(adapter: MoviesPagingAdapter) = lifecycleScope.launch {
-        // list should be scrolled to the 1st item (index = 0) if data has been reloaded:
-        // (prev state = Loading, current state = NotLoading)
-        getRefreshLoadStateFlow(adapter)
-            .simpleScan(2)
-            .collectLatest { (previousState, currentState) ->
-                if (previousState is LoadState.Loading && currentState is LoadState.NotLoading) {
-                    binding.recyclerViewMovies.scrollToPosition(0)
+    private fun handleScrollingToTopWhenSearching(adapter: MoviesPagingAdapter) =
+        lifecycleScope.launch {
+            getRefreshLoadStateFlow(adapter)
+                .simpleScan(2)
+                .collectLatest { (previousState, currentState) ->
+                    if (previousState is LoadState.Loading && currentState is LoadState.NotLoading) {
+                        binding.recyclerViewMovies.scrollToPosition(0)
+                    }
                 }
-            }
-    }
+        }
 
     private fun getRefreshLoadStateFlow(adapter: MoviesPagingAdapter): Flow<LoadState> {
         return adapter.loadStateFlow

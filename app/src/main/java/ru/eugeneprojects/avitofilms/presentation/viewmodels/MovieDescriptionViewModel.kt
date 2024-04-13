@@ -19,7 +19,7 @@ import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import ru.eugeneprojects.avitofilms.data.models.actor.Actor
 import ru.eugeneprojects.avitofilms.data.models.comment.Comment
-import ru.eugeneprojects.avitofilms.data.models.movieDescription.MovieInfo
+import ru.eugeneprojects.avitofilms.data.models.moviedescription.MovieInfo
 import ru.eugeneprojects.avitofilms.data.network.repository.KinopoiskRepository
 import ru.eugeneprojects.avitofilms.data.paging.ActorsPagingSource
 import ru.eugeneprojects.avitofilms.data.paging.CommentsPagingSource

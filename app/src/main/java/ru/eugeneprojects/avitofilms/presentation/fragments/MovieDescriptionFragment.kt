@@ -23,7 +23,7 @@ import kotlinx.coroutines.launch
 import ru.eugeneprojects.avitofilms.R
 import ru.eugeneprojects.avitofilms.adapters.ActorsPagingAdapter
 import ru.eugeneprojects.avitofilms.adapters.CommentsPagingAdapter
-import ru.eugeneprojects.avitofilms.data.models.movieDescription.MovieInfo
+import ru.eugeneprojects.avitofilms.data.models.moviedescription.MovieInfo
 import ru.eugeneprojects.avitofilms.databinding.FragmentMovieDescriptionBinding
 import ru.eugeneprojects.avitofilms.presentation.viewmodels.MovieDescriptionViewModel
 import ru.eugeneprojects.avitofilms.utils.filterBlank
@@ -65,7 +65,7 @@ class MovieDescriptionFragment : Fragment() {
 
     private fun setUpUi() {
         lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.CREATED) {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.description.collect { loadStates ->
                     when (loadStates) {
                         MovieDescriptionViewModel.State.Loading -> {
@@ -98,13 +98,13 @@ class MovieDescriptionFragment : Fragment() {
     @SuppressLint("SetTextI18n")
     private fun setUpData(movieInfo: MovieInfo) {
 
-        binding.imageViewMovieImage.let {
-            Glide.with(this)
-                .load(movieInfo.poster.url)
-                .placeholder(R.drawable.no_movie_image_placeholder)
-                .into(it)
-        }
         with(binding) {
+            imageViewMovieImage.let {
+                Glide.with(this@MovieDescriptionFragment)
+                    .load(movieInfo.poster.url)
+                    .placeholder(R.drawable.no_movie_image_placeholder)
+                    .into(it)
+            }
             textViewMovieName.text = movieInfo.name.filterBlank() ?: movieInfo.enName.filterBlank()
                     ?: movieInfo.alternativeName.filterBlank() ?: ""
             textViewMovieDescription.text = movieInfo.description

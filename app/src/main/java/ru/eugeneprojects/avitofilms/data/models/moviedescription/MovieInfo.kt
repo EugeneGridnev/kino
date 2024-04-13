@@ -1,4 +1,4 @@
-package ru.eugeneprojects.avitofilms.data.models.movieDescription
+package ru.eugeneprojects.avitofilms.data.models.moviedescription
 
 data class MovieInfo(
     val ageRating: Int?,

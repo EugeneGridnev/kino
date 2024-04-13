@@ -1,6 +1,6 @@
-package ru.eugeneprojects.avitofilms.data.models.movieCardItem
+package ru.eugeneprojects.avitofilms.data.models.moviedescription
 
-data class Movie(
+data class MovieCardInfo(
     val ageRating: Int,
     val alternativeName: String?,
     val countries: List<Country>,

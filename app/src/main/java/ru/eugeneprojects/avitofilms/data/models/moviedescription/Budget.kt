@@ -1,4 +1,4 @@
-package ru.eugeneprojects.avitofilms.data.models.movieDescription
+package ru.eugeneprojects.avitofilms.data.models.moviedescription
 
 data class Budget(
     val currency: String?,

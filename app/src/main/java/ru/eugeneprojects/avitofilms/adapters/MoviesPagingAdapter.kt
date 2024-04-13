@@ -8,15 +8,15 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import ru.eugeneprojects.avitofilms.R
-import ru.eugeneprojects.avitofilms.data.models.movieCardItem.Movie
+import ru.eugeneprojects.avitofilms.data.models.moviedescription.MovieCardInfo
 import ru.eugeneprojects.avitofilms.databinding.ItemMovieLayoutBinding
 import ru.eugeneprojects.avitofilms.utils.filterBlank
 import java.util.Locale
 
 class MoviesPagingAdapter :
-    PagingDataAdapter<Movie, MoviesPagingAdapter.MovieViewHolder>(MovieDiffCallBack()) {
+    PagingDataAdapter<MovieCardInfo, MoviesPagingAdapter.MovieViewHolder>(MovieDiffCallBack()) {
 
-    private var onItemClickListener: ((Movie) -> Unit)? = null
+    private var onItemClickListener: ((MovieCardInfo) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
 
@@ -40,13 +40,13 @@ class MoviesPagingAdapter :
         RecyclerView.ViewHolder(binding.root) {
 
         @SuppressLint("SetTextI18n")
-        fun bind(movie: Movie, onClickListener: ((Movie) -> Unit)? = null) {
+        fun bind(movie: MovieCardInfo, onClickListener: ((MovieCardInfo) -> Unit)? = null) {
 
-            Glide.with(itemView)
-                .load(movie.poster.previewUrl)
-                .placeholder(R.drawable.no_movie_image_placeholder)
-                .into(binding.itemViewMovieThumbnail)
             with(binding) {
+                Glide.with(itemView)
+                    .load(movie.poster.previewUrl)
+                    .placeholder(R.drawable.no_movie_image_placeholder)
+                    .into(itemViewMovieThumbnail)
                 textViewMovieTitle.text = movie.name.filterBlank() ?: movie.enName.filterBlank()
                         ?: movie.alternativeName.filterBlank() ?: ""
                 textViewMovieYear.text = movie.year.toString()
@@ -63,17 +63,17 @@ class MoviesPagingAdapter :
         }
     }
 
-    class MovieDiffCallBack : DiffUtil.ItemCallback<Movie>() {
-        override fun areItemsTheSame(oldItem: Movie, newItem: Movie): Boolean {
+    class MovieDiffCallBack : DiffUtil.ItemCallback<MovieCardInfo>() {
+        override fun areItemsTheSame(oldItem: MovieCardInfo, newItem: MovieCardInfo): Boolean {
             return oldItem.id == newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: Movie, newItem: Movie): Boolean {
+        override fun areContentsTheSame(oldItem: MovieCardInfo, newItem: MovieCardInfo): Boolean {
             return oldItem == newItem
         }
     }
 
-    fun setOnItemClickListener(listener: (Movie) -> Unit) {
+    fun setOnItemClickListener(listener: (MovieCardInfo) -> Unit) {
         onItemClickListener = listener
     }
 }

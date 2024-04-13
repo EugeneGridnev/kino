@@ -10,8 +10,8 @@ import ru.eugeneprojects.avitofilms.BuildConfig
 import ru.eugeneprojects.avitofilms.data.models.PageResponse
 import ru.eugeneprojects.avitofilms.data.models.actor.Actor
 import ru.eugeneprojects.avitofilms.data.models.comment.Comment
-import ru.eugeneprojects.avitofilms.data.models.movieCardItem.Movie
-import ru.eugeneprojects.avitofilms.data.models.movieDescription.MovieInfo
+import ru.eugeneprojects.avitofilms.data.models.moviedescription.MovieCardInfo
+import ru.eugeneprojects.avitofilms.data.models.moviedescription.MovieInfo
 
 interface KinopoiskAPI {
 
@@ -23,7 +23,7 @@ interface KinopoiskAPI {
         pageSize: Int,
         @Header("X-API-KEY")
         apiKey: String = BuildConfig.API_KEY
-    ): Response<PageResponse<Movie>>
+    ): Response<PageResponse<MovieCardInfo>>
 
     @GET("/v1.4/movie/search")
     suspend fun getSearchedMovies(
@@ -35,7 +35,7 @@ interface KinopoiskAPI {
         searchText: String = "",
         @Header("X-API-KEY")
         apiKey: String = BuildConfig.API_KEY
-    ): Response<PageResponse<Movie>>
+    ): Response<PageResponse<MovieCardInfo>>
 
     @GET("/v1.4/movie")
     suspend fun getFilteredMovies(
@@ -47,7 +47,7 @@ interface KinopoiskAPI {
         filters: Map<String, String>,
         @Header("X-API-KEY")
         apiKey: String = BuildConfig.API_KEY
-    ): Response<PageResponse<Movie>>
+    ): Response<PageResponse<MovieCardInfo>>
 
     @GET("/v1.4/movie/{id}")
     suspend fun getMovie(

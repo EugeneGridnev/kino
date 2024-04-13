@@ -53,7 +53,11 @@ class FilteredMoviesListFragment : Fragment() {
             if (isOnline) {
                 moviesPagingAdapter.retry()
             } else {
-                Toast.makeText(context, resources.getString(R.string.network_error_message), Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    context,
+                    resources.getString(R.string.network_error_message),
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
     }
@@ -90,25 +94,42 @@ class FilteredMoviesListFragment : Fragment() {
         setOnMovieClick()
 
         moviesPagingAdapter.addLoadStateListener { combinedLoadStates ->
-            val refreshState = combinedLoadStates.refresh
-            binding.recyclerViewFilteredMovies.isVisible = refreshState != LoadState.Loading
-            binding.progressBar.isVisible = refreshState == LoadState.Loading
 
-            if (refreshState is LoadState.Error) {
-                Toast.makeText(context, resources.getString(R.string.toast_load_error_message), Toast.LENGTH_SHORT).show()
-                lifecycleScope.launch {
-                    delay(5000)
-                    Toast.makeText(context, R.string.retry_toast_text, Toast.LENGTH_SHORT).show()
-                    moviesPagingAdapter.retry()
+            with(binding) {
+                when (combinedLoadStates.refresh) {
+                    is LoadState.Error -> {
+                        recyclerViewFilteredMovies.isVisible = true
+                        textViewStub.isVisible = false
+                        progressBar.isVisible = false
+
+                        Toast.makeText(
+                            context,
+                            resources.getString(R.string.toast_load_error_message),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        lifecycleScope.launch {
+                            delay(5000)
+                            Toast.makeText(context, R.string.retry_toast_text, Toast.LENGTH_SHORT).show()
+                            moviesPagingAdapter.retry()
+                        }
+                    }
+                    LoadState.Loading -> {
+                        recyclerViewFilteredMovies.isVisible = false
+                        textViewStub.isVisible = false
+                        progressBar.isVisible = true
+                    }
+                    is LoadState.NotLoading -> {
+                        if (combinedLoadStates.append.endOfPaginationReached && moviesPagingAdapter.itemCount == 0) {
+                            recyclerViewFilteredMovies.isVisible = false
+                            textViewStub.isVisible = true
+                            progressBar.isVisible = false
+                        } else {
+                            recyclerViewFilteredMovies.isVisible = true
+                            textViewStub.isVisible = false
+                            progressBar.isVisible = false
+                        }
+                    }
                 }
-            }
-
-            if (combinedLoadStates.source.refresh is LoadState.NotLoading && combinedLoadStates.append.endOfPaginationReached && moviesPagingAdapter.itemCount == 0) {
-                binding.recyclerViewFilteredMovies.isVisible = false
-                binding.textViewStub.isVisible = true
-            } else {
-                binding.recyclerViewFilteredMovies.isVisible = true
-                binding.textViewStub.isVisible = false
             }
         }
     }
