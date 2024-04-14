@@ -14,7 +14,8 @@
 
     <style name="movieFragmentMainText">
         <item name="android:layout_marginTop">@dimen/movie_fragment_main_text_margin_top</item>
-        <item name="android:layout_marginBottom">@dimen/movie_fragment_main_text_margin_bottom</item>
+        <item name="android:layout_marginBottom">@dimen/movie_fragment_main_text_margin_bottom
+        </item>
         <item name="android:layout_marginStart">@dimen/movie_fragment_main_text_margin_start</item>
         <item name="android:layout_marginEnd">@dimen/movie_fragment_main_text_margin_end</item>
     </style>
@@ -37,7 +38,10 @@
     </style>
 
     <style name="cardRatingTextViewStyle" parent="cardTextViewStyle">
-        <item name="android:layout_marginStart">@dimen/card_rating_text_view_style_margin_horizontal</item>
-        <item name="android:layout_marginEnd">@dimen/card_rating_text_view_style_margin_horizontal</item>
+        <item name="android:layout_marginStart">
+            @dimen/card_rating_text_view_style_margin_horizontal
+        </item>
+        <item name="android:layout_marginEnd">@dimen/card_rating_text_view_style_margin_horizontal
+        </item>
     </style>
 </resources>

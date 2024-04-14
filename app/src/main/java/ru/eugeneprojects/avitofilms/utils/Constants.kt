@@ -20,5 +20,6 @@ object Constants {
     val DEFAULT_FILTERS = MovieFilters(
         MovieTypeFilter.ALL,
         MovieSortType.YEAR,
-        6..10)
+        6..10
+    )
 }

@@ -29,13 +29,13 @@
         app:tint="?android:textColorPrimary"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/listDescription"
-        app:layout_constraintBottom_toBottomOf="@+id/listDescription"/>
+        app:layout_constraintBottom_toBottomOf="@+id/listDescription" />
 
     <View
         app:layout_constraintBottom_toBottomOf="@+id/listDescription"
         android:layout_height="1dp"
         android:background="@drawable/shadow"
-        android:layout_width="match_parent"/>
+        android:layout_width="match_parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewFilteredMovies"
@@ -61,7 +61,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:text="@string/empty_search_message"/>
+        tools:text="@string/empty_search_message" />
 
     <ProgressBar
         android:id="@+id/progressBar"

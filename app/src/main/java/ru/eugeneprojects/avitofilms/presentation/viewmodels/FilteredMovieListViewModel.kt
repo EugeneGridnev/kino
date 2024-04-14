@@ -37,7 +37,7 @@ class FilteredMovieListViewModel @Inject constructor(
     @OptIn(ExperimentalCoroutinesApi::class)
     val movies = _filters.asFlow()
         .distinctUntilChanged()
-        .flatMapLatest {movieFilters ->
+        .flatMapLatest { movieFilters ->
             Pager(
                 config = Constants.PAGING_CONFIG,
                 pagingSourceFactory = { FilterPagingSource(kinopoiskRepository, movieFilters!!) }

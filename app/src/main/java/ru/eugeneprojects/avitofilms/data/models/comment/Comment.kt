@@ -13,7 +13,7 @@ data class Comment(
     val review: String?,
     val title: String?,
     val type: String?,
-): Parcelable {
+) : Parcelable {
 
     companion object {
         const val TYPE_POSITIVE = "Позитивный"

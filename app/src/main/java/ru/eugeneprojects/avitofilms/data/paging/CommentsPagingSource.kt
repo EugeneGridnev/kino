@@ -5,7 +5,7 @@ import ru.eugeneprojects.avitofilms.data.models.PageResponse
 import ru.eugeneprojects.avitofilms.data.models.comment.Comment
 import ru.eugeneprojects.avitofilms.data.network.repository.KinopoiskRepository
 
-class CommentsPagingSource (
+class CommentsPagingSource(
     private val kinopoiskRepository: KinopoiskRepository,
     private val movieId: Int
 ) : BasePagingSource<Comment>() {

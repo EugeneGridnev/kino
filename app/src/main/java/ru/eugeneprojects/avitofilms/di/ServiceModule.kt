@@ -24,10 +24,12 @@ internal object ServiceModule {
 
     @Provides
     fun provideMoviesApi(gson: Gson, url: ApiUrl): KinopoiskAPI = Retrofit.Builder()
-        .client(OkHttpClient.Builder()
-            .readTimeout(1, TimeUnit.MINUTES)
-            .connectTimeout(1, TimeUnit.SECONDS)
-            .build())
+        .client(
+            OkHttpClient.Builder()
+                .readTimeout(1, TimeUnit.MINUTES)
+                .connectTimeout(1, TimeUnit.SECONDS)
+                .build()
+        )
         .baseUrl(url.value)
         .addConverterFactory(GsonConverterFactory.create(gson))
         .build()
@@ -35,13 +37,13 @@ internal object ServiceModule {
 
     @Provides
     fun provideGson(): Gson = GsonBuilder().apply {
-        registerTypeAdapter(OffsetDateTime::class.java, object: JsonDeserializer<OffsetDateTime> {
+        registerTypeAdapter(OffsetDateTime::class.java, object : JsonDeserializer<OffsetDateTime> {
             override fun deserialize(
                 json: JsonElement?,
                 typeOfT: Type?,
                 context: JsonDeserializationContext?
             ): OffsetDateTime? =
-                json?.let{
+                json?.let {
                     OffsetDateTime.parse(it.asJsonPrimitive.asString)
                 }
         })

@@ -14,8 +14,8 @@ import ru.eugeneprojects.avitofilms.data.network.repository.KinopoiskRepositoryI
 abstract class RepositoryModule {
 
     @Binds
-    abstract fun providesConnectivityRepository(repositoryIMPL: ConnectivityRepositoryIMPL) : ConnectivityRepository
+    abstract fun providesConnectivityRepository(repositoryIMPL: ConnectivityRepositoryIMPL): ConnectivityRepository
 
     @Binds
-    abstract fun providesKinopoiskRepository(repositoryIMPL: KinopoiskRepositoryIMPL) : KinopoiskRepository
+    abstract fun providesKinopoiskRepository(repositoryIMPL: KinopoiskRepositoryIMPL): KinopoiskRepository
 }

@@ -35,7 +35,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/filtersTitle"
         android:layout_height="1dp"
         android:background="@drawable/shadow"
-        android:layout_width="match_parent"/>
+        android:layout_width="match_parent" />
 
     <ScrollView
         android:layout_width="match_parent"

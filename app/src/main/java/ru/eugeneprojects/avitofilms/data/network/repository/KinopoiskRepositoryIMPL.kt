@@ -14,14 +14,18 @@ import javax.inject.Inject
 
 class KinopoiskRepositoryIMPL @Inject constructor(private val api: KinopoiskAPI) :
     KinopoiskRepository {
-    override suspend fun getMovies(pageNumber: Int, pageSize: Int): Response<PageResponse<MovieCardInfo>> =
+    override suspend fun getMovies(
+        pageNumber: Int,
+        pageSize: Int
+    ): Response<PageResponse<MovieCardInfo>> =
         api.getMovies(pageNumber, pageSize)
 
     override suspend fun getSearchedMovies(
         searchText: String,
         pageNumber: Int,
         pageSize: Int
-    ): Response<PageResponse<MovieCardInfo>> = api.getSearchedMovies(pageNumber, pageSize, searchText)
+    ): Response<PageResponse<MovieCardInfo>> =
+        api.getSearchedMovies(pageNumber, pageSize, searchText)
 
     override suspend fun getMovie(id: Int): Response<MovieInfo> = api.getMovie(id)
     override suspend fun getComments(
@@ -52,8 +56,8 @@ class KinopoiskRepositoryIMPL @Inject constructor(private val api: KinopoiskAPI)
 
         when (filters.sort) {
             MovieSortType.YEAR -> queryMap[QUERY_KEY_SORT_BY] = QUERY_VALUE_YEAR
-            MovieSortType.COUNTRY ->  queryMap[QUERY_KEY_SORT_BY] = QUERY_VALUE_COUNTRIES_NAME
-            MovieSortType.AGE_RATING ->  queryMap[QUERY_KEY_SORT_BY] = QUERY_VALUE_AGE_RATING
+            MovieSortType.COUNTRY -> queryMap[QUERY_KEY_SORT_BY] = QUERY_VALUE_COUNTRIES_NAME
+            MovieSortType.AGE_RATING -> queryMap[QUERY_KEY_SORT_BY] = QUERY_VALUE_AGE_RATING
         }
         queryMap[QUERY_KEY_SORT_DIRECTION] = QUERY_KEY_SORT_DIRECTION_VALUE
 

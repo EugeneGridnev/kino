@@ -62,12 +62,23 @@ class CommentBottomSheetFragment : BottomSheetDialogFragment() {
 
     private fun setIndicatorColor(commentType: String) {
         when (commentType) {
-            Comment.TYPE_POSITIVE -> binding.commentIndicator.setBackgroundColor(requireContext().getColor(
-                R.color.green))
-            Comment.TYPE_NEGATIVE -> binding.commentIndicator.setBackgroundColor(requireContext().getColor(
-                R.color.red))
-            Comment.TYPE_NEUTRAL -> binding.commentIndicator.setBackgroundColor(requireContext().getColor(
-                R.color.black))
+            Comment.TYPE_POSITIVE -> binding.commentIndicator.setBackgroundColor(
+                requireContext().getColor(
+                    R.color.green
+                )
+            )
+
+            Comment.TYPE_NEGATIVE -> binding.commentIndicator.setBackgroundColor(
+                requireContext().getColor(
+                    R.color.red
+                )
+            )
+
+            Comment.TYPE_NEUTRAL -> binding.commentIndicator.setBackgroundColor(
+                requireContext().getColor(
+                    R.color.black
+                )
+            )
         }
     }
 

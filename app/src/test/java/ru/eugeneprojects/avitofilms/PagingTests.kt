@@ -135,7 +135,7 @@ class PagingTests {
 
         val pageResult = result as PagingSource.LoadResult.Page<Int, MovieCardInfo>
 
-        assertIterableEquals(listOf(movie),pageResult.data)
-        assertEquals(2,pageResult.nextKey)
+        assertIterableEquals(listOf(movie), pageResult.data)
+        assertEquals(2, pageResult.nextKey)
     }
 }

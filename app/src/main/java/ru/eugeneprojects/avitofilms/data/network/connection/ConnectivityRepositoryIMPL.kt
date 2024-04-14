@@ -7,7 +7,8 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import javax.inject.Inject
 
-class ConnectivityRepositoryIMPL @Inject constructor(@ApplicationContext context: Context) : ConnectivityRepository {
+class ConnectivityRepositoryIMPL @Inject constructor(@ApplicationContext context: Context) :
+    ConnectivityRepository {
 
     private val connectivityManager =
         context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
@@ -17,7 +18,8 @@ class ConnectivityRepositoryIMPL @Inject constructor(@ApplicationContext context
 
     init {
 
-        connectivityManager.registerDefaultNetworkCallback(object : ConnectivityManager.NetworkCallback() {
+        connectivityManager.registerDefaultNetworkCallback(object :
+            ConnectivityManager.NetworkCallback() {
             override fun onAvailable(network: android.net.Network) {
                 _isConnected.value = true
             }

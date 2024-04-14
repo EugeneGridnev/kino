@@ -13,14 +13,30 @@ interface KinopoiskRepository {
 
     suspend fun getMovies(pageNumber: Int, pageSize: Int): Response<PageResponse<MovieCardInfo>>
 
-    suspend fun getSearchedMovies(searchText: String, pageNumber: Int, pageSize: Int): Response<PageResponse<MovieCardInfo>>
+    suspend fun getSearchedMovies(
+        searchText: String,
+        pageNumber: Int,
+        pageSize: Int
+    ): Response<PageResponse<MovieCardInfo>>
 
-    suspend fun getFilteredMovies(filters: MovieFilters, pageNumber: Int, pageSize: Int): Response<PageResponse<MovieCardInfo>>
+    suspend fun getFilteredMovies(
+        filters: MovieFilters,
+        pageNumber: Int,
+        pageSize: Int
+    ): Response<PageResponse<MovieCardInfo>>
 
     suspend fun getMovie(id: Int): Response<MovieInfo>
 
-    suspend fun getComments(movieId: Int, pageNumber: Int, pageSize: Int): Response<PageResponse<Comment>>
+    suspend fun getComments(
+        movieId: Int,
+        pageNumber: Int,
+        pageSize: Int
+    ): Response<PageResponse<Comment>>
 
-    suspend fun getActors(movieId: Int, pageNumber: Int, pageSize: Int): Response<PageResponse<Actor>>
+    suspend fun getActors(
+        movieId: Int,
+        pageNumber: Int,
+        pageSize: Int
+    ): Response<PageResponse<Actor>>
 
 }

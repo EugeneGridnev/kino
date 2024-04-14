@@ -35,9 +35,11 @@ class MovieDescriptionViewModel @Inject constructor(
     val description: StateFlow<State> = _descriptionState
 
 
-    val comments: Flow<PagingData<Comment>> = createPagingSource { CommentsPagingSource(kinopoiskRepository, it.id) }
+    val comments: Flow<PagingData<Comment>> =
+        createPagingSource { CommentsPagingSource(kinopoiskRepository, it.id) }
 
-    val actors: Flow<PagingData<Actor>> = createPagingSource { ActorsPagingSource(kinopoiskRepository, it.id) }
+    val actors: Flow<PagingData<Actor>> =
+        createPagingSource { ActorsPagingSource(kinopoiskRepository, it.id) }
 
     fun getMovie(id: Int) {
         _descriptionState.value = State.Loading
@@ -47,17 +49,18 @@ class MovieDescriptionViewModel @Inject constructor(
     }
 
     @OptIn(ExperimentalCoroutinesApi::class)
-    private fun <T: Any>createPagingSource(factory: (MovieInfo) -> PagingSource<Int, T>) =
-        _descriptionState.flatMapLatest { when (it) {
-            State.Loading, is State.Error -> flow{ emit(PagingData.empty())}
-            is State.Movie -> Pager(
-                config = Constants.PAGING_CONFIG,
-                pagingSourceFactory = { factory(it.data) }
-            ).flow
-                .flowOn(Dispatchers.IO)
-                .cachedIn(viewModelScope)
+    private fun <T : Any> createPagingSource(factory: (MovieInfo) -> PagingSource<Int, T>) =
+        _descriptionState.flatMapLatest {
+            when (it) {
+                State.Loading, is State.Error -> flow { emit(PagingData.empty()) }
+                is State.Movie -> Pager(
+                    config = Constants.PAGING_CONFIG,
+                    pagingSourceFactory = { factory(it.data) }
+                ).flow
+                    .flowOn(Dispatchers.IO)
+                    .cachedIn(viewModelScope)
+            }
         }
-    }
 
     private suspend fun fetchMovie(id: Int) {
 
@@ -77,13 +80,13 @@ class MovieDescriptionViewModel @Inject constructor(
     }
 
     sealed class State() {
-        data object Loading: State()
+        data object Loading : State()
 
-        data class Movie(val data: MovieInfo): State()
+        data class Movie(val data: MovieInfo) : State()
 
         data class Error(
             val error: Exception
-        ): State()
+        ) : State()
     }
 
 }

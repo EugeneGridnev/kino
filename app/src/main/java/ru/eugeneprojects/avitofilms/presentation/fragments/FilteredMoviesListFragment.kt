@@ -109,15 +109,18 @@ class FilteredMoviesListFragment : Fragment() {
                         ).show()
                         lifecycleScope.launch {
                             delay(5000)
-                            Toast.makeText(context, R.string.retry_toast_text, Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context, R.string.retry_toast_text, Toast.LENGTH_SHORT)
+                                .show()
                             moviesPagingAdapter.retry()
                         }
                     }
+
                     LoadState.Loading -> {
                         recyclerViewFilteredMovies.isVisible = false
                         textViewStub.isVisible = false
                         progressBar.isVisible = true
                     }
+
                     is LoadState.NotLoading -> {
                         if (combinedLoadStates.append.endOfPaginationReached && moviesPagingAdapter.itemCount == 0) {
                             recyclerViewFilteredMovies.isVisible = false

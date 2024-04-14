@@ -9,7 +9,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import ru.eugeneprojects.avitofilms.databinding.ErrorFragmentBinding
 
-class ErrorFragment: Fragment() {
+class ErrorFragment : Fragment() {
 
     private var _binding: ErrorFragmentBinding? = null
     private val binding: ErrorFragmentBinding
@@ -37,7 +37,8 @@ class ErrorFragment: Fragment() {
     }
 
     private fun setOnRetryClick() {
-        val action = ErrorFragmentDirections.actionErrorFragmentToMovieDescriptionFragment(args.movieId)
+        val action =
+            ErrorFragmentDirections.actionErrorFragmentToMovieDescriptionFragment(args.movieId)
         binding.repeatButton.setOnClickListener { findNavController().navigate(action) }
     }
 }

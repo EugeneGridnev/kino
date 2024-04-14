@@ -78,33 +78,33 @@ class FiltersFragment : Fragment() {
     }
 
     private fun setUpDefaultFilterListener() {
-            val defaultFilters = Constants.DEFAULT_FILTERS
+        val defaultFilters = Constants.DEFAULT_FILTERS
 
-            with(binding) {
-                when (defaultFilters.type) {
-                    MovieTypeFilter.ALL -> tabMoviesTypeFilter.getTabAt(0)?.select()
-                    MovieTypeFilter.MOVIES -> tabMoviesTypeFilter.getTabAt(1)?.select()
-                    MovieTypeFilter.SERIES -> tabMoviesTypeFilter.getTabAt(2)?.select()
-                }
-
-                when (defaultFilters.sort) {
-                    MovieSortType.YEAR -> tabSortMoviesFilter.getTabAt(0)?.select()
-                    MovieSortType.COUNTRY -> tabSortMoviesFilter.getTabAt(1)?.select()
-                    MovieSortType.AGE_RATING -> tabSortMoviesFilter.getTabAt(2)?.select()
-                }
-
-                ratingSlider.setValues(
-                    defaultFilters.rating.first.toFloat(),
-                    defaultFilters.rating.last.toFloat()
-                )
+        with(binding) {
+            when (defaultFilters.type) {
+                MovieTypeFilter.ALL -> tabMoviesTypeFilter.getTabAt(0)?.select()
+                MovieTypeFilter.MOVIES -> tabMoviesTypeFilter.getTabAt(1)?.select()
+                MovieTypeFilter.SERIES -> tabMoviesTypeFilter.getTabAt(2)?.select()
             }
-            setUpSliderTextValue(defaultFilters.rating.first, defaultFilters.rating.last)
-            viewModel.setFilter(defaultFilters)
+
+            when (defaultFilters.sort) {
+                MovieSortType.YEAR -> tabSortMoviesFilter.getTabAt(0)?.select()
+                MovieSortType.COUNTRY -> tabSortMoviesFilter.getTabAt(1)?.select()
+                MovieSortType.AGE_RATING -> tabSortMoviesFilter.getTabAt(2)?.select()
+            }
+
+            ratingSlider.setValues(
+                defaultFilters.rating.first.toFloat(),
+                defaultFilters.rating.last.toFloat()
+            )
+        }
+        setUpSliderTextValue(defaultFilters.rating.first, defaultFilters.rating.last)
+        viewModel.setFilter(defaultFilters)
     }
 
     private fun setUpSliderListener() {
 
-        binding.ratingSlider.addOnChangeListener{ slider, _, _ ->
+        binding.ratingSlider.addOnChangeListener { slider, _, _ ->
             setUpSliderTextValue(slider.values.first().toInt(), slider.values.last().toInt())
         }
     }

@@ -7,7 +7,7 @@ import retrofit2.Response
 import ru.eugeneprojects.avitofilms.data.models.PageResponse
 import ru.eugeneprojects.avitofilms.utils.Constants
 
-abstract class BasePagingSource<T : Any> () : PagingSource<Int, T>() {
+abstract class BasePagingSource<T : Any>() : PagingSource<Int, T>() {
     override fun getRefreshKey(state: PagingState<Int, T>): Int? {
         val anchorPosition = state.anchorPosition ?: return null
         val page = state.closestPageToPosition(anchorPosition) ?: return null
@@ -36,7 +36,7 @@ abstract class BasePagingSource<T : Any> () : PagingSource<Int, T>() {
         }
     }
 
-    abstract suspend fun requestPage(page: Int, size: Int) : Response<PageResponse<T>>
+    abstract suspend fun requestPage(page: Int, size: Int): Response<PageResponse<T>>
 
     companion object {
         const val INITIAL_PAGE_NUMBER = 1

@@ -22,7 +22,8 @@ class ApiTests() {
     fun getMoviesTest(): Unit = runBlocking {
         val server = MockWebServer()
         server.enqueue(MockResponse().apply {
-            setBody("""
+            setBody(
+                """
             {
                 "docs": [
                     {
@@ -89,7 +90,7 @@ class ApiTests() {
         with(body.docs[0]) {
             assertAll(
                 { assertEquals(535341, id) },
-                { assertNull( enName) },
+                { assertNull(enName) },
                 { assertEquals("1+1", name) },
                 { assertEquals(18, ageRating) }
             )
@@ -300,7 +301,12 @@ class ApiTests() {
                 { assertEquals(3371711, id) },
                 { assertEquals("На первом и последнем плане...", title) },
                 { assertEquals("Негативный", type) },
-                { assertEquals(OffsetDateTime.of(2024,4,13,11,14,41,0, ZoneOffset.UTC), date) },
+                {
+                    assertEquals(
+                        OffsetDateTime.of(2024, 4, 13, 11, 14, 41, 0, ZoneOffset.UTC),
+                        date
+                    )
+                },
                 { assertEquals("richterds - 6556", author) }
             )
         }
@@ -382,7 +388,7 @@ class ApiTests() {
         val serverUrl = server.url("")
         val movieApi = setUpRetrofit(serverUrl.toString())
 
-        val response = movieApi.getMovie(535341,"test-api-key")
+        val response = movieApi.getMovie(535341, "test-api-key")
         assertNotNull(response.body())
         val body = response.body()!!
         assertEquals(200, response.code())

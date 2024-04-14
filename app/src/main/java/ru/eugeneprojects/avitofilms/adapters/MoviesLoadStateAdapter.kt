@@ -24,7 +24,7 @@ class MoviesLoadStateAdapter : LoadStateAdapter<MoviesLoadStateAdapter.Holder>()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, loadState: LoadState): Holder {
-        return when(loadState) {
+        return when (loadState) {
             LoadState.Loading -> ProgressViewHolder(LayoutInflater.from(parent.context), parent)
             is LoadState.Error -> ErrorViewHolder(LayoutInflater.from(parent.context), parent)
             is LoadState.NotLoading -> error("Not supported")
@@ -48,7 +48,7 @@ class MoviesLoadStateAdapter : LoadStateAdapter<MoviesLoadStateAdapter.Holder>()
         private val binding: ItemProgressBinding
     ) : Holder(binding.root) {
 
-        override fun bind(loadState: LoadState) { }
+        override fun bind(loadState: LoadState) {}
 
         companion object {
 

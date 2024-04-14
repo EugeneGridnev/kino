@@ -58,7 +58,11 @@ class MoviesListFragment : Fragment() {
             if (isOnline) {
                 moviesPagingAdapter.retry()
             } else {
-                Toast.makeText(context, resources.getString(R.string.network_error_message), Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    context,
+                    resources.getString(R.string.network_error_message),
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
 

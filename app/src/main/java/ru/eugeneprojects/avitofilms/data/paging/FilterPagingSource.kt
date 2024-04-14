@@ -6,7 +6,7 @@ import ru.eugeneprojects.avitofilms.data.models.filters.MovieFilters
 import ru.eugeneprojects.avitofilms.data.models.moviedescription.MovieCardInfo
 import ru.eugeneprojects.avitofilms.data.network.repository.KinopoiskRepository
 
-class FilterPagingSource (
+class FilterPagingSource(
     private val kinopoiskRepository: KinopoiskRepository,
     private val filters: MovieFilters
 ) : BasePagingSource<MovieCardInfo>() {

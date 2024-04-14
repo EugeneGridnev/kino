@@ -9,7 +9,7 @@
         android:id="@+id/moviesListFragment"
         android:name="ru.eugeneprojects.avitofilms.presentation.fragments.MoviesListFragment"
         android:label="fragment_movies_list"
-        tools:layout="@layout/fragment_movies_list" >
+        tools:layout="@layout/fragment_movies_list">
         <action
             android:id="@+id/action_moviesListFragment_to_filtersFragment"
             app:destination="@id/filtersFragment" />
@@ -20,7 +20,7 @@
     <fragment
         android:id="@+id/filtersFragment"
         android:name="ru.eugeneprojects.avitofilms.presentation.fragments.FiltersFragment"
-        android:label="FiltersFragment" >
+        android:label="FiltersFragment">
         <action
             android:id="@+id/action_filtersFragment_to_filteredMoviesListFragment"
             app:destination="@id/filteredMoviesListFragment" />
@@ -28,7 +28,7 @@
     <fragment
         android:id="@+id/filteredMoviesListFragment"
         android:name="ru.eugeneprojects.avitofilms.presentation.fragments.FilteredMoviesListFragment"
-        android:label="FilteredMoviesListFragment" >
+        android:label="FilteredMoviesListFragment">
         <action
             android:id="@+id/action_filteredMoviesListFragment_to_movieDescriptionFragment"
             app:destination="@id/movieDescriptionFragment" />
@@ -36,7 +36,7 @@
     <dialog
         android:id="@+id/commentBottomSheetFragment"
         android:name="ru.eugeneprojects.avitofilms.presentation.fragments.CommentBottomSheetFragment"
-        android:label="CommentBottomSheetFragment" >
+        android:label="CommentBottomSheetFragment">
         <argument
             android:name="comment"
             app:argType="ru.eugeneprojects.avitofilms.data.models.comment.Comment" />
@@ -44,7 +44,7 @@
     <fragment
         android:id="@+id/movieDescriptionFragment"
         android:name="ru.eugeneprojects.avitofilms.presentation.fragments.MovieDescriptionFragment"
-        android:label="MovieDescriptionFragment" >
+        android:label="MovieDescriptionFragment">
         <action
             android:id="@+id/action_movieDescriptionFragment_to_commentBottomSheetFragment"
             app:destination="@id/commentBottomSheetFragment" />
@@ -60,7 +60,7 @@
     <fragment
         android:id="@+id/errorFragment"
         android:name="ru.eugeneprojects.avitofilms.presentation.fragments.ErrorFragment"
-        android:label="ErrorFragment" >
+        android:label="ErrorFragment">
         <action
             android:id="@+id/action_errorFragment_to_movieDescriptionFragment"
             app:destination="@id/movieDescriptionFragment"

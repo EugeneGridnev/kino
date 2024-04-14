@@ -14,7 +14,6 @@ import ru.eugeneprojects.avitofilms.utils.filterBlank
 class ActorsPagingAdapter :
     PagingDataAdapter<Actor, ActorsPagingAdapter.ActorViewHolder>(ActorDiffCallBack()) {
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ActorViewHolder {
 
         return ActorViewHolder(
@@ -41,7 +40,8 @@ class ActorsPagingAdapter :
                 .load(actor.photo)
                 .placeholder(R.drawable.no_person_image_placeholder)
                 .into(binding.itemViewActorThumbnail)
-            binding.textViewActorName.text = actor.name.filterBlank() ?: actor.enName.filterBlank() ?: ""
+            binding.textViewActorName.text =
+                actor.name.filterBlank() ?: actor.enName.filterBlank() ?: ""
         }
     }
 
