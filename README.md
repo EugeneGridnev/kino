@@ -39,4 +39,4 @@
 - Coroutines, Flow
 - Kotlin
 - Jetpack Navigation
-- Junit, Mockito
+- JUnit, Mockito
