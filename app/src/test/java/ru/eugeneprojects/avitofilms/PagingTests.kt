@@ -34,11 +34,9 @@ class PagingTests {
     @Mock
     lateinit var kinopoiskRepository: KinopoiskRepository
 
-    @OptIn(ExperimentalPagingApi::class)
     @Test
     fun httpErrorMoviesTest(): Unit = runBlocking {
-        val moviePagingSource: MoviePagingSource =
-            MoviePagingSource(kinopoiskRepository)
+        val moviePagingSource = MoviePagingSource(kinopoiskRepository)
 
         whenever(kinopoiskRepository.getMovies(any(), any())).thenReturn(
             Response.error(
@@ -67,11 +65,9 @@ class PagingTests {
         assertEquals(500, response!!.code())
     }
 
-    @OptIn(ExperimentalPagingApi::class)
     @Test()
     fun httpExceptionMoviesTest(): Unit = runBlocking {
-        val moviePagingSource: MoviePagingSource =
-            MoviePagingSource(kinopoiskRepository)
+        val moviePagingSource = MoviePagingSource(kinopoiskRepository)
 
         whenever(kinopoiskRepository.getMovies(any(), any())).thenThrow(OutOfMemoryError())
 
@@ -85,11 +81,10 @@ class PagingTests {
             )
         }
     }
-
-    @OptIn(ExperimentalPagingApi::class)
+    
     @Test
     fun successMoviesResponseTest(): Unit = runBlocking {
-        val movie: MovieCardInfo = MovieCardInfo(
+        val movie = MovieCardInfo(
             ageRating = 18,
             alternativeName = "MovieNameAlt",
             countries = listOf(
@@ -113,8 +108,7 @@ class PagingTests {
             year = 1999
         )
 
-        val moviePagingSource: MoviePagingSource =
-            MoviePagingSource(kinopoiskRepository)
+        val moviePagingSource = MoviePagingSource(kinopoiskRepository)
 
         whenever(kinopoiskRepository.getMovies(any(), any())).thenReturn(
             Response.success(
