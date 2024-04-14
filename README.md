@@ -44,6 +44,8 @@
 
 ## Примеры работы приложения
 
+В папке apk в корне лежит собранный апк файл для установки на устройство
+
 ### Работа основных разделов
 
 <p align = "center"> <img src = "https://github.com/EugeneGridnev/kino/blob/master/gifs/gif1.gif"> </p>
