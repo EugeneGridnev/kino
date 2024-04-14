@@ -42,5 +42,5 @@
     <string name="empty_comments_stub_text">Нет информации об отзывах</string>
     <string name="empty_actors_stub_text">Нет информации об актерах</string>
     <string name="filters_title_text">Фильтры</string>
-    <string name="retry_toast_text">Пробуем сноа, не уходите!</string>
+    <string name="retry_toast_text">Что-то не так! Пробуем снова.</string>
 </resources>
