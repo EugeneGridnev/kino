@@ -13,7 +13,7 @@ class ConnectivityRepositoryIMPL @Inject constructor(@ApplicationContext context
     private val connectivityManager =
         context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
-    private val _isConnected = MutableStateFlow(false)
+    private val _isConnected = MutableStateFlow(true)
     override val isConnected: Flow<Boolean> = _isConnected
 
     init {

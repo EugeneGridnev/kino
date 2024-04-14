@@ -11,7 +11,7 @@ data class MovieInfo(
     val id: Int,
     val movieLength: Int?,
     val name: String?,
-    val poster: Poster,
+    val poster: Poster?,
     val rating: Rating?,
     val slogan: String?,
     val typeNumber: Int,

@@ -8,7 +8,7 @@ data class MovieCardInfo(
     val genres: List<Genre>,
     val id: Int,
     val name: String?,
-    val poster: Poster,
+    val poster: Poster?,
     val rating: Rating?,
     val year: Int?
 )

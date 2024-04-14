@@ -44,7 +44,7 @@ class MoviesPagingAdapter :
 
             with(binding) {
                 Glide.with(itemView)
-                    .load(movie.poster.previewUrl)
+                    .load(movie.poster?.previewUrl)
                     .placeholder(R.drawable.no_movie_image_placeholder)
                     .into(itemViewMovieThumbnail)
                 textViewMovieTitle.text = movie.name.filterBlank() ?: movie.enName.filterBlank()

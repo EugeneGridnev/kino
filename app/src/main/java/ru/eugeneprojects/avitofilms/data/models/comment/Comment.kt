@@ -8,7 +8,7 @@ import java.time.OffsetDateTime
 data class Comment(
     val author: String?,
     val date: OffsetDateTime?,
-    val id: Int?,
+    val id: Int,
     val movieId: Int?,
     val review: String?,
     val title: String?,

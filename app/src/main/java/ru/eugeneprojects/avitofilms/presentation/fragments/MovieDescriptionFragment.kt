@@ -101,7 +101,7 @@ class MovieDescriptionFragment : Fragment() {
         with(binding) {
             imageViewMovieImage.let {
                 Glide.with(this@MovieDescriptionFragment)
-                    .load(movieInfo.poster.url)
+                    .load(movieInfo.poster?.url)
                     .placeholder(R.drawable.no_movie_image_placeholder)
                     .into(it)
             }

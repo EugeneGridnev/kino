@@ -4,5 +4,5 @@ data class Actor(
     val enName: String?,
     val id: Int,
     val name: String?,
-    val photo: String,
+    val photo: String?,
 )
