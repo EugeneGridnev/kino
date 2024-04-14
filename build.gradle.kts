@@ -16,4 +16,5 @@ buildscript {
 plugins {
     id("com.android.application") version "8.2.1" apply false
     id("org.jetbrains.kotlin.android") version "1.9.22" apply false
+    id("de.mannodermaus.android-junit5") version "1.8.2.1" apply false
 }
