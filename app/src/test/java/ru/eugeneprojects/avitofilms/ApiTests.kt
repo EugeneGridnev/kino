@@ -4,11 +4,11 @@ import kotlinx.coroutines.runBlocking
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.jupiter.api.Assertions.assertAll
-import org.junit.jupiter.api.Test
-import ru.eugeneprojects.avitofilms.di.ServiceModule
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Assertions.assertNull
+import org.junit.jupiter.api.Test
+import ru.eugeneprojects.avitofilms.di.ServiceModule
 import java.time.OffsetDateTime
 import java.time.ZoneOffset
 
