@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="base_margin_for_movies_list_views">8dp</dimen>
+
+    <dimen name="card_elevation">4dp</dimen>
+    <dimen name="card_margin">4dp</dimen>
+    <dimen name="card_corner_radius">10dp</dimen>
+    <dimen name="card_padding">10dp</dimen>
+    <dimen name="card_image_width">60dp</dimen>
+    <dimen name="card_image_height">90dp</dimen>
+    <dimen name="card_corner_size">5dp</dimen>
+    <dimen name="card_max_width">200dp</dimen>
+
+    <dimen name="progress_padding">4dp</dimen>
+    <dimen name="progress_height">56dp</dimen>
+
+    <dimen name="error_min_height">56dp</dimen>
+    <dimen name="error_padding">4dp</dimen>
+
+    <dimen name="card_rating_text_view_style_margin_horizontal">3dp</dimen>
+
+    <dimen name="card_text_view_style_margin_horizontal">10dp</dimen>
+    <dimen name="card_text_view_style_margin_vertical">1dp</dimen>
+
+    <dimen name="movie_image_view_height">270dp</dimen>
+    <dimen name="movie_image_view_width">200dp</dimen>
+
+    <dimen name="movie_image_margin">10dp</dimen>
+
+    <dimen name="movie_fragment_titles_margin_start">32dp</dimen>
+    <dimen name="movie_fragment_titles_margin_end">5dp</dimen>
+
+    <dimen name="movie_fragment_text_margin_start">0dp</dimen>
+    <dimen name="movie_fragment_text_margin_end">32dp</dimen>
+
+    <dimen name="movie_fragment_main_text_margin_top">3dp</dimen>
+    <dimen name="movie_fragment_main_text_margin_bottom">3dp</dimen>
+    <dimen name="movie_fragment_main_text_margin_start">32dp</dimen>
+    <dimen name="movie_fragment_main_text_margin_end">32dp</dimen>
+
+    <dimen name="search_error_message_text_size">30sp</dimen>
+
+    <dimen name="filter_description_margin">20dp</dimen>
+
+    <dimen name="back_button_padding">4dp</dimen>
+    <dimen name="back_button_margin">10dp</dimen>
+    <dimen name="back_button_width">40dp</dimen>
+    <dimen name="back_button_height">40dp</dimen>
+
+    <dimen name="searched_movie_list_description_padding">4dp</dimen>
+
+    <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="close_button_margin">10dp</dimen>
+
+    <dimen name="retry_button_margin_top">20dp</dimen>
+
+    <dimen name="error_retry_message_horizontal_margin">40dp</dimen>
+    <dimen name="error_retry_message_top_margin">8dp</dimen>
+
+    <dimen name="retry_error_image_height">100dp</dimen>
+    <dimen name="retry_error_image_width">100dp</dimen>
+
+    <dimen name="scroll_view_comment_text_height">400dp</dimen>
+    <dimen name="scroll_view_margin">8dp</dimen>
+
+    <dimen name="comment_card_height">300dp</dimen>
+
+    <dimen name="comment_indicator_height">40dp</dimen>
+    <dimen name="comment_indicator_width">8dp</dimen>
+    <dimen name="comment_indicator_margin_top">8dp</dimen>
+
+    <dimen name="comment_title_margin_start">5dp</dimen>
+
+    <dimen name="comment_text_margin_horizontal">5dp</dimen>
+
+    <dimen name="comment_group_margin_bottom">3dp</dimen>
+
+    <dimen name="commentator_name_margin_start">5dp</dimen>
+
+    <dimen name="actor_card_image_height">70dp</dimen>
+    <dimen name="actor_card_image_width">50dp</dimen>
+
+    <dimen name="comment_description_margin_top">10dp</dimen>
+
+    <dimen name="movie_description_recyclers_margin_vertical">6dp</dimen>
+
+    <dimen name="filter_title_margin_start">8dp</dimen>
+
+    <dimen name="slider_padding_top">80dp</dimen>
+</resources>

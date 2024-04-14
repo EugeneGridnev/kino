@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:id="@+id/listDescription"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text="@string/filtered_list_description"
+        android:paddingBottom="@dimen/searched_movie_list_description_padding"
+        android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/arrow_back_icon"
+        android:contentDescription="@string/back_button_description"
+        android:clickable="true"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:padding="@dimen/back_button_padding"
+        app:tint="?android:textColorPrimary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/listDescription"
+        app:layout_constraintBottom_toBottomOf="@+id/listDescription" />
+
+    <View
+        app:layout_constraintBottom_toBottomOf="@+id/listDescription"
+        android:layout_height="1dp"
+        android:background="@drawable/shadow"
+        android:layout_width="match_parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewFilteredMovies"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="@dimen/base_margin_for_movies_list_views"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/listDescription" />
+
+    <TextView
+        style="@style/movieFragmentMainText"
+        android:id="@+id/textViewStub"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/empty_search_message"
+        android:textSize="@dimen/search_error_message_text_size"
+        android:visibility="invisible"
+        android:gravity="center"
+        android:textColor="@color/material_dynamic_tertiary40"
+        app:layout_constraintTop_toBottomOf="@+id/listDescription"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="@string/empty_search_message" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:indeterminateProgressStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
